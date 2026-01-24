@@ -1,0 +1,92 @@
+/* ===============================
+   TRENDING SECTION
+================================ */
+
+.trending-section {
+  margin: 60px auto;
+}
+
+/* HEADER */
+.trending-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.trending-header h2 {
+  font-size: 28px;
+  font-weight: 800;
+  color: #111;
+}
+
+/* TABS */
+.trending-tabs {
+  display: flex;
+  gap: 24px;
+  border-bottom: 1px solid #eee;
+}
+
+.trending-tabs button {
+  background: none;
+  border: none;
+  padding: 10px 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #666;
+  cursor: pointer;
+  position: relative;
+}
+
+.trending-tabs button.active {
+  color: #111;
+}
+
+.trending-tabs button.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 100%;
+  height: 2px;
+  background: #f59e0b;
+  border-radius: 2px;
+}
+.product-wish.active {
+  background: #ef4444;
+  color: #fff;
+}
+
+/* SKELETON */
+.product-card.skeleton {
+  height: 300px;
+  background: linear-gradient(
+    90deg,
+    #eee 25%,
+    #f5f5f5 37%,
+    #eee 63%
+  );
+  background-size: 400% 100%;
+  animation: shimmer 1.2s infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: 100% 0; }
+  100% { background-position: -100% 0; }
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .trending-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .trending-tabs {
+    gap: 16px;
+  }
+}
+.trending-header span{
+  color: #ef4444;
+}

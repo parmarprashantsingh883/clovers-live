@@ -1,0 +1,56 @@
+/* ===============================
+   SHIMMER SKELETON
+================================ */
+
+.skl {
+  position: relative;
+  overflow: hidden;
+
+  border-radius: 12px;
+}
+
+/* shimmer animation */
+.skl--shimmer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    rgba(224,224,224,0) 0%,
+    rgba(255,255,255,0.9) 50%,
+    rgba(224,224,224,0) 100%
+  );
+  animation: skl-shimmer 1.3s infinite;
+}
+
+
+@keyframes skl-shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* shapes */
+.skl--text {
+  height: 14px;
+}
+
+.skl--image {
+  width: 100%;
+  height: 160px;
+}
+
+.skl--circle {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+}
+
+.skl--button {
+  height: 44px;
+}
+
+.skl {
+  background: #e0e0e0;   /* 👈 darker than white */
+}

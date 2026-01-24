@@ -1,0 +1,47 @@
+.food-grid-wrapper {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 30px;
+}
+
+.filter-panel {
+  background: #fff;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.06);
+  position: sticky;
+  top: 120px;
+  height: fit-content;
+}
+
+.filter-check {
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-bottom:10px;
+  font-size:14px;
+}
+
+.rating-btn {
+  width:100%;
+  padding:8px;
+  margin:6px 0;
+  border-radius:10px;
+  border:1px solid #eee;
+}
+
+.rating-btn.active {
+  background:#ff2d2d;
+  color:#fff;
+}
+
+.reset-filter {
+  margin-top:14px;
+  background:#f3f4f6;
+  width:100%;
+  padding:10px;
+  border-radius:12px;
+  font-weight:600;
+}
+
+

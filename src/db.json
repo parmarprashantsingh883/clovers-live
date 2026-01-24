@@ -1,0 +1,2286 @@
+{
+  "categories": [
+    {
+      "id": 1,
+      "name": "Fresh Fruits",
+      "categorySlug": "fruits",
+      "icon": "Apple",
+      "image": "https://images.unsplash.com/photo-1610832958506-aa56368176cf?w=400&h=300&fit=crop"
+    },
+    {
+      "id": 2,
+      "name": "Vegetables",
+      "categorySlug": "vegetables",
+      "icon": "Leaf",
+      "image": "https://images.unsplash.com/photo-1597362925123-77861d3fbac7?w=400&h=300&fit=crop"
+    },
+    {
+      "id": 3,
+      "name": "Dairy & Eggs",
+      "categorySlug": "dairy",
+      "icon": "Milk",
+      "image": "https://images.unsplash.com/photo-1628088062854-d1870b4553da?w=400&h=300&fit=crop"
+    },
+    {
+      "id": 4,
+      "name": "Snacks",
+      "categorySlug": "snacks",
+      "icon": "Cookie",
+      "image": "https://images.unsplash.com/photo-1621939514649-280e2ee25f60?w=400&h=300&fit=crop"
+    },
+    {
+      "id": 5,
+      "name": "Bakery",
+      "categorySlug": "bakery",
+      "icon": "Croissant",
+      "image": "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400&h=300&fit=crop"
+    },
+    {
+      "id": 7,
+      "name": "Frozen Foods",
+      "categorySlug": "frozen",
+      "icon": "Snowflake",
+      "image": "https://images.unsplash.com/photo-1628418606803-fe4f3e05e6bf?w=400&h=300&fit=crop"
+    },
+    {
+      "id": 8,
+      "name": "Personal Care",
+      "categorySlug": "personal-care",
+      "icon": "Sparkles",
+      "image": "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=400&h=300&fit=crop"
+    },
+    {
+      "id": 9,
+      "name": "Household Essentials",
+      "categorySlug": "household",
+      "icon": "Home",
+      "image": "https://images.unsplash.com/photo-1583947215259-38e31be8751f?w=400&h=300&fit=crop"
+    },
+    {
+      "id": 10,
+      "name": "Baby Products",
+      "categorySlug": "baby-products",
+      "icon": "Baby",
+      "image": "https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=360/da/cms-assets/cms/product/e963bea0-7885-4440-b85f-0f873a432949.png"
+    },
+    {
+      "id": 11,
+      "name": "Beverages",
+      "categorySlug": "beverages",
+      "icon": "GlassWater",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRdmEIUMr3d6XJqT5BBVX_7FcnCu3s4xYwzQ&s"
+    },
+    {
+      "id": 12,
+      "name": "Munchies",
+      "categorySlug": "munchies",
+      "icon": "Candy",
+      "image": "https://images.unsplash.com/photo-1606312619070-d48b4c652a52?w=400&h=300&fit=crop"
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "name": "Fresh Organic Apples",
+      "price": 249,
+      "originalPrice": 349,
+      "image": "https://cdn.zeptonow.com/production/tr:w-403,ar-1024-1024,pr-true,f-auto,q-40,dpr-2/cms/product_variant/effacf2b-65a1-43ea-8b33-f364159b3936.jpeg",
+      "category": "Fruits",
+      "department": "Food",
+      "rating": 4.8,
+      "reviews": 124,
+      "description": "Crisp and delicious organic apples sourced from local farms.",
+      "weight": "1kg",
+      "stock": 50,
+      "origin": "India",
+      "nutritionFacts": {
+        "calories": 95,
+        "protein": "0.5g",
+        "carbs": "25g",
+        "fiber": "4g"
+      }
+    },
+    {
+      "id": 111,
+      "name": "Farm Fresh Eggs",
+      "price": 5.99,
+      "originalPrice": 6,
+      "image": "https://cdn.zeptonow.com/production/tr:w-403,ar-1000-1000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/561f7449-6d79-406d-8107-2c45cb4a6dfc.jpeg",
+      "category": "Dairy",
+      "rating": 4.9,
+      "reviews": 256,
+      "stock": 100,
+      "weight": "12 pcs",
+      "origin": "Local Farms",
+      "images": [
+        "data:image/jpeg;base64,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",
+        "https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=801",
+        "https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=802",
+        "https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=803"
+      ]
+    },
+    {
+      "id": 102,
+      "name": "Bananas",
+      "price": 60,
+      "image": "https://themewagon.github.io/FoodMart/images/thumb-bananas.png",
+      "rating": 4.2,
+      "stock": 70,
+      "category_id": 1,
+      "discountPrice": 50,
+      "category_name": "Fresh Fruits",
+      "description": "Ripe bananas, great for smoothies and snacks."
+    },
+    {
+      "id": 103,
+      "name": "Tomatoes",
+      "price": 40,
+      "rating": 4.3,
+      "stock": 100,
+      "category_id": 2,
+      "discountPrice": 50,
+      "image": "https://cdn.zeptonow.com/production/tr:w-403,ar-1024-1024,pr-true,f-auto,q-40,dpr-2/cms/product_variant/29888869-e319-447a-9d6a-15f6884c60d1.jpeg",
+      "category_name": "Fresh Fruits",
+      "images": [
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-3000-3000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/78096558-9a99-4960-8753-f8a05fc3cd37/Tomato-Local.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-3000-3000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/78096558-9a99-4960-8753-f8a05fc3cd37/Tomato-Local.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1024-1024,pr-true,f-auto,q-40,dpr-2/cms/product_variant/29888869-e319-447a-9d6a-15f6884c60d1/Tomato-Local.jpeg",
+        "https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=803"
+      ],
+      "features": [
+        "100% Organic & Naturally Grown",
+        "No Artificial Preservatives",
+        "Sustainably Sourced from Washington State, USA",
+        "Farm to Table in 24 Hours"
+      ],
+      "nutritionFacts": {
+        "Calories": "95 kcal",
+        "Carbohydrates": "25g",
+        "Fiber": "4g",
+        "Vitamin C": "14%"
+      },
+      "reviewsList": [
+        {
+          "name": "Amit Sharma",
+          "rating": 5,
+          "comment": "Super fresh and juicy apples!"
+        },
+        {
+          "name": "Neha Verma",
+          "rating": 4,
+          "comment": "Very good quality, will order again."
+        }
+      ]
+    },
+    {
+      "id": 104,
+      "name": "Broccoli",
+      "price": 90,
+      "image": "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcSnrEKWoUMg_t9kOLoCRgsgNJllVTVabAEX95vUTTisJ-ci3WUSkUQtFz2sJ6CpxnFeFZVDzkbQPIl7quYsDsmlHdxY2ut7x66uqWuvgsK6nz6W4RirHjSG",
+      "rating": 4.1,
+      "stock": 40,
+      "category_id": 2,
+      "discountPrice": 50,
+      "category_name": "Fresh Fruits"
+    },
+    {
+      "id": 105,
+      "name": "Milk 1L",
+      "price": 55,
+      "image": "https://images.unsplash.com/photo-1563636619-e9143da7973b?w=400&h=400&fit=crop",
+      "rating": 4.6,
+      "stock": 60,
+      "category_id": 3,
+      "discountPrice": 50,
+      "category_name": "Dairy & Eggs"
+    },
+    {
+      "id": 106,
+      "name": "Brown Bread",
+      "price": 45,
+      "image": "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400&h=400&fit=crop",
+      "rating": 4.4,
+      "stock": 30,
+      "category_id": 5
+    },
+    {
+      "id": 107,
+      "name": "Potato Chips",
+      "price": 30,
+      "image": "https://images.unsplash.com/photo-1566478989037-eec170784d0b?w=400&h=400&fit=crop",
+      "rating": 4,
+      "stock": 200,
+      "category_id": 4
+    },
+    {
+      "id": 108,
+      "name": "Chicken Breast",
+      "price": 320,
+      "image": "https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?w=400&h=400&fit=crop",
+      "rating": 4.5,
+      "stock": 25,
+      "category_id": 6
+    },
+    {
+      "id": 109,
+      "name": "Frozen Pizza",
+      "price": 250,
+      "image": "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=400&h=400&fit=crop",
+      "rating": 4.3,
+      "stock": 35,
+      "category_id": 7
+    },
+    {
+      "id": 110,
+      "name": "Face Wash",
+      "price": 180,
+      "image": "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=400&h=400&fit=crop",
+      "rating": 4.4,
+      "stock": 45,
+      "category_id": 8
+    },
+    {
+      "id": 111,
+      "name": "Floor Cleaner",
+      "price": 210,
+      "image": "https://images.unsplash.com/photo-1585421514738-01798e348b17?w=400&h=400&fit=crop",
+      "rating": 4.1,
+      "stock": 55,
+      "category_id": 9
+    },
+    {
+      "id": 1010,
+      "name": "orange",
+      "price": 100,
+      "image": "https://m.media-amazon.com/images/I/51qFSdheDPL._AC_UF1000,1000_QL80_.jpg",
+      "rating": 4,
+      "stock": 99,
+      "category_id": 1,
+      "category_name": "Fresh Fruits",
+      "description": "dfghjk",
+      "discountPrice": 70
+    },
+    {
+      "id": 8520,
+      "name": "RIO Blueberry Peach Bubbly",
+      "price": 50,
+      "image": "https://cdn.zeptonow.com/production/tr:w-403,ar-2500-2500,pr-true,f-auto,q-40,dpr-2/cms/product_variant/9770254f-180c-49db-923d-959e28de2f2c.jpeg",
+      "rating": 4.5,
+      "stock": 0,
+      "category_id": 11,
+      "category_name": "beverage",
+      "description": "RIO Blueberry Peach Bubbly Fruit Drink Can",
+      "discountPrice": 39
+    },
+    {
+      "id": 741,
+      "name": "Pepsi Soft Drink",
+      "price": 40,
+      "image": "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1200-1200,pr-true,f-auto,q-40,dpr-2/cms/product_variant/fd2659fa-e385-4586-a60c-17df7c67b5de/Pepsi-Soft-Drink-Refreshing-Carbonated-Beverage.jpeg",
+      "rating": 4.2,
+      "stock": 100,
+      "category_id": 11,
+      "category_name": "beverage",
+      "description": "Refreshing Carbonated Beverage",
+      "discountPrice": 31
+    },
+    {
+      "id": 9852,
+      "name": "Mango Fruit Juice",
+      "price": 79,
+      "image": "https://cdn.zeptonow.com/production/tr:w-403,ar-1500-1500,pr-true,f-auto,q-40,dpr-2/cms/product_variant/3260b856-ff93-446b-9ada-606088778684.jpeg",
+      "rating": 4.5,
+      "stock": 146,
+      "category_id": 11,
+      "category_name": "beverage",
+      "description": "Pluckk Cold-Pressed Mango Juice...",
+      "discountPrice": 70
+    },
+    {
+      "name": "Baker's Loaf Whole Wheat Bread",
+      "title": "Baker's Loaf Whole Wheat Bread",
+      "price": 100,
+      "oldPrice": 100,
+      "discountPrice": 85,
+      "image": "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-2000-2000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/17671f70-5e27-458a-a883-b1cc7d34cec2/Baker-s-Loaf-Zero-Preservatives-Whole-Wheat-Bread.jpeg",
+      "images": [
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-2000-2000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/17671f70-5e27-458a-a883-b1cc7d34cec2/Baker-s-Loaf-Zero-Preservatives-Whole-Wheat-Bread.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-2000-2000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/cb94fa89-aa1a-440e-a505-fb0223a6a784/Baker-s-Loaf-Zero-Preservatives-Whole-Wheat-Bread.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-2000-2000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/3e249bd6-9aa7-4e88-b423-08e04200a007/Baker-s-Loaf-Zero-Preservatives-Whole-Wheat-Bread.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-2000-2000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/986d0300-fced-44fb-8959-86f17030f647/Baker-s-Loaf-Zero-Preservatives-Whole-Wheat-Bread.jpeg"
+      ],
+      "rating": 5,
+      "stock": 120,
+      "category_id": 5,
+      "category_name": "Bakery",
+      "description": "Whole Wheat Flour, Yeast, Sugar, Iodized Salt, Edible Vegetable Oil",
+      "features": [],
+      "nutritionFacts": {},
+      "reviewsList": [],
+      "id": 75365257
+    },
+    {
+      "name": "Orange Kinnow",
+      "title": "Orange Kinnow",
+      "price": 50,
+      "discountPrice": 49,
+      "image": "https://cdn.zeptonow.com/production/tr:w-403,ar-3000-3000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/e85d4db5-04b2-490a-95f2-9b445879fc1f.jpeg",
+      "rating": 4.5,
+      "stock": 200,
+      "category_id": 1,
+      "category_name": "Fresh Fruits",
+      "description": "Kinnows are extremely rich in vitamin C. Vitamin C acts as anti-aging agent. Eating kinnows or drinking kinnow juice regularly can help combat wrinkles due to ageing. Moreover, the minerals present in kinnows not only enhance our overall metabolism but also help us get a flawless and glowing skin.",
+      "features": [],
+      "nutritionFacts": {},
+      "reviewsList": [],
+      "id": 75365258
+    },
+    {
+      "name": "Sprite",
+      "title": "Sprite",
+      "price": 50,
+      "oldPrice": 50,
+      "discountPrice": 45,
+      "image": "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-2400-2400,pr-true,f-auto,q-40,dpr-2/cms/product_variant/859601d6-9264-49e2-ab83-909bc451010d/Sprite-Lemon-and-Lime-Soft-Drink-Crisp-Refreshing.jpeg",
+      "images": [
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-2400-2400,pr-true,f-auto,q-40,dpr-2/cms/product_variant/859601d6-9264-49e2-ab83-909bc451010d/Sprite-Lemon-and-Lime-Soft-Drink-Crisp-Refreshing.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1000-1000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/edc0adb4-9e68-42d6-a7e5-dffc956d6bd2/Sprite-Lemon-and-Lime-Soft-Drink-Crisp-Refreshing.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1500-1500,pr-true,f-auto,q-40,dpr-2/cms/product_variant/8a772948-f8c2-4eec-b31e-3c20b3fd15dc/Sprite-Lemon-and-Lime-Soft-Drink-Crisp-Refreshing.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-2400-2400,pr-true,f-auto,q-40,dpr-2/cms/product_variant/cae834f2-784b-4afb-a19b-5a9b176bde97/Sprite-Lemon-and-Lime-Soft-Drink-Crisp-Refreshing.jpeg"
+      ],
+      "rating": 4.2,
+      "stock": 100,
+      "category_id": 11,
+      "category_name": "Beverages",
+      "description": "Sprite Lemon and Lime Soft Drink | Crisp & Refreshing",
+      "features": [],
+      "nutritionFacts": {},
+      "reviewsList": [],
+      "id": 75365259
+    },
+    {
+      "name": "Sepoy & Co.",
+      "title": "Sepoy & Co.",
+      "price": 100,
+      "oldPrice": 100,
+      "discountPrice": 90,
+      "image": "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-2400-2400,pr-true,f-auto,q-40,dpr-2/cms/product_variant/4c1b7bdd-86de-479f-8a09-bfb2ccd744f5/Sepoy-Co-Classic-Lemonade-Refreshing-Drink.jpeg",
+      "images": [
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-2400-2400,pr-true,f-auto,q-40,dpr-2/cms/product_variant/4c1b7bdd-86de-479f-8a09-bfb2ccd744f5/Sepoy-Co-Classic-Lemonade-Refreshing-Drink.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1500-1500,pr-true,f-auto,q-40,dpr-2/cms/product_variant/793b2475-deab-4b69-b1f7-80a007f5a9b5/Sepoy-Co-Classic-Lemonade-Refreshing-Drink.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-4000-4000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/b61721b6-fd56-4a0a-8108-53bad65f8533/Sepoy-Co-Classic-Lemonade-Refreshing-Drink.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1080-1080,pr-true,f-auto,q-40,dpr-2/cms/product_variant/bbdbfb3f-cf90-4bb1-992a-c6ca063db870/Sepoy-Co-Classic-Lemonade-Refreshing-Drink.jpg"
+      ],
+      "rating": 4.2,
+      "stock": 100,
+      "category_id": 11,
+      "category_name": "Beverages",
+      "description": "Sepoy & Co. Classic Lemonade | Refreshing Drink",
+      "features": [],
+      "nutritionFacts": {},
+      "reviewsList": [],
+      "id": 75365260
+    },
+    {
+      "name": "Mixed Fruit Juice",
+      "title": "Mixed Fruit Juice",
+      "price": 140,
+      "oldPrice": 140,
+      "discountPrice": 73,
+      "image": "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-2000-2000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/3743a947-c1d6-4695-8d69-0d4ce2470498/Dabur-Real-Fruit-Power-Masala-Mixed-Fruit-Juice.jpeg",
+      "images": [
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-2000-2000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/3743a947-c1d6-4695-8d69-0d4ce2470498/Dabur-Real-Fruit-Power-Masala-Mixed-Fruit-Juice.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1200-1200,pr-true,f-auto,q-40,dpr-2/cms/product_variant/b80e7575-6a68-4640-9453-5eedc0b0b7c2/Dabur-Real-Fruit-Power-Masala-Mixed-Fruit-Juice.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1200-1200,pr-true,f-auto,q-40,dpr-2/cms/product_variant/cf4026bb-83b4-47ff-bea4-9946eaed2c3c/Dabur-Real-Fruit-Power-Masala-Mixed-Fruit-Juice.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1200-1200,pr-true,f-auto,q-40,dpr-2/cms/product_variant/70bde863-3d61-4230-a82b-7ffa3e565c97/Dabur-Real-Fruit-Power-Masala-Mixed-Fruit-Juice.jpeg"
+      ],
+      "rating": 4.2,
+      "stock": 100,
+      "category_id": 11,
+      "category_name": "Beverages",
+      "description": "Dabur Real Fruit Power Masala Mixed Fruit Juice",
+      "features": [],
+      "nutritionFacts": {},
+      "reviewsList": [],
+      "id": 75365261
+    },
+    {
+      "name": "Frooti Mango",
+      "title": "Frooti Mango",
+      "price": 94,
+      "oldPrice": 94,
+      "discountPrice": 85,
+      "image": "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1200-1200,pr-true,f-auto,q-40,dpr-2/cms/product_variant/6d1edc48-9e89-4305-8d0f-eff239c3d69c/Frooti-Mango-Fruit-Juice-Ready-to-Drink-Beverage.jpeg",
+      "images": [
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1200-1200,pr-true,f-auto,q-40,dpr-2/cms/product_variant/6d1edc48-9e89-4305-8d0f-eff239c3d69c/Frooti-Mango-Fruit-Juice-Ready-to-Drink-Beverage.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1200-1200,pr-true,f-auto,q-40,dpr-2/cms/product_variant/be0302da-309d-4140-9274-300d128bcbd3/Frooti-Mango-Fruit-Juice-Ready-to-Drink-Beverage.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1200-1200,pr-true,f-auto,q-40,dpr-2/cms/product_variant/ed71cb91-669c-48fe-b890-33e89eba9202/Frooti-Mango-Fruit-Juice-Ready-to-Drink-Beverage.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1200-1200,pr-true,f-auto,q-40,dpr-2/cms/product_variant/846b122f-b026-4cc0-9180-dcc1b2f29524/Frooti-Mango-Fruit-Juice-Ready-to-Drink-Beverage.jpeg"
+      ],
+      "rating": 4.2,
+      "stock": 149,
+      "category_id": 11,
+      "category_name": "Beverages",
+      "description": "Frooti Mango Fruit Juice | Ready to Drink Beverage",
+      "features": [],
+      "nutritionFacts": {},
+      "reviewsList": [],
+      "id": 75365262
+    },
+    {
+      "name": "Tide powder",
+      "title": "Tide powder",
+      "price": 270,
+      "oldPrice": 270,
+      "discountPrice": 259,
+      "image": "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1200-1200,pr-true,f-auto,q-40,dpr-2/cms/product_variant/b8a65e0b-5e21-42f3-bb90-5f33b758f8cc/Tide-Plus-Lemon-Mint-Detergent-Powder.jpeg",
+      "images": [
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1200-1200,pr-true,f-auto,q-40,dpr-2/cms/product_variant/b8a65e0b-5e21-42f3-bb90-5f33b758f8cc/Tide-Plus-Lemon-Mint-Detergent-Powder.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1200-1200,pr-true,f-auto,q-40,dpr-2/cms/product_variant/73273ccb-eb3d-4bb8-8aed-5ee76a316539/Tide-Plus-Lemon-Mint-Detergent-Powder.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1200-1200,pr-true,f-auto,q-40,dpr-2/cms/product_variant/77109fa1-18fc-423e-86aa-8606c0790f8e/Tide-Plus-Lemon-Mint-Detergent-Powder.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1200-1200,pr-true,f-auto,q-40,dpr-2/cms/product_variant/c4e35866-884d-4bb9-8435-8b2b1d5485a0/Tide-Plus-Lemon-Mint-Detergent-Powder.jpeg"
+      ],
+      "rating": 4,
+      "stock": 100,
+      "category_id": 9,
+      "category_name": "Household Essentials",
+      "description": "Tide Plus Lemon & Mint Detergent Powder",
+      "features": [],
+      "nutritionFacts": {},
+      "reviewsList": [],
+      "id": 75365263
+    },
+    {
+      "name": "Minimalist Shampoo",
+      "title": "Minimalist Shampoo",
+      "price": 599,
+      "oldPrice": 599,
+      "discountPrice": 499,
+      "image": "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1600-1600,pr-true,f-auto,q-40,dpr-2/cms/product_variant/0092811d-55d5-40b3-bc2a-fe2475fcba16/Minimalist-Maleic-Bond-Repair-Complex-3-5-Hair-Shampoo-For-Men-And-Women.jpeg",
+      "images": [
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1600-1600,pr-true,f-auto,q-40,dpr-2/cms/product_variant/0092811d-55d5-40b3-bc2a-fe2475fcba16/Minimalist-Maleic-Bond-Repair-Complex-3-5-Hair-Shampoo-For-Men-And-Women.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-2400-2400,pr-true,f-auto,q-40,dpr-2/cms/product_variant/922b1724-6b16-4ece-b34d-984ca12d4276/Minimalist-Maleic-Bond-Repair-Complex-3-5-Hair-Shampoo-For-Men-And-Women.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-2400-2400,pr-true,f-auto,q-40,dpr-2/cms/product_variant/3272a0dc-8972-4276-8246-a9aadd22cf9e/Minimalist-Maleic-Bond-Repair-Complex-3-5-Hair-Shampoo-For-Men-And-Women.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-2400-2400,pr-true,f-auto,q-40,dpr-2/cms/product_variant/3fc1d76e-67a0-41bb-8ea9-3536709fc983/Minimalist-Maleic-Bond-Repair-Complex-3-5-Hair-Shampoo-For-Men-And-Women.jpeg"
+      ],
+      "rating": 4.5,
+      "stock": 100,
+      "category_id": 8,
+      "category_name": "Personal Care",
+      "description": "Minimalist Maleic Bond Repair Complex 3.5% Hair Shampoo For Men And Women",
+      "features": [],
+      "nutritionFacts": {},
+      "reviewsList": [],
+      "id": 75365264
+    },
+    {
+      "name": "Mamaearth Onion Shampoo ",
+      "title": "Mamaearth Onion Shampoo ",
+      "price": 839,
+      "oldPrice": 839,
+      "discountPrice": 500,
+      "image": "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1200-1200,pr-true,f-auto,q-40,dpr-2/cms/product_variant/cc874be5-9462-45bd-82a6-a7f2e02375c7/Mamaearth-Onion-Shampoo-For-Hair-Fall-Control-Hair-Growth-With-Onion-Plant-Keratin.jpeg",
+      "images": [
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1200-1200,pr-true,f-auto,q-40,dpr-2/cms/product_variant/cc874be5-9462-45bd-82a6-a7f2e02375c7/Mamaearth-Onion-Shampoo-For-Hair-Fall-Control-Hair-Growth-With-Onion-Plant-Keratin.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-5002-5002,pr-true,f-auto,q-40,dpr-2/cms/product_variant/206f17f2-35ec-4f6b-847e-04969645188c/Mamaearth-Onion-Shampoo-For-Hair-Fall-Control-Hair-Growth-With-Onion-Plant-Keratin.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-2400-2400,pr-true,f-auto,q-40,dpr-2/cms/product_variant/0038f54a-b687-4193-b547-27ff9010ff55/Mamaearth-Onion-Shampoo-For-Hair-Fall-Control-Hair-Growth-With-Onion-Plant-Keratin.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1201-1201,pr-true,f-auto,q-40,dpr-2/cms/product_variant/f1102cb6-cb6f-4ae5-ad1a-4639d8ed7dfb/Mamaearth-Onion-Shampoo-For-Hair-Fall-Control-Hair-Growth-With-Onion-Plant-Keratin.jpeg"
+      ],
+      "rating": 4,
+      "stock": 99,
+      "category_id": 8,
+      "category_name": "Personal Care",
+      "description": "Mamaearth Onion Shampoo For Hair Fall Control & Hair Growth With Onion & Plant Keratin",
+      "features": [],
+      "nutritionFacts": {},
+      "reviewsList": [],
+      "id": 75365265
+    },
+    {
+      "name": " Keratin Biotin Shampoo",
+      "title": " Keratin Biotin Shampoo",
+      "price": 499,
+      "oldPrice": 499,
+      "discountPrice": 367,
+      "image": "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1200-1200,pr-true,f-auto,q-40,dpr-2/cms/product_variant/3f852260-ffae-4e00-a302-b2d9a5ed4c8b/The-Skin-Story-Keratin-Biotin-Shampoo-For-Damaged-Treated-Coloured-Hair-Frizz-Control-Sulphate-Free.jpeg",
+      "images": [
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1200-1200,pr-true,f-auto,q-40,dpr-2/cms/product_variant/3f852260-ffae-4e00-a302-b2d9a5ed4c8b/The-Skin-Story-Keratin-Biotin-Shampoo-For-Damaged-Treated-Coloured-Hair-Frizz-Control-Sulphate-Free.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1200-1200,pr-true,f-auto,q-40,dpr-2/cms/product_variant/1ca183e8-e363-4852-9d93-bb96896be59a/The-Skin-Story-Keratin-Biotin-Shampoo-For-Damaged-Treated-Coloured-Hair-Frizz-Control-Sulphate-Free.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1200-1200,pr-true,f-auto,q-40,dpr-2/cms/product_variant/063b78b2-53e7-4823-9421-9779e4e733dd/The-Skin-Story-Keratin-Biotin-Shampoo-For-Damaged-Treated-Coloured-Hair-Frizz-Control-Sulphate-Free.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1200-1200,pr-true,f-auto,q-40,dpr-2/cms/product_variant/ce2347ef-59c6-4767-8056-4de835ad7712/The-Skin-Story-Keratin-Biotin-Shampoo-For-Damaged-Treated-Coloured-Hair-Frizz-Control-Sulphate-Free.jpeg"
+      ],
+      "rating": 4.1,
+      "stock": 150,
+      "category_id": 8,
+      "category_name": "Personal Care",
+      "description": "The Skin Story Keratin Biotin Shampoo For Damaged Treated Coloured Hair Frizz Control Sulphate Free",
+      "features": [],
+      "nutritionFacts": {},
+      "reviewsList": [],
+      "id": 75365266
+    },
+    {
+      "name": "Curl Quenching Moisture Styling Duo ",
+      "title": "Curl Quenching Moisture Styling Duo ",
+      "price": 510,
+      "oldPrice": 510,
+      "discountPrice": 442,
+      "image": "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-2000-2000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/52bbe62a-4403-4ced-9797-68137726fad4/Fix-My-Curls-Curl-Quenching-Moisture-Styling-Duo-For-Curly-Wavy-Dry-Frizzy-Hair-Frizz-Control.jpeg",
+      "images": [
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-2000-2000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/52bbe62a-4403-4ced-9797-68137726fad4/Fix-My-Curls-Curl-Quenching-Moisture-Styling-Duo-For-Curly-Wavy-Dry-Frizzy-Hair-Frizz-Control.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-2000-2000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/0ad029b3-6c3c-4058-abfb-e9d8fb6fab70/Fix-My-Curls-Curl-Quenching-Moisture-Styling-Duo-For-Curly-Wavy-Dry-Frizzy-Hair-Frizz-Control.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-2000-2000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/3351e1c2-326e-48f6-bd78-08ef93353b55/Fix-My-Curls-Curl-Quenching-Moisture-Styling-Duo-For-Curly-Wavy-Dry-Frizzy-Hair-Frizz-Control.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-2000-2000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/d1e6d69c-bd37-40f4-afec-67d89e7af59d/Fix-My-Curls-Curl-Quenching-Moisture-Styling-Duo-For-Curly-Wavy-Dry-Frizzy-Hair-Frizz-Control.jpeg"
+      ],
+      "rating": 4.4,
+      "stock": 120,
+      "category_id": 8,
+      "category_name": "Personal Care",
+      "description": "Fix My Curls Curl Quenching Moisture Styling Duo | For Curly, Wavy, Dry, Frizzy Hair, Frizz Control",
+      "features": [],
+      "nutritionFacts": {},
+      "reviewsList": [],
+      "id": 75365267
+    },
+    {
+      "name": "Cinthol Talcum Powder",
+      "title": "Cinthol Talcum Powder",
+      "price": 199,
+      "oldPrice": 199,
+      "discountPrice": 166,
+      "image": "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1600-1600,pr-true,f-auto,q-40,dpr-2/cms/product_variant/7dba0b47-2d66-4000-aa05-a11d2f5b1853/Cinthol-Original-Talcum-Powder.jpeg",
+      "images": [
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1600-1600,pr-true,f-auto,q-40,dpr-2/cms/product_variant/7dba0b47-2d66-4000-aa05-a11d2f5b1853/Cinthol-Original-Talcum-Powder.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1600-1600,pr-true,f-auto,q-40,dpr-2/cms/product_variant/d7995706-5d2b-4be8-a352-97fd5dfd816a/Cinthol-Original-Talcum-Powder.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1600-1600,pr-true,f-auto,q-40,dpr-2/cms/product_variant/2e11c3e7-13d8-4fdf-b453-6ef534b1a33a/Cinthol-Original-Talcum-Powder.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1600-1600,pr-true,f-auto,q-40,dpr-2/cms/product_variant/feac6999-ed23-401b-bf48-6d8b9a720ed8/Cinthol-Original-Talcum-Powder.jpeg"
+      ],
+      "rating": 4.2,
+      "stock": 119,
+      "category_id": 8,
+      "category_name": "Personal Care",
+      "description": "Cinthol Original Talcum Powder",
+      "features": [],
+      "nutritionFacts": {},
+      "reviewsList": [],
+      "id": 75365268
+    },
+    {
+      "name": "Cinthol Lime Bath Soap",
+      "title": "Cinthol Lime Bath Soap",
+      "price": 40,
+      "oldPrice": 40,
+      "discountPrice": 36,
+      "image": "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-2400-2400,pr-true,f-auto,q-40,dpr-2/cms/product_variant/77dd8be1-877e-4dab-bd81-f9146e1f0315/Cinthol-Lime-Bath-Soap.jpeg",
+      "images": [
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-2400-2400,pr-true,f-auto,q-40,dpr-2/cms/product_variant/77dd8be1-877e-4dab-bd81-f9146e1f0315/Cinthol-Lime-Bath-Soap.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1600-1600,pr-true,f-auto,q-40,dpr-2/cms/product_variant/8f7e8bb2-95b9-42d9-8c62-55278ffc72d1/Cinthol-Lime-Bath-Soap.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1600-1600,pr-true,f-auto,q-40,dpr-2/cms/product_variant/b3fcb163-fe31-44ad-bfcc-4c5c4ad3c2db/Cinthol-Lime-Bath-Soap.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1600-1600,pr-true,f-auto,q-40,dpr-2/cms/product_variant/e95b4aff-3c82-4db6-9fb9-08b08ff7e24b/Cinthol-Lime-Bath-Soap.jpeg"
+      ],
+      "rating": 4.2,
+      "stock": 120,
+      "category_id": 8,
+      "category_name": "Personal Care",
+      "description": "Cinthol Lime Bath Soap",
+      "features": [],
+      "nutritionFacts": {},
+      "reviewsList": [],
+      "id": 75365269
+    },
+    {
+      "name": "Cinthol Cool Foaming Body Wash ",
+      "title": "Cinthol Cool Foaming Body Wash ",
+      "price": 120,
+      "oldPrice": 120,
+      "discountPrice": 86,
+      "image": "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1600-1600,pr-true,f-auto,q-40,dpr-2/cms/product_variant/8d3a3a54-8f8a-4395-a777-00c22358e68d/Cinthol-Cool-Foaming-Body-Wash-Glycerin-Shower-Gel.jpeg",
+      "images": [
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1600-1600,pr-true,f-auto,q-40,dpr-2/cms/product_variant/8d3a3a54-8f8a-4395-a777-00c22358e68d/Cinthol-Cool-Foaming-Body-Wash-Glycerin-Shower-Gel.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1600-1600,pr-true,f-auto,q-40,dpr-2/cms/product_variant/e4513696-d4c4-43c3-a478-faf316788bd9/Cinthol-Cool-Foaming-Body-Wash-Glycerin-Shower-Gel.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1600-1600,pr-true,f-auto,q-40,dpr-2/cms/product_variant/25a7ece9-f377-402c-ace2-3ce5158c5b39/Cinthol-Cool-Foaming-Body-Wash-Glycerin-Shower-Gel.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1600-1600,pr-true,f-auto,q-40,dpr-2/cms/product_variant/25a7ece9-f377-402c-ace2-3ce5158c5b39/Cinthol-Cool-Foaming-Body-Wash-Glycerin-Shower-Gel.jpeg"
+      ],
+      "rating": 4,
+      "stock": 100,
+      "category_id": 8,
+      "category_name": "Personal Care",
+      "description": "Cinthol Cool Foaming Body Wash | Glycerin Shower Gel\n",
+      "features": [],
+      "nutritionFacts": {},
+      "reviewsList": [],
+      "id": 75365270
+    },
+    {
+      "name": "Dot & Key Vitamin C + E Super Bright Gel Face Wash",
+      "title": "Dot & Key Vitamin C + E Super Bright Gel Face Wash",
+      "price": 250,
+      "oldPrice": 250,
+      "discountPrice": 219,
+      "image": "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1200-1200,pr-true,f-auto,q-40,dpr-2/cms/product_variant/9d554804-03db-4ebb-85b9-868611ed82b8/Dot-Key-Vitamin-C-E-Super-Bright-Gel-Face-Wash.jpeg",
+      "images": [
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1200-1200,pr-true,f-auto,q-40,dpr-2/cms/product_variant/9d554804-03db-4ebb-85b9-868611ed82b8/Dot-Key-Vitamin-C-E-Super-Bright-Gel-Face-Wash.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1200-1200,pr-true,f-auto,q-40,dpr-2/cms/product_variant/daf49da6-0b7f-4434-953d-c165e1b41750/Dot-Key-Vitamin-C-E-Super-Bright-Gel-Face-Wash.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1200-1200,pr-true,f-auto,q-40,dpr-2/cms/product_variant/5f2d1191-e3b9-4629-bc76-d41b84601994/Dot-Key-Vitamin-C-E-Super-Bright-Gel-Face-Wash.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1200-1200,pr-true,f-auto,q-40,dpr-2/cms/product_variant/96913ddb-f132-40e8-9def-8995abd25ee2/Dot-Key-Vitamin-C-E-Super-Bright-Gel-Face-Wash.jpeg"
+      ],
+      "rating": 4,
+      "stock": 120,
+      "category_id": 8,
+      "category_name": "Personal Care",
+      "description": "Dot & Key Vitamin C + E Super Bright Gel Face Wash",
+      "features": [],
+      "nutritionFacts": {},
+      "reviewsList": [],
+      "id": 75365271
+    },
+    {
+      "name": "CeraVe Blemish Control Cleanser With 2% Salicylic",
+      "title": "CeraVe Blemish Control Cleanser With 2% Salicylic",
+      "price": 1250,
+      "oldPrice": 1250,
+      "discountPrice": 1199,
+      "image": "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1500-1500,pr-true,f-auto,q-40,dpr-2/cms/product_variant/4e2d590a-a6f7-468e-93d5-e29f6e970223/CeraVe-Blemish-Control-Cleanser-With-2-Salicylic-Acid-Niacinamide-For-Acne-Prone-Skin.jpeg",
+      "images": [
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1500-1500,pr-true,f-auto,q-40,dpr-2/cms/product_variant/4e2d590a-a6f7-468e-93d5-e29f6e970223/CeraVe-Blemish-Control-Cleanser-With-2-Salicylic-Acid-Niacinamide-For-Acne-Prone-Skin.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1500-1500,pr-true,f-auto,q-40,dpr-2/cms/product_variant/091ace4c-7846-4e0c-ac00-1fe72bcd08a3/CeraVe-Blemish-Control-Cleanser-With-2-Salicylic-Acid-Niacinamide-For-Acne-Prone-Skin.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1500-1500,pr-true,f-auto,q-40,dpr-2/cms/product_variant/208435ca-3691-4fbc-9966-0a6de87b8d6f/CeraVe-Blemish-Control-Cleanser-With-2-Salicylic-Acid-Niacinamide-For-Acne-Prone-Skin.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1500-1500,pr-true,f-auto,q-40,dpr-2/cms/product_variant/101c126f-063d-4f95-accd-19585b5e6521/CeraVe-Blemish-Control-Cleanser-With-2-Salicylic-Acid-Niacinamide-For-Acne-Prone-Skin.jpeg"
+      ],
+      "rating": 3.8,
+      "stock": 150,
+      "category_id": 8,
+      "category_name": "Personal Care",
+      "description": "CeraVe Blemish Control Cleanser With 2% Salicylic Acid & Niacinamide For Acne-Prone Skin",
+      "features": [],
+      "nutritionFacts": {},
+      "reviewsList": [],
+      "id": 75365272
+    },
+    {
+      "name": "CeraVe Blemish Control Cleanser With 2% Salicylic Acid",
+      "title": "CeraVe Blemish Control Cleanser With 2% Salicylic Acid",
+      "price": 1250,
+      "oldPrice": 1250,
+      "discountPrice": 1159,
+      "image": "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1500-1500,pr-true,f-auto,q-40,dpr-2/cms/product_variant/4e2d590a-a6f7-468e-93d5-e29f6e970223/CeraVe-Blemish-Control-Cleanser-With-2-Salicylic-Acid-Niacinamide-For-Acne-Prone-Skin.jpeg",
+      "images": [
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1500-1500,pr-true,f-auto,q-40,dpr-2/cms/product_variant/4e2d590a-a6f7-468e-93d5-e29f6e970223/CeraVe-Blemish-Control-Cleanser-With-2-Salicylic-Acid-Niacinamide-For-Acne-Prone-Skin.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1500-1500,pr-true,f-auto,q-40,dpr-2/cms/product_variant/091ace4c-7846-4e0c-ac00-1fe72bcd08a3/CeraVe-Blemish-Control-Cleanser-With-2-Salicylic-Acid-Niacinamide-For-Acne-Prone-Skin.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1500-1500,pr-true,f-auto,q-40,dpr-2/cms/product_variant/208435ca-3691-4fbc-9966-0a6de87b8d6f/CeraVe-Blemish-Control-Cleanser-With-2-Salicylic-Acid-Niacinamide-For-Acne-Prone-Skin.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1500-1500,pr-true,f-auto,q-40,dpr-2/cms/product_variant/101c126f-063d-4f95-accd-19585b5e6521/CeraVe-Blemish-Control-Cleanser-With-2-Salicylic-Acid-Niacinamide-For-Acne-Prone-Skin.jpeg"
+      ],
+      "rating": 4,
+      "stock": 120,
+      "category_id": 8,
+      "category_name": "Personal Care",
+      "description": "CeraVe Blemish Control Cleanser With 2% Salicylic Acid & Niacinamide For Acne-Prone Skin",
+      "features": [],
+      "nutritionFacts": {},
+      "reviewsList": [],
+      "id": 75365273
+    },
+    {
+      "name": "Thums Up X Force.. ",
+      "title": "Thums Up X Force Zero Sugar Soft Drink | Zero Calories",
+      "price": 40,
+      "oldPrice": 40,
+      "discountPrice": 384,
+      "image": "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-4500-4500,pr-true,f-auto,q-40,dpr-2/cms/product_variant/5229e867-7f87-4593-8d8d-6d096fe3a336/Thums-Up-X-Force-Zero-Sugar-Soft-Drink-Zero-Calories.jpeg",
+      "images": [
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-4500-4500,pr-true,f-auto,q-40,dpr-2/cms/product_variant/5229e867-7f87-4593-8d8d-6d096fe3a336/Thums-Up-X-Force-Zero-Sugar-Soft-Drink-Zero-Calories.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-4500-4500,pr-true,f-auto,q-40,dpr-2/cms/product_variant/cce83480-6c7f-4074-873f-497febb9354d/Thums-Up-X-Force-Zero-Sugar-Soft-Drink-Zero-Calories.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-4500-4500,pr-true,f-auto,q-40,dpr-2/cms/product_variant/67d94af8-daa5-441f-b1c5-7f1c96e8550d/Thums-Up-X-Force-Zero-Sugar-Soft-Drink-Zero-Calories.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-4500-4500,pr-true,f-auto,q-40,dpr-2/cms/product_variant/bc2dac27-30a1-4274-bcd2-a684a021198a/Thums-Up-X-Force-Zero-Sugar-Soft-Drink-Zero-Calories.jpeg"
+      ],
+      "rating": 3.9,
+      "stock": 99,
+      "category_id": 11,
+      "category_name": "Beverages",
+      "description": "Thums Up X Force Zero Sugar Soft Drink | Zero Calories",
+      "features": [],
+      "nutritionFacts": {},
+      "reviewsList": [],
+      "id": 75365274
+    },
+    {
+      "name": "Aava Sparkling Water",
+      "title": "Aava Sparkling Water",
+      "price": 600,
+      "oldPrice": 600,
+      "discountPrice": 600,
+      "image": "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1000-1000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/b3129f8c-b4dd-424a-a46e-172101fd33d8/Aava-Sparkling-Water.jpeg",
+      "images": [
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1000-1000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/b3129f8c-b4dd-424a-a46e-172101fd33d8/Aava-Sparkling-Water.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1000-1000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/7ea6ee8c-d2d5-4f31-9e1d-cc26c3fce1f0/Aava-Sparkling-Water.jpg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1000-1000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/6faee6e9-941b-427e-b55f-7768f38bcc6d/Aava-Sparkling-Water.jpg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1000-1000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/f2d7e0c3-8dbf-4a9b-aeb7-c3a17fe5b789/Aava-Sparkling-Water.jpg"
+      ],
+      "rating": 4.3,
+      "stock": 200,
+      "category_id": 11,
+      "category_name": "Beverages",
+      "description": "Aava Sparkling Water",
+      "features": [],
+      "nutritionFacts": {},
+      "reviewsList": [],
+      "id": 75365275
+    },
+    {
+      "name": "Smoodh Lassi",
+      "title": "Smoodh Lassi",
+      "price": 20,
+      "oldPrice": 20,
+      "discountPrice": 17,
+      "image": "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1500-1500,pr-true,f-auto,q-40,dpr-2/cms/product_variant/a43c2135-4b41-4992-888b-ab5947c43062/Smoodh-Lassi.jpg",
+      "images": [
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1500-1500,pr-true,f-auto,q-40,dpr-2/cms/product_variant/a43c2135-4b41-4992-888b-ab5947c43062/Smoodh-Lassi.jpg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1500-1500,pr-true,f-auto,q-40,dpr-2/cms/product_variant/4eb742e7-a523-47ca-8be6-ef43864908c5/Smoodh-Lassi.jpg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1500-1500,pr-true,f-auto,q-40,dpr-2/cms/product_variant/c678e243-21c8-41b3-b9fe-eeab4a4e147c/Smoodh-Lassi.jpg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1500-1500,pr-true,f-auto,q-40,dpr-2/cms/product_variant/94398bf7-0dc5-41ab-996a-af3423523f4b/Smoodh-Lassi.jpg"
+      ],
+      "rating": 4,
+      "stock": 201,
+      "category_id": 11,
+      "category_name": "Beverages",
+      "description": "Smoodh Lassi",
+      "features": [],
+      "nutritionFacts": {},
+      "reviewsList": [],
+      "id": 75365276
+    },
+    {
+      "name": "Smoodh Chocolate Milk Drink | Pet",
+      "title": "Smoodh Chocolate Milk Drink | Pet",
+      "price": 20,
+      "oldPrice": 20,
+      "discountPrice": 18,
+      "image": "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1024-1024,pr-true,f-auto,q-40,dpr-2/cms/product_variant/3116691f-1b11-4aa6-8549-d9d5838b7590/Smoodh-Chocolate-Milk-Drink-Pet.jpeg",
+      "images": [
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1024-1024,pr-true,f-auto,q-40,dpr-2/cms/product_variant/3116691f-1b11-4aa6-8549-d9d5838b7590/Smoodh-Chocolate-Milk-Drink-Pet.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-3125-3125,pr-true,f-auto,q-40,dpr-2/cms/product_variant/ae9a81fe-cd8b-4e9d-bd33-9430b7a309e5/Smoodh-Chocolate-Milk-Drink-Pet.jpg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-3125-3125,pr-true,f-auto,q-40,dpr-2/cms/product_variant/306b3b5c-8d73-4650-8cb6-f268f32d21af/Smoodh-Chocolate-Milk-Drink-Pet.jpg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-3125-3125,pr-true,f-auto,q-40,dpr-2/cms/product_variant/29e42ae7-62ff-43a4-b170-09816a19432e/Smoodh-Chocolate-Milk-Drink-Pet.jpg"
+      ],
+      "rating": 4.3,
+      "stock": 200,
+      "category_id": 11,
+      "category_name": "Beverages",
+      "description": "Smoodh Chocolate Milk Drink | Pet",
+      "features": [],
+      "nutritionFacts": {},
+      "reviewsList": [],
+      "id": 75365277
+    },
+    {
+      "name": "Sunfeast Dark Fantasy Chocolate Milkshake ",
+      "title": "Sunfeast Dark Fantasy Chocolate Milkshake ",
+      "price": 30,
+      "oldPrice": 30,
+      "discountPrice": 28,
+      "image": "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-2000-2000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/d86e26f0-769d-41cc-9c1a-6fa2fdf22912/Sunfeast-Dark-Fantasy-Chocolate-Milkshake-With-Belgian-Chocolate.jpeg",
+      "images": [
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-2000-2000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/d86e26f0-769d-41cc-9c1a-6fa2fdf22912/Sunfeast-Dark-Fantasy-Chocolate-Milkshake-With-Belgian-Chocolate.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-2000-2000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/a1b6a529-32c3-4f45-8624-9b3ac25e1d54/Sunfeast-Dark-Fantasy-Chocolate-Milkshake-With-Belgian-Chocolate.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-2000-2000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/6974ddd3-d817-422a-b945-ea136a48145f/Sunfeast-Dark-Fantasy-Chocolate-Milkshake-With-Belgian-Chocolate.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-2000-2000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/0fa79443-97ac-4762-89aa-ccd328dcd9a8/Sunfeast-Dark-Fantasy-Chocolate-Milkshake-With-Belgian-Chocolate.jpeg"
+      ],
+      "rating": 4.5,
+      "stock": 120,
+      "category_id": 11,
+      "category_name": "Beverages",
+      "subcategory": "drink",
+      "description": "Sunfeast Dark Fantasy Chocolate Milkshake With Belgian Chocolate",
+      "features": [],
+      "nutritionFacts": {},
+      "reviewsList": [],
+      "id": 75365278
+    },
+    {
+      "name": "Smoodh Chocolate and Hazelnut Milk Drink",
+      "title": "Smoodh Chocolate and Hazelnut Milk Drink",
+      "price": 20,
+      "oldPrice": 20,
+      "discountPrice": 18,
+      "image": "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-3125-3125,pr-true,f-auto,q-40,dpr-2/cms/product_variant/51ccb6f1-e7fa-47e8-8f4c-648834bdca6e/Smoodh-Chocolate-and-Hazelnut-Milk-Drink.jpeg",
+      "images": [
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-3125-3125,pr-true,f-auto,q-40,dpr-2/cms/product_variant/51ccb6f1-e7fa-47e8-8f4c-648834bdca6e/Smoodh-Chocolate-and-Hazelnut-Milk-Drink.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-3125-3125,pr-true,f-auto,q-40,dpr-2/cms/product_variant/af86cc13-0520-4dc1-bafc-4c0808c0678e/Smoodh-Chocolate-and-Hazelnut-Milk-Drink.jpg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-3125-3125,pr-true,f-auto,q-40,dpr-2/cms/product_variant/bdcc3706-eb21-473c-a79e-aea3f63f102b/Smoodh-Chocolate-and-Hazelnut-Milk-Drink.jpg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-3125-3125,pr-true,f-auto,q-40,dpr-2/cms/product_variant/02721584-7af0-4a1a-b6d8-101e9acbaabe/Smoodh-Chocolate-and-Hazelnut-Milk-Drink.jpg"
+      ],
+      "rating": 4.2,
+      "stock": 1200,
+      "category_id": 11,
+      "category_name": "Beverages",
+      "subcategory": "milk drink",
+      "description": "Smoodh Chocolate and Hazelnut Milk Drink\n",
+      "features": [],
+      "nutritionFacts": {},
+      "reviewsList": [],
+      "id": 75365279
+    },
+    {
+      "name": " Smoodh Toffee Caramel Milk | Flavoured Milk Drin",
+      "title": " Smoodh Toffee Caramel Milk | Flavoured Milk Drin",
+      "price": 20,
+      "oldPrice": 20,
+      "discountPrice": 19,
+      "image": "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-4167-4167,pr-true,f-auto,q-40,dpr-2/cms/product_variant/87f32e78-541b-4023-9e09-0071f3b3c543/Smoodh-Toffee-Caramel-Milk-Flavoured-Milk-Drink.jpeg",
+      "images": [
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-4167-4167,pr-true,f-auto,q-40,dpr-2/cms/product_variant/87f32e78-541b-4023-9e09-0071f3b3c543/Smoodh-Toffee-Caramel-Milk-Flavoured-Milk-Drink.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-4167-4167,pr-true,f-auto,q-40,dpr-2/cms/product_variant/2ed10519-780a-4c82-ace1-003296b05b97/Smoodh-Toffee-Caramel-Milk-Flavoured-Milk-Drink.jpg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-4167-4167,pr-true,f-auto,q-40,dpr-2/cms/product_variant/9a5cb662-969f-4782-95c7-2109425bcd40/Smoodh-Toffee-Caramel-Milk-Flavoured-Milk-Drink.jpg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-4167-4167,pr-true,f-auto,q-40,dpr-2/cms/product_variant/9a5cb662-969f-4782-95c7-2109425bcd40/Smoodh-Toffee-Caramel-Milk-Flavoured-Milk-Drink.jpg"
+      ],
+      "rating": 4.5,
+      "stock": 150,
+      "category_id": 11,
+      "category_name": "Beverages",
+      "subcategory": "milk drink",
+      "description": " Smoodh Toffee Caramel Milk | Flavoured Milk Drin",
+      "features": [],
+      "nutritionFacts": {},
+      "reviewsList": [],
+      "id": 75365280
+    },
+    {
+      "name": "Godrej Fab Liquid Detergent Refill Pouch for Machine",
+      "title": "Godrej Fab Liquid Detergent Refill Pouch for Machine",
+      "price": 425,
+      "oldPrice": 425,
+      "discountPrice": 386,
+      "image": "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1600-1600,pr-true,f-auto,q-40,dpr-2/cms/product_variant/2d724573-d523-4979-96b2-8673a7288757/Godrej-Fab-Liquid-Detergent-Refill-Pouch-for-Machine.jpeg",
+      "images": [
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1600-1600,pr-true,f-auto,q-40,dpr-2/cms/product_variant/2d724573-d523-4979-96b2-8673a7288757/Godrej-Fab-Liquid-Detergent-Refill-Pouch-for-Machine.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1600-1600,pr-true,f-auto,q-40,dpr-2/cms/product_variant/3978d6a1-18e3-438a-bfa8-c5941a817197/Godrej-Fab-Liquid-Detergent-Refill-Pouch-for-Machine.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1600-1600,pr-true,f-auto,q-40,dpr-2/cms/product_variant/7837bf9f-4256-4f73-aa29-f20bf3e33205/Godrej-Fab-Liquid-Detergent-Refill-Pouch-for-Machine.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1600-1600,pr-true,f-auto,q-40,dpr-2/cms/product_variant/b076ea25-3951-4d16-89d7-5fa533091b36/Godrej-Fab-Liquid-Detergent-Refill-Pouch-for-Machine.jpeg"
+      ],
+      "rating": 4,
+      "stock": 300,
+      "category_id": 9,
+      "category_name": "Household Essentials",
+      "subcategory": "",
+      "description": "Godrej Fab Liquid Detergent Refill Pouch for Machine",
+      "features": [],
+      "nutritionFacts": {},
+      "reviewsList": [],
+      "id": 75365281
+    },
+    {
+      "name": "MOM Roasted & Salted Cashews | Crunchy & Nutty",
+      "title": "MOM Roasted & Salted Cashews | Crunchy & Nutty",
+      "price": 99,
+      "oldPrice": 99,
+      "discountPrice": 83,
+      "image": "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-5000-5000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/3b422cfe-d19e-47ab-9118-dbc333030754/MOM-Roasted-Salted-Cashews-Crunchy-Nutty.jpeg",
+      "images": [
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-5000-5000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/3b422cfe-d19e-47ab-9118-dbc333030754/MOM-Roasted-Salted-Cashews-Crunchy-Nutty.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1200-1200,pr-true,f-auto,q-40,dpr-2/cms/product_variant/89d96c50-85a4-41a4-b038-3bf0a2460fd5/MOM-Roasted-Salted-Cashews-Crunchy-Nutty.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1200-1200,pr-true,f-auto,q-40,dpr-2/cms/product_variant/8429cba8-38cf-4865-a936-5a29915bc46a/MOM-Roasted-Salted-Cashews-Crunchy-Nutty.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1200-1200,pr-true,f-auto,q-40,dpr-2/cms/product_variant/4d85183d-140f-46fc-9a9f-d3a8ab64a67f/MOM-Roasted-Salted-Cashews-Crunchy-Nutty.jpeg"
+      ],
+      "rating": 4,
+      "stock": 100,
+      "category_id": 12,
+      "category_name": "Munchies",
+      "subcategory": "chips",
+      "description": "MOM Roasted & Salted Cashews | Crunchy & Nutty",
+      "features": [],
+      "nutritionFacts": {},
+      "reviewsList": [],
+      "id": 75365282
+    },
+    {
+      "name": "Act II Ready To Eat Hot and Spicy Popcorn",
+      "title": "Act II Ready To Eat Hot and Spicy Popcorn",
+      "price": 40,
+      "oldPrice": 40,
+      "discountPrice": 37,
+      "image": "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-2084-2084,pr-true,f-auto,q-40,dpr-2/cms/product_variant/8213e997-b5dc-4f91-95d7-602f511c4bcc/Act-II-Ready-To-Eat-Hot-and-Spicy-Popcorn.jpeg",
+      "images": [
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-2084-2084,pr-true,f-auto,q-40,dpr-2/cms/product_variant/8213e997-b5dc-4f91-95d7-602f511c4bcc/Act-II-Ready-To-Eat-Hot-and-Spicy-Popcorn.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-2084-2084,pr-true,f-auto,q-40,dpr-2/cms/product_variant/4772abb7-a5fb-4e36-8bc3-abc7b777f917/Act-II-Ready-To-Eat-Hot-and-Spicy-Popcorn.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-2084-2084,pr-true,f-auto,q-40,dpr-2/cms/product_variant/e2707dfb-1d04-40a2-adcb-f0f9be465493/Act-II-Ready-To-Eat-Hot-and-Spicy-Popcorn.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-2084-2084,pr-true,f-auto,q-40,dpr-2/cms/product_variant/fa68f6cb-23b3-4b64-97d0-0f50e161a22b/Act-II-Ready-To-Eat-Hot-and-Spicy-Popcorn.jpeg"
+      ],
+      "rating": 4,
+      "stock": 10,
+      "category_id": 12,
+      "category_name": "Munchies",
+      "subcategory": "popcorn",
+      "description": "Act II Ready To Eat Hot and Spicy Popcorn",
+      "features": [],
+      "nutritionFacts": {},
+      "reviewsList": [],
+      "id": 75365283
+    },
+    {
+      "name": "Doritos Nacho Cheese Flavoured Corn Chips",
+      "title": "Doritos Nacho Cheese Flavoured Corn Chips",
+      "price": 40,
+      "oldPrice": 40,
+      "discountPrice": 35,
+      "image": "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1500-1500,pr-true,f-auto,q-40,dpr-2/cms/product_variant/3f86575d-1e56-4b78-bccc-9c2fb626c4fd/Doritos-Nacho-Cheese-Flavoured-Corn-Chips.jpeg",
+      "images": [
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1500-1500,pr-true,f-auto,q-40,dpr-2/cms/product_variant/3f86575d-1e56-4b78-bccc-9c2fb626c4fd/Doritos-Nacho-Cheese-Flavoured-Corn-Chips.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1500-1500,pr-true,f-auto,q-40,dpr-2/cms/product_variant/2b51e546-efd7-4086-a596-cebba2c2cf9f/Doritos-Nacho-Cheese-Flavoured-Corn-Chips.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1500-1500,pr-true,f-auto,q-40,dpr-2/cms/product_variant/907707cf-8889-4f7e-ab4d-4ecf68b67d74/Doritos-Nacho-Cheese-Flavoured-Corn-Chips.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1500-1500,pr-true,f-auto,q-40,dpr-2/cms/product_variant/496f3553-ef08-4bc3-938a-5f62725c5c75/Doritos-Nacho-Cheese-Flavoured-Corn-Chips.jpeg"
+      ],
+      "rating": 0,
+      "stock": 100,
+      "category_id": 12,
+      "category_name": "Munchies",
+      "subcategory": "nachos",
+      "description": "Doritos Nacho Cheese Flavoured Corn Chips",
+      "features": [],
+      "nutritionFacts": {},
+      "reviewsList": [],
+      "id": 75365284
+    },
+    {
+      "name": "Yogabar Multigrain Energy Bars Vanilla Almond, Nuts",
+      "title": "Yogabar Multigrain Energy Bars Vanilla Almond, Nuts",
+      "price": 45,
+      "oldPrice": 45,
+      "discountPrice": 33,
+      "image": "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-500-500,pr-true,f-auto,q-40,dpr-2/cms/product_variant/4d44a2d1-058e-4ce8-a508-6b1638ce0797/Yogabar-Multigrain-Energy-Bars-Vanilla-Almond-Nuts-Oats-and-Millets-Gluten-Free-Protein-Bar.jpg",
+      "images": [
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-500-500,pr-true,f-auto,q-40,dpr-2/cms/product_variant/4d44a2d1-058e-4ce8-a508-6b1638ce0797/Yogabar-Multigrain-Energy-Bars-Vanilla-Almond-Nuts-Oats-and-Millets-Gluten-Free-Protein-Bar.jpg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-500-500,pr-true,f-auto,q-40,dpr-2/cms/product_variant/a63cea29-2e0d-4e02-a994-00a3a5e62a05/Yogabar-Multigrain-Energy-Bars-Vanilla-Almond-Nuts-Oats-and-Millets-Gluten-Free-Protein-Bar.jpg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-500-500,pr-true,f-auto,q-40,dpr-2/cms/product_variant/aaee76a0-0279-47bb-9c5d-958224264029/Yogabar-Multigrain-Energy-Bars-Vanilla-Almond-Nuts-Oats-and-Millets-Gluten-Free-Protein-Bar.jpg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-4500-4500,pr-true,f-auto,q-40,dpr-2/cms/product_variant/62e04526-8712-4370-bdde-75617e692c87/Yogabar-Multigrain-Energy-Bars-Vanilla-Almond-Nuts-Oats-and-Millets-Gluten-Free-Protein-Bar.jpeg"
+      ],
+      "rating": 5,
+      "stock": 99,
+      "category_id": 12,
+      "category_name": "Munchies",
+      "subcategory": "energy bar",
+      "description": "Yogabar Multigrain Energy Bars Vanilla Almond, Nuts",
+      "features": [],
+      "nutritionFacts": {},
+      "reviewsList": [],
+      "id": 75365285
+    },
+    {
+      "name": "Hershey's Dark Chocolate Bar | Rich Chocolate Taste",
+      "title": "Hershey's Dark Chocolate Bar | Rich Chocolate Taste",
+      "price": 65,
+      "oldPrice": 65,
+      "discountPrice": 55,
+      "image": "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1000-1000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/6638ed43-a5db-4c3f-9108-3869449ef0ec/Hershey-s-Dark-Chocolate-Bar-Rich-Chocolate-Taste.jpeg",
+      "images": [
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1000-1000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/6638ed43-a5db-4c3f-9108-3869449ef0ec/Hershey-s-Dark-Chocolate-Bar-Rich-Chocolate-Taste.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1000-1000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/4325fff2-62a6-4164-8bfc-9c2ee7d0a8cc/Hershey-s-Dark-Chocolate-Bar-Rich-Chocolate-Taste.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1000-1000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/e6e9114a-c05d-49aa-b660-a91f1b06a87c/Hershey-s-Dark-Chocolate-Bar-Rich-Chocolate-Taste.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1000-1000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/84a7c932-7076-4b90-a256-a8eda50c5567/Hershey-s-Dark-Chocolate-Bar-Rich-Chocolate-Taste.jpeg"
+      ],
+      "rating": 4,
+      "stock": 120,
+      "category_id": 12,
+      "category_name": "Munchies",
+      "subcategory": "chocolate",
+      "description": "Hershey's Dark Chocolate Bar | Rich Chocolate Taste",
+      "features": [],
+      "nutritionFacts": {},
+      "reviewsList": [],
+      "id": 75365286
+    },
+    {
+      "name": "Amul Dark Chocolate Bar | Rich in Cocoa",
+      "title": "Amul Dark Chocolate Bar | Rich in Cocoa",
+      "price": 180,
+      "oldPrice": 180,
+      "discountPrice": 166,
+      "image": "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1500-1500,pr-true,f-auto,q-40,dpr-2/cms/product_variant/617e000f-137c-44cf-bae9-fa1369e235e4/Amul-Dark-Chocolate-Bar-Rich-in-Cocoa.jpeg",
+      "images": [
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1500-1500,pr-true,f-auto,q-40,dpr-2/cms/product_variant/617e000f-137c-44cf-bae9-fa1369e235e4/Amul-Dark-Chocolate-Bar-Rich-in-Cocoa.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1500-1500,pr-true,f-auto,q-40,dpr-2/cms/product_variant/7081e79d-52fc-4a74-b0d1-d2deead20091/Amul-Dark-Chocolate-Bar-Rich-in-Cocoa.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1500-1500,pr-true,f-auto,q-40,dpr-2/cms/product_variant/2a68cb4c-c1f2-475d-b36a-3c4f63bf35b8/Amul-Dark-Chocolate-Bar-Rich-in-Cocoa.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1500-1500,pr-true,f-auto,q-40,dpr-2/cms/product_variant/e3d65f9f-2580-422f-b5f4-c57652cf2d1a/Amul-Dark-Chocolate-Bar-Rich-in-Cocoa.jpeg"
+      ],
+      "rating": 4,
+      "stock": 100,
+      "category_id": 12,
+      "category_name": "Munchies",
+      "subcategory": "chocolate",
+      "description": "Amul Dark Chocolate Bar | Rich in Cocoa",
+      "features": [],
+      "nutritionFacts": {},
+      "reviewsList": [],
+      "id": 75365287
+    },
+    {
+      "name": "Hershey's Cookies 'N' Creme Chocolate Bar",
+      "title": "Hershey's Cookies 'N' Creme Chocolate Bar",
+      "price": 66,
+      "oldPrice": 66,
+      "discountPrice": 55,
+      "image": "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1000-1000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/23f08dc1-a91d-40ea-94b7-9a31ea58f316/Hershey-s-Cookies-N-Creme-Chocolate-Bar.jpeg",
+      "images": [
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1000-1000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/23f08dc1-a91d-40ea-94b7-9a31ea58f316/Hershey-s-Cookies-N-Creme-Chocolate-Bar.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1000-1000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/2d3414ba-a49c-4b9c-82c8-f8d0833e8269/Hershey-s-Cookies-N-Creme-Chocolate-Bar.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1000-1000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/6af153f3-542d-4379-b192-1c5835de33d1/Hershey-s-Cookies-N-Creme-Chocolate-Bar.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1000-1000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/fa605d3b-0f5f-4db1-aee3-c0a00fb7f7bb/Hershey-s-Cookies-N-Creme-Chocolate-Bar.jpeg"
+      ],
+      "rating": 4,
+      "stock": 98,
+      "category_id": 12,
+      "category_name": "Munchies",
+      "subcategory": "chocolate",
+      "description": "Hershey's Cookies 'N' Creme Chocolate Bar",
+      "features": [],
+      "nutritionFacts": {},
+      "reviewsList": [],
+      "id": 75365288
+    },
+    {
+      "name": "Nestle KitKat 4F Choco Wafer Bar",
+      "title": "Nestle KitKat 4F Choco Wafer Bar",
+      "price": 30,
+      "oldPrice": 30,
+      "discountPrice": 24,
+      "image": "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1200-1200,pr-true,f-auto,q-40,dpr-2/cms/product_variant/2051de77-333d-4915-b9a6-a18169a94969/Nestle-KitKat-4F-Choco-Wafer-Bar.jpg",
+      "images": [
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1200-1200,pr-true,f-auto,q-40,dpr-2/cms/product_variant/2051de77-333d-4915-b9a6-a18169a94969/Nestle-KitKat-4F-Choco-Wafer-Bar.jpg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1200-1200,pr-true,f-auto,q-40,dpr-2/cms/product_variant/a9df5436-7387-4e3c-8b0f-29be2e927ef4/Nestle-KitKat-4F-Choco-Wafer-Bar.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1200-1200,pr-true,f-auto,q-40,dpr-2/cms/product_variant/c9089faf-871a-4556-b05e-500a3b9d8524/Nestle-KitKat-4F-Choco-Wafer-Bar.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1200-1200,pr-true,f-auto,q-40,dpr-2/cms/product_variant/c2d29a84-8946-4347-8805-bb654e69d03a/Nestle-KitKat-4F-Choco-Wafer-Bar.jpeg"
+      ],
+      "rating": 4,
+      "stock": 100,
+      "category_id": 12,
+      "category_name": "Munchies",
+      "subcategory": "chocolate",
+      "description": "Nestle KitKat 4F Choco Wafer Bar",
+      "features": [],
+      "nutritionFacts": {},
+      "reviewsList": [],
+      "id": 75365289
+    },
+    {
+      "name": "Confetteria Raffaello | Premium Coconut Chocolate",
+      "title": "Confetteria Raffaello | Premium Coconut Chocolate",
+      "price": 299,
+      "oldPrice": 299,
+      "discountPrice": 251,
+      "image": "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1500-1500,pr-true,f-auto,q-40,dpr-2/cms/product_variant/40757449-42ba-42b8-9ad4-e8382ce14d19/Confetteria-Raffaello-Premium-Coconut-Chocolate.jpeg",
+      "images": [
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1500-1500,pr-true,f-auto,q-40,dpr-2/cms/product_variant/40757449-42ba-42b8-9ad4-e8382ce14d19/Confetteria-Raffaello-Premium-Coconut-Chocolate.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1500-1500,pr-true,f-auto,q-40,dpr-2/cms/product_variant/06c1d3c1-c224-4a39-acc6-564cc7bd5da8/Confetteria-Raffaello-Premium-Coconut-Chocolate.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1500-1500,pr-true,f-auto,q-40,dpr-2/cms/product_variant/af72d3e9-ad53-49cb-8ad4-60978cdb373f/Confetteria-Raffaello-Premium-Coconut-Chocolate.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1500-1500,pr-true,f-auto,q-40,dpr-2/cms/product_variant/b74c1059-afb5-4b35-83d8-6810307870c0/Confetteria-Raffaello-Premium-Coconut-Chocolate.jpeg"
+      ],
+      "rating": 0,
+      "stock": 100,
+      "category_id": 12,
+      "category_name": "Munchies",
+      "subcategory": "chocolate",
+      "description": "Confetteria Raffaello | Premium Coconut Chocolate",
+      "features": [],
+      "nutritionFacts": {},
+      "reviewsList": [],
+      "id": 75365290
+    },
+    {
+      "name": "Cadbury Dairy Milk Silk Oreo Chocolate Bar",
+      "title": "Cadbury Dairy Milk Silk Oreo Chocolates Bar",
+      "price": 100,
+      "oldPrice": 100,
+      "discountPrice": 95,
+      "image": "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1100-1100,pr-true,f-auto,q-40,dpr-2/cms/product_variant/a03b5354-11ca-4245-802e-cdb98dfcb123/Cadbury-Dairy-Milk-Silk-Oreo-Chocolate-Bar.jpeg",
+      "images": [
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1100-1100,pr-true,f-auto,q-40,dpr-2/cms/product_variant/a03b5354-11ca-4245-802e-cdb98dfcb123/Cadbury-Dairy-Milk-Silk-Oreo-Chocolate-Bar.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1100-1100,pr-true,f-auto,q-40,dpr-2/cms/product_variant/f8085752-891e-45c4-8ad1-e831a8bb783d/Cadbury-Dairy-Milk-Silk-Oreo-Chocolate-Bar.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1100-1100,pr-true,f-auto,q-40,dpr-2/cms/product_variant/890aeb06-c16f-4998-8c8a-a0a9b67dbc59/Cadbury-Dairy-Milk-Silk-Oreo-Chocolate-Bar.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1100-1100,pr-true,f-auto,q-40,dpr-2/cms/product_variant/8ba2f294-0547-4707-afde-834a16288745/Cadbury-Dairy-Milk-Silk-Oreo-Chocolate-Bar.jpeg"
+      ],
+      "rating": 4,
+      "stock": 119,
+      "category_id": 12,
+      "category_name": "Munchies",
+      "subcategory": "chocolate",
+      "description": "Cadbury Dairy Milk Silk Oreo Chocolate Bar\n",
+      "features": [],
+      "nutritionFacts": {},
+      "reviewsList": [],
+      "id": 75365291
+    },
+    {
+      "name": "CookieMan Choco Chunk Cookies | Soft & Chocolatey",
+      "title": "CookieMan Choco Chunk Cookies | Soft & Chocolatey",
+      "price": 30,
+      "oldPrice": 30,
+      "discountPrice": 28,
+      "image": "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1600-1600,pr-true,f-auto,q-40,dpr-2/cms/product_variant/146aeb1e-a78e-4fa8-b98d-ed7245cff215/CookieMan-Choco-Chunk-Cookies-Soft-Chocolatey.jpeg",
+      "images": [
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1600-1600,pr-true,f-auto,q-40,dpr-2/cms/product_variant/146aeb1e-a78e-4fa8-b98d-ed7245cff215/CookieMan-Choco-Chunk-Cookies-Soft-Chocolatey.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1200-1200,pr-true,f-auto,q-40,dpr-2/cms/product_variant/4e741069-0f69-4ffc-986c-af0797cbdea2/CookieMan-Choco-Chunk-Cookies-Soft-Chocolatey.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1200-1200,pr-true,f-auto,q-40,dpr-2/cms/product_variant/34488dfa-be61-4e26-a3f2-d72870b66c7c/CookieMan-Choco-Chunk-Cookies-Soft-Chocolatey.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-2000-2000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/064b1bfc-1fb0-4664-af2f-90b263c21963/CookieMan-Choco-Chunk-Cookies-Soft-Chocolatey.jpeg"
+      ],
+      "rating": 4,
+      "stock": 98,
+      "category_id": 12,
+      "category_name": "Munchies",
+      "subcategory": "biscuits",
+      "description": "CookieMan Choco Chunk Cookies | Soft & Chocolatey",
+      "features": [],
+      "nutritionFacts": {},
+      "reviewsList": [],
+      "id": 75365292
+    },
+    {
+      "name": "Sunfeast Dark Fantasy Choco Fills, Original ",
+      "title": "Sunfeast Dark Fantasy Choco Fills, Original ",
+      "price": 35,
+      "oldPrice": 35,
+      "discountPrice": 30,
+      "image": "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-500-500,pr-true,f-auto,q-40,dpr-2/cms/product_variant/8c4c2a65-f660-42c4-8110-29e0c43d484e/Sunfeast-Dark-Fantasy-Choco-Fills-Original-Filled-Cookies-with-Choco-Creme-Perfect-Snack.jpeg",
+      "images": [
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-500-500,pr-true,f-auto,q-40,dpr-2/cms/product_variant/8c4c2a65-f660-42c4-8110-29e0c43d484e/Sunfeast-Dark-Fantasy-Choco-Fills-Original-Filled-Cookies-with-Choco-Creme-Perfect-Snack.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-2352-2352,pr-true,f-auto,q-40,dpr-2/cms/product_variant/34815881-b2c9-44d6-8f92-513fec9f530d/Sunfeast-Dark-Fantasy-Choco-Fills-Original-Filled-Cookies-with-Choco-Creme-Perfect-Snack.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-3000-3000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/b8942467-39ce-4618-b779-f1837ad8dbda/Sunfeast-Dark-Fantasy-Choco-Fills-Original-Filled-Cookies-with-Choco-Creme-Perfect-Snack.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-900-900,pr-true,f-auto,q-40,dpr-2/cms/product_variant/a1f3e0d6-38d9-43eb-9a19-6217fe46c701/Sunfeast-Dark-Fantasy-Choco-Fills-Original-Filled-Cookies-with-Choco-Creme-Perfect-Snack.jpeg"
+      ],
+      "rating": 4,
+      "stock": 200,
+      "category_id": 12,
+      "category_name": "Munchies",
+      "subcategory": "biscuits",
+      "description": "Sunfeast Dark Fantasy Choco Fills, Original Filled Cookies with Choco Creme | Perfect Snack",
+      "features": [],
+      "nutritionFacts": {},
+      "reviewsList": [],
+      "id": 75365293
+    },
+    {
+      "name": "Lotte Choco Pie | Soft Cake Snack",
+      "title": "Lotte Choco Pie | Soft Cake Snack",
+      "price": 88,
+      "oldPrice": 88,
+      "discountPrice": 75,
+      "image": "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-2000-2000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/ea3d060c-b017-4c74-83a3-90f89baa0024/Lotte-Choco-Pie-Soft-Cake-Snack.jpeg",
+      "images": [
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-2000-2000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/ea3d060c-b017-4c74-83a3-90f89baa0024/Lotte-Choco-Pie-Soft-Cake-Snack.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-2000-2000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/b819de81-9ce1-4184-8908-25edb9afbb4f/Lotte-Choco-Pie-Soft-Cake-Snack.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1080-1080,pr-true,f-auto,q-40,dpr-2/cms/product_variant/bfbec1cd-c14d-4fcf-a160-ab45335fd1d1/Lotte-Choco-Pie-Soft-Cake-Snack.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1080-1080,pr-true,f-auto,q-40,dpr-2/cms/product_variant/c34f92a8-adc8-41d5-976c-67e2824e92ec/Lotte-Choco-Pie-Soft-Cake-Snack.jpeg"
+      ],
+      "rating": 4,
+      "stock": 200,
+      "category_id": 12,
+      "category_name": "Munchies",
+      "subcategory": "cookies",
+      "description": "Lotte Choco Pie | Soft Cake Snack",
+      "features": [],
+      "nutritionFacts": {},
+      "reviewsList": [],
+      "id": 75365294
+    },
+    {
+      "name": "Haldirams Namkeen - Aloo Lachha",
+      "title": "Haldirams Namkeen - Aloo Lachha",
+      "price": 30,
+      "oldPrice": 30,
+      "discountPrice": 28,
+      "image": "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-700-700,pr-true,f-auto,q-40,dpr-2/cms/product_variant/8e834fca-44a8-487e-a84e-f1831f6d24b2/Haldirams-Namkeen-Aloo-Lachha.jpeg",
+      "images": [
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-700-700,pr-true,f-auto,q-40,dpr-2/cms/product_variant/8e834fca-44a8-487e-a84e-f1831f6d24b2/Haldirams-Namkeen-Aloo-Lachha.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-700-700,pr-true,f-auto,q-40,dpr-2/cms/product_variant/f0bbc773-bef3-4c05-bd70-ed6b75217425/Haldirams-Namkeen-Aloo-Lachha.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-700-700,pr-true,f-auto,q-40,dpr-2/cms/product_variant/dde80dd4-797d-4afd-afdb-dfd5e00b2a78/Haldirams-Namkeen-Aloo-Lachha.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-700-700,pr-true,f-auto,q-40,dpr-2/cms/product_variant/9b271d63-f821-4511-94e6-29aa590b7d4c/Haldirams-Namkeen-Aloo-Lachha.jpeg"
+      ],
+      "rating": 4,
+      "stock": 100,
+      "category_id": 12,
+      "category_name": "Munchies",
+      "subcategory": "namkeen",
+      "description": "Haldirams Namkeen - Aloo Lachha",
+      "features": [],
+      "nutritionFacts": {},
+      "reviewsList": [],
+      "id": 75365295
+    },
+    {
+      "name": "Adukale Maddur Vade",
+      "title": "Adukale Maddur Vade",
+      "price": 96,
+      "oldPrice": 96,
+      "discountPrice": 69,
+      "image": "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1500-1500,pr-true,f-auto,q-40,dpr-2/cms/product_variant/2552d490-b2b7-4cee-8fff-117c96c418b4/Adukale-Maddur-Vade.png",
+      "images": [
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1500-1500,pr-true,f-auto,q-40,dpr-2/cms/product_variant/2552d490-b2b7-4cee-8fff-117c96c418b4/Adukale-Maddur-Vade.png",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-2000-2000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/f142b8b3-3be0-43f8-a689-939db7db4c96/Adukale-Maddur-Vade.jpg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-750-750,pr-true,f-auto,q-40,dpr-2/cms/product_variant/0f7a8abe-64f1-436a-aa3b-b0d28d3e282a/Adukale-Maddur-Vade.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1500-1500,pr-true,f-auto,q-40,dpr-2/cms/product_variant/c98e84eb-474e-4078-817b-a7927bb426a8/Adukale-Maddur-Vade.png"
+      ],
+      "rating": 4,
+      "stock": 120,
+      "category_id": 12,
+      "category_name": "Munchies",
+      "subcategory": "namkeen",
+      "description": "Adukale Maddur Vade",
+      "features": [],
+      "nutritionFacts": {},
+      "reviewsList": [],
+      "id": 75365296
+    },
+    {
+      "name": "The Theatre Project Gourmet Popcorn | Piri Piri & Lime",
+      "title": "The Theatre Project Gourmet Popcorn | Piri Piri & Lime",
+      "price": 60,
+      "oldPrice": 60,
+      "discountPrice": 53,
+      "image": "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-4500-4500,pr-true,f-auto,q-40,dpr-2/cms/product_variant/42b94adf-2aab-49f8-8df8-2dfa4e3453b3/The-Theatre-Project-Gourmet-Popcorn-Piri-Piri-Lime.jpeg",
+      "images": [
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-4500-4500,pr-true,f-auto,q-40,dpr-2/cms/product_variant/42b94adf-2aab-49f8-8df8-2dfa4e3453b3/The-Theatre-Project-Gourmet-Popcorn-Piri-Piri-Lime.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-4500-4500,pr-true,f-auto,q-40,dpr-2/cms/product_variant/6c3d1910-677a-4701-8309-58747fcaf666/The-Theatre-Project-Gourmet-Popcorn-Piri-Piri-Lime.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-4500-4500,pr-true,f-auto,q-40,dpr-2/cms/product_variant/90b8f298-d4b3-4b0a-9747-9533e34ee15d/The-Theatre-Project-Gourmet-Popcorn-Piri-Piri-Lime.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-4500-4500,pr-true,f-auto,q-40,dpr-2/cms/product_variant/bdb8fcec-e54b-4730-a1fa-75a9a2b573bb/The-Theatre-Project-Gourmet-Popcorn-Piri-Piri-Lime.jpeg"
+      ],
+      "rating": 4,
+      "stock": 100,
+      "category_id": 12,
+      "category_name": "Munchies",
+      "subcategory": "popcorn",
+      "description": "The Theatre Project Gourmet Popcorn | Piri Piri & Lime\n",
+      "features": [],
+      "nutritionFacts": {},
+      "reviewsList": [],
+      "id": 75365297
+    },
+    {
+      "name": "Gala Twin Bucket Spin Mop Floor Cleaning Mop",
+      "title": "Gala Twin Bucket Spin Mop Floor Cleaning Mop",
+      "price": 2999,
+      "oldPrice": 2999,
+      "discountPrice": 1245,
+      "image": "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-3319-3319,pr-true,f-auto,q-40,dpr-2/cms/product_variant/362f8a93-4e77-4de5-abf3-de8e1a5c2ae1/Gala-Twin-Bucket-Spin-Mop-Floor-Cleaning-Mop-With-Separate-Bucket-For-Clean-And-Dirty-Water.jpeg",
+      "images": [
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-3319-3319,pr-true,f-auto,q-40,dpr-2/cms/product_variant/362f8a93-4e77-4de5-abf3-de8e1a5c2ae1/Gala-Twin-Bucket-Spin-Mop-Floor-Cleaning-Mop-With-Separate-Bucket-For-Clean-And-Dirty-Water.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-4501-4501,pr-true,f-auto,q-40,dpr-2/cms/product_variant/04258922-8b07-430a-8f81-dd00d694df95/Gala-Twin-Bucket-Spin-Mop-Floor-Cleaning-Mop-With-Separate-Bucket-For-Clean-And-Dirty-Water.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-4501-4501,pr-true,f-auto,q-40,dpr-2/cms/product_variant/da6cd235-f8cd-4efc-b676-a67f6df437da/Gala-Twin-Bucket-Spin-Mop-Floor-Cleaning-Mop-With-Separate-Bucket-For-Clean-And-Dirty-Water.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-4501-4501,pr-true,f-auto,q-40,dpr-2/cms/product_variant/907efdce-526d-486d-b570-554f937c578d/Gala-Twin-Bucket-Spin-Mop-Floor-Cleaning-Mop-With-Separate-Bucket-For-Clean-And-Dirty-Water.jpeg"
+      ],
+      "rating": 4,
+      "stock": 100,
+      "category_id": 12,
+      "category_name": "Munchies",
+      "subcategory": "cleaning",
+      "description": "Gala Twin Bucket Spin Mop Floor Cleaning Mop With Separate Bucket For Clean And Dirty Water",
+      "features": [],
+      "nutritionFacts": {},
+      "reviewsList": [],
+      "id": 75365298
+    },
+    {
+      "name": "Gala Twin Bucket Spin Mop Floor Cleaning Mop",
+      "title": "Gala Twin Bucket Spin Mop Floor Cleaning Mop",
+      "price": 2099,
+      "oldPrice": 2099,
+      "discountPrice": 1234,
+      "image": "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-3319-3319,pr-true,f-auto,q-40,dpr-2/cms/product_variant/362f8a93-4e77-4de5-abf3-de8e1a5c2ae1/Gala-Twin-Bucket-Spin-Mop-Floor-Cleaning-Mop-With-Separate-Bucket-For-Clean-And-Dirty-Water.jpeg",
+      "images": [
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-3319-3319,pr-true,f-auto,q-40,dpr-2/cms/product_variant/362f8a93-4e77-4de5-abf3-de8e1a5c2ae1/Gala-Twin-Bucket-Spin-Mop-Floor-Cleaning-Mop-With-Separate-Bucket-For-Clean-And-Dirty-Water.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-4501-4501,pr-true,f-auto,q-40,dpr-2/cms/product_variant/e0cceb79-101f-4abd-b077-9137b785a140/Gala-Twin-Bucket-Spin-Mop-Floor-Cleaning-Mop-With-Separate-Bucket-For-Clean-And-Dirty-Water.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-4501-4501,pr-true,f-auto,q-40,dpr-2/cms/product_variant/da6cd235-f8cd-4efc-b676-a67f6df437da/Gala-Twin-Bucket-Spin-Mop-Floor-Cleaning-Mop-With-Separate-Bucket-For-Clean-And-Dirty-Water.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-4501-4501,pr-true,f-auto,q-40,dpr-2/cms/product_variant/04258922-8b07-430a-8f81-dd00d694df95/Gala-Twin-Bucket-Spin-Mop-Floor-Cleaning-Mop-With-Separate-Bucket-For-Clean-And-Dirty-Water.jpeg"
+      ],
+      "rating": 4,
+      "stock": 100,
+      "category_id": 9,
+      "category_name": "Household Essentials",
+      "subcategory": "cleaning",
+      "description": "Gala Twin Bucket Spin Mop Floor Cleaning Mop With Separate Bucket For Clean And Dirty Water",
+      "features": [],
+      "nutritionFacts": {},
+      "reviewsList": [],
+      "id": 75365299
+    },
+    {
+      "name": "Gebi Multipurpose Microfiber Pochha",
+      "title": "Gebi Multipurpose Microfiber Pochha",
+      "price": 125,
+      "oldPrice": 125,
+      "discountPrice": 85,
+      "image": "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1000-1000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/7233c38c-a830-4fdf-8ebd-92a828128952/Gebi-Multipurpose-Microfiber-Pochha.jpg",
+      "images": [
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1000-1000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/7233c38c-a830-4fdf-8ebd-92a828128952/Gebi-Multipurpose-Microfiber-Pochha.jpg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1000-1000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/a5754569-b643-4acd-b9bb-4a12b3856d8e/Gebi-Multipurpose-Microfiber-Pochha.jpg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1000-1000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/e885af44-8acd-4d1c-aa9d-64caf8f1731e/Gebi-Multipurpose-Microfiber-Pochha.jpg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1000-1000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/b010c8c2-0109-4ffb-a70e-6321aa3edaed/Gebi-Multipurpose-Microfiber-Pochha.jpg"
+      ],
+      "rating": 4,
+      "stock": 100,
+      "category_id": 9,
+      "category_name": "Household Essentials",
+      "subcategory": "cleaning",
+      "description": "Gebi Multipurpose Microfiber Pochha",
+      "features": [],
+      "nutritionFacts": {},
+      "reviewsList": [],
+      "id": 75365300
+    },
+    {
+      "name": "Origami So Soft Tissue Box | Assorted",
+      "title": "Origami So Soft Tissue Box | Assorted",
+      "price": 100,
+      "oldPrice": 100,
+      "discountPrice": 65,
+      "image": "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1500-1500,pr-true,f-auto,q-40,dpr-2/cms/product_variant/662683a3-33f2-421d-9eca-e65b79281c2d/Origami-So-Soft-Tissue-Box-Assorted.jpeg",
+      "images": [
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1500-1500,pr-true,f-auto,q-40,dpr-2/cms/product_variant/662683a3-33f2-421d-9eca-e65b79281c2d/Origami-So-Soft-Tissue-Box-Assorted.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1501-1501,pr-true,f-auto,q-40,dpr-2/cms/product_variant/c2921b6f-bb9d-4164-911a-782b5d0d7a8c/Origami-So-Soft-Tissue-Box-Assorted.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1501-1501,pr-true,f-auto,q-40,dpr-2/cms/product_variant/f7a5e620-0238-4569-bcb7-be710241287d/Origami-So-Soft-Tissue-Box-Assorted.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1501-1501,pr-true,f-auto,q-40,dpr-2/cms/product_variant/7fbf9d9a-0d81-4327-8771-a2bb7c363eb4/Origami-So-Soft-Tissue-Box-Assorted.jpeg"
+      ],
+      "rating": 4,
+      "stock": 99,
+      "category_id": 9,
+      "category_name": "Household Essentials",
+      "subcategory": "cleaning",
+      "description": "Origami So Soft Tissue Box | Assorted",
+      "features": [],
+      "nutritionFacts": {},
+      "reviewsList": [],
+      "id": 75365301
+    },
+    {
+      "name": "Beco Super Soft Facial Tissue paper | Carbox | 2 ply",
+      "title": "Beco Super Soft Facial Tissue paper | Carbox | 2 ply",
+      "price": 100,
+      "oldPrice": 100,
+      "discountPrice": 92,
+      "image": "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1000-1000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/55d3df5a-bcb2-4852-91f2-2a615b4affb7/Beco-Super-Soft-Facial-Tissue-paper-Carbox-2-ply.jpeg",
+      "images": [
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1000-1000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/55d3df5a-bcb2-4852-91f2-2a615b4affb7/Beco-Super-Soft-Facial-Tissue-paper-Carbox-2-ply.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1000-1000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/4e2cd149-d28a-4de2-9880-edf039152517/Beco-Super-Soft-Facial-Tissue-paper-Carbox-2-ply.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1000-1000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/ed169e41-dbb2-4766-8abc-b855799cbab7/Beco-Super-Soft-Facial-Tissue-paper-Carbox-2-ply.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1000-1000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/0aabb833-8894-4276-a92b-4435e0fa7acf/Beco-Super-Soft-Facial-Tissue-paper-Carbox-2-ply.jpeg"
+      ],
+      "rating": 5,
+      "stock": 120,
+      "category_id": 9,
+      "category_name": "Household Essentials",
+      "subcategory": "cleaning",
+      "description": "Beco Super Soft Facial Tissue paper | Carbox | 2 ply",
+      "features": [],
+      "nutritionFacts": {},
+      "reviewsList": [],
+      "id": 75365302
+    },
+    {
+      "name": "Hindalco Fresh wrapp Aluminium Foil - 9 m",
+      "title": "Hindalco Fresh wrapp Aluminium Foil - 9 m",
+      "price": 130,
+      "oldPrice": 130,
+      "discountPrice": 109,
+      "image": "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-2000-2000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/5a4b47ed-747d-4162-b607-78c1e6458a45/Hindalco-Fresh-wrapp-Aluminium-Foil-9-m.jpeg",
+      "images": [
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-2000-2000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/5a4b47ed-747d-4162-b607-78c1e6458a45/Hindalco-Fresh-wrapp-Aluminium-Foil-9-m.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-2000-2000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/86de9093-f2b3-45b2-846e-6c9fa4226a38/Hindalco-Fresh-wrapp-Aluminium-Foil-9-m.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-2000-2000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/47248a1b-9633-4be7-9ccb-e005fb2ec60c/Hindalco-Fresh-wrapp-Aluminium-Foil-9-m.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-2000-2000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/fbe838f8-855f-4ee8-bcbc-4be178361cdc/Hindalco-Fresh-wrapp-Aluminium-Foil-9-m.jpeg"
+      ],
+      "rating": 4,
+      "stock": 100,
+      "category_id": 9,
+      "category_name": "Household Essentials",
+      "subcategory": "kitchen",
+      "description": "Hindalco Fresh wrapp Aluminium Foil - 9 m",
+      "features": [],
+      "nutritionFacts": {},
+      "reviewsList": [],
+      "id": 75365303
+    },
+    {
+      "name": "Disposable Ripple Paper Glass | 150 ml | Pack of 25 ",
+      "title": "Disposable Ripple Paper Glass | 150 ml | Pack of 25 ",
+      "price": 149,
+      "oldPrice": 149,
+      "discountPrice": 85,
+      "image": "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1500-1500,pr-true,f-auto,q-40,dpr-2/cms/product_variant/d8adfbf3-717a-4b44-bd14-e8844619d0ec/Disposable-Ripple-Paper-Glass-150-ml-Pack-of-25-Tempware.jpg",
+      "images": [
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1500-1500,pr-true,f-auto,q-40,dpr-2/cms/product_variant/d8adfbf3-717a-4b44-bd14-e8844619d0ec/Disposable-Ripple-Paper-Glass-150-ml-Pack-of-25-Tempware.jpg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1500-1500,pr-true,f-auto,q-40,dpr-2/cms/product_variant/7f4a2047-fbf0-4a49-b721-d764cb853826/Disposable-Ripple-Paper-Glass-150-ml-Pack-of-25-Tempware.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1500-1500,pr-true,f-auto,q-40,dpr-2/cms/product_variant/48102a11-3fbf-4a49-910e-280268ccaa72/Disposable-Ripple-Paper-Glass-150-ml-Pack-of-25-Tempware.jpg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1500-1500,pr-true,f-auto,q-40,dpr-2/cms/product_variant/94118cda-322b-4662-bde7-053b10038f92/Disposable-Ripple-Paper-Glass-150-ml-Pack-of-25-Tempware.jpg"
+      ],
+      "rating": 4,
+      "stock": 120,
+      "category_id": 9,
+      "category_name": "Household Essentials",
+      "subcategory": "kitchen",
+      "description": "Disposable Ripple Paper Glass | 150 ml | Pack of 25 ",
+      "features": [],
+      "nutritionFacts": {},
+      "reviewsList": [],
+      "id": 75365304
+    },
+    {
+      "name": "Arun Chocolate Flavoured Ice Cream Tub",
+      "title": "Arun Chocolate Flavoured Ice Cream Tub",
+      "price": 180,
+      "oldPrice": 180,
+      "discountPrice": 152,
+      "image": "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-2667-2667,pr-true,f-auto,q-40,dpr-2/cms/product_variant/d3c97f24-f493-4bc6-87ee-06af96a2dc86/Arun-Chocolate-Flavoured-Ice-Cream-Tub.jpeg",
+      "images": [
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-2667-2667,pr-true,f-auto,q-40,dpr-2/cms/product_variant/d3c97f24-f493-4bc6-87ee-06af96a2dc86/Arun-Chocolate-Flavoured-Ice-Cream-Tub.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-2667-2667,pr-true,f-auto,q-40,dpr-2/cms/product_variant/87c046b4-b89a-426f-ae6c-edfeb6902142/Arun-Chocolate-Flavoured-Ice-Cream-Tub.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-2667-2667,pr-true,f-auto,q-40,dpr-2/cms/product_variant/35e86de3-d036-404b-8812-86a9be22034b/Arun-Chocolate-Flavoured-Ice-Cream-Tub.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-2667-2667,pr-true,f-auto,q-40,dpr-2/cms/product_variant/585929cc-55bc-43a7-95b5-52ead06a0e35/Arun-Chocolate-Flavoured-Ice-Cream-Tub.jpeg"
+      ],
+      "rating": 4,
+      "stock": 200,
+      "category_id": 12,
+      "category_name": "Munchies",
+      "subcategory": "icecream",
+      "description": "Arun Chocolate Flavoured Ice Cream Tub",
+      "features": [],
+      "nutritionFacts": {},
+      "reviewsList": [],
+      "id": 75365305
+    },
+    {
+      "name": "NOTO Dark Chocolate Low Calorie Ice Cream Tub",
+      "title": "NOTO Dark Chocolate Low Calorie Ice Cream Tub",
+      "price": 500,
+      "oldPrice": 500,
+      "discountPrice": 430,
+      "image": "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-2048-2048,pr-true,f-auto,q-40,dpr-2/cms/product_variant/d5e5567e-3756-4d07-b7c6-579b1552be86/NOTO-Dark-Chocolate-Low-Calorie-Ice-Cream-Tub.jpeg",
+      "images": [
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-2048-2048,pr-true,f-auto,q-40,dpr-2/cms/product_variant/d5e5567e-3756-4d07-b7c6-579b1552be86/NOTO-Dark-Chocolate-Low-Calorie-Ice-Cream-Tub.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1000-1000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/bc25f746-a2ed-46e1-9b7a-1da995ac28c9/NOTO-Dark-Chocolate-Low-Calorie-Ice-Cream-Tub.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1000-1000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/f93fb9d9-436d-4ef3-9caa-635fa30ba70d/NOTO-Dark-Chocolate-Low-Calorie-Ice-Cream-Tub.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1000-1000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/2ec3571b-2151-4cb0-896e-df4b3664bd0a/NOTO-Dark-Chocolate-Low-Calorie-Ice-Cream-Tub.jpeg"
+      ],
+      "rating": 4,
+      "stock": 100,
+      "category_id": 12,
+      "category_name": "Munchies",
+      "subcategory": "icecream",
+      "description": "NOTO Dark Chocolate Low Calorie Ice Cream Tub",
+      "features": [],
+      "nutritionFacts": {},
+      "reviewsList": [],
+      "id": 75365306
+    },
+    {
+      "name": "Cream Pot Strawberry Tub | Frozen Dessert Tub",
+      "title": "Cream Pot Strawberry Tub | Frozen Dessert Tub",
+      "price": 210,
+      "oldPrice": 210,
+      "discountPrice": 170,
+      "image": "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-2400-2400,pr-true,f-auto,q-40,dpr-2/cms/product_variant/49ef6dc2-34a0-4f0a-95ae-3e893878c45a/Cream-Pot-Strawberry-Tub-Frozen-Dessert-Tub.jpeg",
+      "images": [
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-2400-2400,pr-true,f-auto,q-40,dpr-2/cms/product_variant/49ef6dc2-34a0-4f0a-95ae-3e893878c45a/Cream-Pot-Strawberry-Tub-Frozen-Dessert-Tub.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-2400-2400,pr-true,f-auto,q-40,dpr-2/cms/product_variant/f77b4a8e-b54e-451f-8a4c-d96c68405f29/Cream-Pot-Strawberry-Tub-Frozen-Dessert-Tub.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-2400-2400,pr-true,f-auto,q-40,dpr-2/cms/product_variant/35cc93db-e10d-4b63-b038-364d21aea7cc/Cream-Pot-Strawberry-Tub-Frozen-Dessert-Tub.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-2400-2400,pr-true,f-auto,q-40,dpr-2/cms/product_variant/35cc93db-e10d-4b63-b038-364d21aea7cc/Cream-Pot-Strawberry-Tub-Frozen-Dessert-Tub.jpeg"
+      ],
+      "rating": 4,
+      "stock": 100,
+      "category_id": 12,
+      "category_name": "Munchies",
+      "subcategory": "icecream",
+      "description": "Cream Pot Strawberry Tub | Frozen Dessert Tub",
+      "features": [],
+      "nutritionFacts": {},
+      "reviewsList": [],
+      "id": 75365307
+    },
+    {
+      "name": "Dairy Day New Triple Bar Ice Cream Stick",
+      "title": "Dairy Day New Triple Bar Ice Cream Stick",
+      "price": 40,
+      "oldPrice": 40,
+      "discountPrice": 30,
+      "image": "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1200-1200,pr-true,f-auto,q-40,dpr-2/cms/product_variant/11bd5dd5-4e71-4bf5-ae29-7393e9cc18b6/Dairy-Day-New-Triple-Bar-Ice-Cream-Stick.jpeg",
+      "images": [
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1200-1200,pr-true,f-auto,q-40,dpr-2/cms/product_variant/11bd5dd5-4e71-4bf5-ae29-7393e9cc18b6/Dairy-Day-New-Triple-Bar-Ice-Cream-Stick.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1200-1200,pr-true,f-auto,q-40,dpr-2/cms/product_variant/8a632025-bbfe-4434-9aa7-79ecfbb70dcf/Dairy-Day-New-Triple-Bar-Ice-Cream-Stick.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1200-1200,pr-true,f-auto,q-40,dpr-2/cms/product_variant/7b5608f4-9ffc-4ff1-9728-ad9365ff8069/Dairy-Day-New-Triple-Bar-Ice-Cream-Stick.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1200-1200,pr-true,f-auto,q-40,dpr-2/cms/product_variant/0b1f80e8-7fab-4826-8848-e5a2f39d3f29/Dairy-Day-New-Triple-Bar-Ice-Cream-Stick.jpeg"
+      ],
+      "rating": 4,
+      "stock": 199,
+      "category_id": 12,
+      "category_name": "Munchies",
+      "subcategory": "icecream",
+      "description": "Dairy Day New Triple Bar Ice Cream Stick",
+      "features": [],
+      "nutritionFacts": {},
+      "reviewsList": [],
+      "id": 75365308
+    },
+    {
+      "name": "Kwality Wall's Magnum Chocolate Truffle Ice Cream",
+      "title": "Kwality Wall's Magnum Chocolate Truffle Ice Cream",
+      "price": 70,
+      "oldPrice": 70,
+      "discountPrice": 66,
+      "image": "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-5000-5000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/3554079f-7eec-465d-9a89-c69a62ba748d/Kwality-Wall-s-Magnum-Chocolate-Truffle-Ice-Cream-Stick.jpeg",
+      "images": [
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-5000-5000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/3554079f-7eec-465d-9a89-c69a62ba748d/Kwality-Wall-s-Magnum-Chocolate-Truffle-Ice-Cream-Stick.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-5000-5000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/0b7d73b3-9ff4-48b4-8c8d-9887e3e5fe99/Kwality-Wall-s-Magnum-Chocolate-Truffle-Ice-Cream-Stick.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-2500-2500,pr-true,f-auto,q-40,dpr-2/cms/product_variant/7ab9a785-cddb-4f3c-bc63-bdcba3873a59/Kwality-Wall-s-Magnum-Chocolate-Truffle-Ice-Cream-Stick.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-2500-2500,pr-true,f-auto,q-40,dpr-2/cms/product_variant/ac9765df-dc9e-4c15-8edb-13312a91888f/Kwality-Wall-s-Magnum-Chocolate-Truffle-Ice-Cream-Stick.jpeg"
+      ],
+      "rating": 4,
+      "stock": 100,
+      "category_id": 12,
+      "category_name": "Munchies",
+      "subcategory": "icecream",
+      "description": "Kwality Wall's Magnum Chocolate Truffle Ice Cream",
+      "features": [],
+      "nutritionFacts": {},
+      "reviewsList": [],
+      "id": 75365309
+    },
+    {
+      "name": "Vadilal Raspberry Dolly Ice Cream Candy",
+      "title": "Vadilal Raspberry Dolly Ice Cream Candy",
+      "price": 30,
+      "oldPrice": 30,
+      "discountPrice": 25,
+      "image": "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1072-762,pr-true,f-auto,q-40,dpr-2/cms/product_variant/9a08a00c-ef9c-4a2e-880f-4e5b8ee084c6/Vadilal-Raspberry-Dolly-Ice-Cream-Candy.jpg",
+      "images": [
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1072-762,pr-true,f-auto,q-40,dpr-2/cms/product_variant/9a08a00c-ef9c-4a2e-880f-4e5b8ee084c6/Vadilal-Raspberry-Dolly-Ice-Cream-Candy.jpg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-768-576,pr-true,f-auto,q-40,dpr-2/cms/product_variant/2022a1c6-c0d6-46eb-a258-1329d8928f80/Vadilal-Raspberry-Dolly-Ice-Cream-Candy.jpg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-600-300,pr-true,f-auto,q-40,dpr-2/cms/product_variant/b349b160-6f01-40a5-9fbe-265ef984f894/Vadilal-Raspberry-Dolly-Ice-Cream-Candy.jpg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-800-800,pr-true,f-auto,q-40,dpr-2/cms/product_variant/284e427d-035e-4a76-a7e3-9eca5d9f1dcf/Vadilal-Raspberry-Dolly-Ice-Cream-Candy.jpg"
+      ],
+      "rating": 4,
+      "stock": 100,
+      "category_id": 12,
+      "category_name": "Munchies",
+      "subcategory": "icecream",
+      "description": "Vadilal Raspberry Dolly Ice Cream Candy",
+      "features": [],
+      "nutritionFacts": {},
+      "reviewsList": [],
+      "id": 75365310
+    },
+    {
+      "name": "Kwality Wall's Magnum Brownie Ice Cream Stick",
+      "title": "Kwality Wall's Magnum Brownie Ice Cream Stick",
+      "price": 70,
+      "oldPrice": 70,
+      "discountPrice": 70,
+      "image": "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-5000-5000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/8565f4a5-09b0-4d74-8438-9b8efe2c577b/Kwality-Wall-s-Magnum-Brownie-Ice-Cream-Stick.jpeg",
+      "images": [
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-5000-5000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/8565f4a5-09b0-4d74-8438-9b8efe2c577b/Kwality-Wall-s-Magnum-Brownie-Ice-Cream-Stick.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-5000-5000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/c46ef37c-93b7-40bd-a859-aab6db6c9f58/Kwality-Wall-s-Magnum-Brownie-Ice-Cream-Stick.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-2500-2500,pr-true,f-auto,q-40,dpr-2/cms/product_variant/bdd019e6-b944-44eb-8e8b-36fdec4a0721/Kwality-Wall-s-Magnum-Brownie-Ice-Cream-Stick.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-5000-5000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/7c232b2f-aa38-4716-a9d0-ecf286b6ff74/Kwality-Wall-s-Magnum-Brownie-Ice-Cream-Stick.jpeg"
+      ],
+      "rating": 4,
+      "stock": 100,
+      "category_id": 12,
+      "category_name": "Munchies",
+      "subcategory": "icecream",
+      "description": "Kwality Wall's Magnum Brownie Ice Cream Stick",
+      "features": [],
+      "nutritionFacts": {},
+      "reviewsList": [],
+      "id": 75365311
+    },
+    {
+      "name": "Hershey's Chocolate Syrup | Topping Sauce",
+      "title": "Hershey's Chocolate Syrup | Topping Sauce",
+      "price": 222,
+      "oldPrice": 222,
+      "discountPrice": 182,
+      "image": "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1000-1000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/22ddcfee-291c-436b-ab33-bad491058ebb/Hershey-s-Chocolate-Syrup-Topping-Sauce.jpeg",
+      "images": [
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1000-1000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/22ddcfee-291c-436b-ab33-bad491058ebb/Hershey-s-Chocolate-Syrup-Topping-Sauce.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1000-1000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/39f12b64-b0b3-4536-a097-486dfff1d79f/Hershey-s-Chocolate-Syrup-Topping-Sauce.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1000-1000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/39f12b64-b0b3-4536-a097-486dfff1d79f/Hershey-s-Chocolate-Syrup-Topping-Sauce.jpeg",
+        "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1000-1000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/2cf31962-c05c-4a1d-8ae0-10010185b5c8/Hershey-s-Chocolate-Syrup-Topping-Sauce.jpeg"
+      ],
+      "rating": 4,
+      "stock": 100,
+      "category_id": 11,
+      "category_name": "Beverages",
+      "subcategory": "drink",
+      "description": "Hershey's Chocolate Syrup | Topping Sauce",
+      "features": [],
+      "nutritionFacts": {},
+      "reviewsList": [],
+      "id": 75365312
+    }
+  ],
+  "users": [
+    {
+      "id": "1768813184656",
+      "fullName": "Parmar Prashant v singh",
+      "email": "parmarprashantsingh883@gmail.com",
+      "phone": "+919574028096",
+      "password": "123456",
+      "status": "active",
+      "createdAt": "2026-01-19T08:59:44.656Z"
+    },
+    {
+      "id": "1768892427308",
+      "fullName": "Parmar Prashant v singh",
+      "email": "parmarprashantsingh500@gmail.com",
+      "phone": "9574028096",
+      "password": "123456",
+      "status": "active",
+      "createdAt": "2026-01-20T07:00:27.308Z"
+    }
+  ],
+  "admin": [
+    {
+      "id": 1,
+      "fullName": "Super Admin",
+      "email": "admin@gmail.com",
+      "password": "admin123",
+      "status": "active"
+    }
+  ],
+  "promoBanners": [
+    {
+      "id": 1,
+      "page": "home",
+      "image": "https://static.wixstatic.com/media/c837a6_564931f091d34dd28dda690375e97842~mv2.jpg/v1/fill/w_731,h_564,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/c837a6_564931f091d34dd28dda690375e97842~mv2.jpg",
+      "mini": "Taste of Italy",
+      "title": "Favorite Pastas",
+      "highlight": " on  Great Deals ",
+      "buttonText": "Shop Now",
+      "type": "pasta",
+      "showBadge": "Limited "
+    },
+    {
+      "id": 2,
+      "page": "home",
+      "image": "https://static.wixstatic.com/media/c837a6_dcb97d2296b34b98858649b8cb74b683~mv2.jpg",
+      "mini": "Deal of the Week",
+      "title": "  Favorite Cereal Brands",
+      "highlight": "   Get 30% off",
+      "subtitle": "",
+      "buttonText": "Shop Now",
+      "type": "cereal",
+      "showBadge": "Today's"
+    },
+    {
+      "id": 3,
+      "page": "food",
+      "type": "wine",
+      "image": "https://static.wixstatic.com/media/c837a6_6128c886f6c04d76b67065dee91cd206~mv2.jpg/v1/fill/w_975,h_646,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/c837a6_6128c886f6c04d76b67065dee91cd206~mv2.jpg",
+      "mini": "It's Wine O'Clock",
+      "title": "Great Deals on",
+      "highlight": "Selected Wines",
+      "buttonText": "Shop Now",
+      "subtitle": "Crafted for Your Perfect Evenings. ",
+      "showBadge": "Super"
+    },
+    {
+      "id": 4,
+      "page": "food",
+      "type": "wine",
+      "image": "https://i.pinimg.com/736x/17/f9/70/17f970160419821bb2b4da79ed2891b4.jpg",
+      "mini": "It's Wine O'Clock",
+      "title": "Great Deals on",
+      "highlight": "Selected Wines",
+      "subtitle": "fresh varieties added on discounted prices",
+      "buttonText": "Shop Now",
+      "showBadge": "New"
+    }
+  ],
+  "wideBanners": [
+    {
+      "id": 1,
+      "page": "home",
+      "image": "https://static.wixstatic.com/media/c837a6_c6d9a1d20e71405b898602ee778d603f~mv2.jpg/v1/fill/w_1520,h_494,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/c837a6_c6d9a1d20e71405b898602ee778d603f~mv2.jpg",
+      "title": "Save every day!",
+      "subtitle": "Help lower the cost of your shopping cart with our daily specials",
+      "buttonText": "Shop Deals"
+    }
+  ],
+  "orders": [
+    {
+      "id": "ORD-2026-001",
+      "userId": "1768813184656",
+      "date": "2026-01-20",
+      "status": "Processing",
+      "total": 349,
+      "items": [
+        {
+          "id": 1,
+          "name": "Fresh Organic Apples",
+          "price": 249,
+          "qty": 1,
+          "image": "https://cdn.zeptonow.com/production/tr:w-403..."
+        }
+      ],
+      "paymentMethod": "upi",
+      "address": {
+        "name": "Parmar Prashant",
+        "phone": "9574028096",
+        "city": "Ahmedabad"
+      }
+    },
+    {
+      "id": "ORD-1768973427444",
+      "userId": "1768813184656",
+      "date": "2026-01-21",
+      "status": "Processing",
+      "total": 207,
+      "items": [
+        {
+          "id": 103,
+          "name": "Tomatoes",
+          "price": 40,
+          "rating": 4.3,
+          "stock": 100,
+          "category_id": 2,
+          "discountPrice": 50,
+          "image": "https://cdn.zeptonow.com/production/tr:w-403,ar-1024-1024,pr-true,f-auto,q-40,dpr-2/cms/product_variant/29888869-e319-447a-9d6a-15f6884c60d1.jpeg",
+          "category_name": "Fresh Fruits",
+          "images": [
+            "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-3000-3000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/78096558-9a99-4960-8753-f8a05fc3cd37/Tomato-Local.jpeg",
+            "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-3000-3000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/78096558-9a99-4960-8753-f8a05fc3cd37/Tomato-Local.jpeg",
+            "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1024-1024,pr-true,f-auto,q-40,dpr-2/cms/product_variant/29888869-e319-447a-9d6a-15f6884c60d1/Tomato-Local.jpeg",
+            "https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=803"
+          ],
+          "features": [
+            "100% Organic & Naturally Grown",
+            "No Artificial Preservatives",
+            "Sustainably Sourced from Washington State, USA",
+            "Farm to Table in 24 Hours"
+          ],
+          "nutritionFacts": {
+            "Calories": "95 kcal",
+            "Carbohydrates": "25g",
+            "Fiber": "4g",
+            "Vitamin C": "14%"
+          },
+          "reviewsList": [
+            {
+              "name": "Amit Sharma",
+              "rating": 5,
+              "comment": "Super fresh and juicy apples!"
+            },
+            {
+              "name": "Neha Verma",
+              "rating": 4,
+              "comment": "Very good quality, will order again."
+            }
+          ],
+          "qty": 1
+        },
+        {
+          "id": 104,
+          "name": "Broccoli",
+          "price": 90,
+          "image": "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcSnrEKWoUMg_t9kOLoCRgsgNJllVTVabAEX95vUTTisJ-ci3WUSkUQtFz2sJ6CpxnFeFZVDzkbQPIl7quYsDsmlHdxY2ut7x66uqWuvgsK6nz6W4RirHjSG",
+          "rating": 4.1,
+          "stock": 40,
+          "category_id": 2,
+          "discountPrice": 50,
+          "category_name": "Fresh Fruits",
+          "qty": 1
+        }
+      ],
+      "paymentMethod": "cod",
+      "address": {
+        "firstName": "Parmar",
+        "lastName": "singh",
+        "email": "parmarprashantsingh883@gmail.com",
+        "phone": "09574028096",
+        "address": "A/1 kirtidham society sumin park vastral road ahemdabad",
+        "city": "Ahemdabad",
+        "state": "Gujarat",
+        "zip": "382418",
+        "country": "India"
+      }
+    },
+    {
+      "id": "ORD-1768973716758",
+      "userId": "1768813184656",
+      "date": "2026-01-21",
+      "status": "Processing",
+      "total": 54.99,
+      "items": [
+        {
+          "id": 111,
+          "name": "Farm Fresh Eggs",
+          "price": 5.99,
+          "originalPrice": 6,
+          "image": "https://cdn.zeptonow.com/production/tr:w-403,ar-1000-1000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/561f7449-6d79-406d-8107-2c45cb4a6dfc.jpeg",
+          "category": "Dairy",
+          "rating": 4.9,
+          "reviews": 256,
+          "stock": 100,
+          "weight": "12 pcs",
+          "origin": "Local Farms",
+          "images": [
+            "data:image/jpeg;base64,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",
+            "https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=801",
+            "https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=802",
+            "https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=803"
+          ],
+          "qty": 1
+        }
+      ],
+      "paymentMethod": "cod",
+      "address": {
+        "firstName": "Parmar",
+        "lastName": "singh",
+        "email": "parmarprashantsingh883@gmail.com",
+        "phone": "09574028096",
+        "address": "A/1 kirtidham society sumin park vastral road ahemdabad",
+        "city": "Ahemdabad",
+        "state": "Gujarat",
+        "zip": "382418",
+        "country": "India"
+      }
+    },
+    {
+      "id": "ORD-1768974642295",
+      "userId": "1768813184656",
+      "date": "2026-01-21T05:50:42.295Z",
+      "status": "Processing",
+      "paymentMethod": "cod",
+      "charges": {
+        "subtotal": 533.96,
+        "discount": 0,
+        "delivery": 0,
+        "codFee": 30,
+        "convenienceFee": 9,
+        "gst": 27
+      },
+      "total": 599.96,
+      "address": {
+        "firstName": "Parmar",
+        "lastName": "singh",
+        "email": "parmarprashantsingh883@gmail.com",
+        "phone": "09574028096",
+        "address": "A/1 kirtidham society sumin park vastral road ahemdabad",
+        "city": "Ahemdabad",
+        "state": "Gujarat",
+        "zip": "382418",
+        "country": "India"
+      },
+      "items": [
+        {
+          "id": 111,
+          "name": "Farm Fresh Eggs",
+          "price": 5.99,
+          "originalPrice": 6,
+          "image": "https://cdn.zeptonow.com/production/tr:w-403,ar-1000-1000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/561f7449-6d79-406d-8107-2c45cb4a6dfc.jpeg",
+          "category": "Dairy",
+          "rating": 4.9,
+          "reviews": 256,
+          "stock": 100,
+          "weight": "12 pcs",
+          "origin": "Local Farms",
+          "images": [
+            "data:image/jpeg;base64,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",
+            "https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=801",
+            "https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=802",
+            "https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=803"
+          ],
+          "qty": 4
+        },
+        {
+          "id": 105,
+          "name": "Milk 1L",
+          "price": 55,
+          "image": "https://images.unsplash.com/photo-1563636619-e9143da7973b?w=400&h=400&fit=crop",
+          "rating": 4.6,
+          "stock": 60,
+          "category_id": 3,
+          "discountPrice": 50,
+          "category_name": "Dairy & Eggs",
+          "qty": 5
+        },
+        {
+          "id": 106,
+          "name": "Brown Bread",
+          "price": 45,
+          "image": "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400&h=400&fit=crop",
+          "rating": 4.4,
+          "stock": 30,
+          "category_id": 5,
+          "qty": 4
+        },
+        {
+          "id": 107,
+          "name": "Potato Chips",
+          "price": 30,
+          "image": "https://images.unsplash.com/photo-1566478989037-eec170784d0b?w=400&h=400&fit=crop",
+          "rating": 4,
+          "stock": 200,
+          "category_id": 4,
+          "qty": 1
+        },
+        {
+          "id": 102,
+          "name": "Bananas",
+          "price": 60,
+          "image": "https://themewagon.github.io/FoodMart/images/thumb-bananas.png",
+          "rating": 4.2,
+          "stock": 70,
+          "category_id": 1,
+          "discountPrice": 50,
+          "category_name": "Fresh Fruits",
+          "description": "Ripe bananas, great for smoothies and snacks.",
+          "qty": 1
+        }
+      ]
+    },
+    {
+      "id": "ORD-1768975098500",
+      "userId": "1768813184656",
+      "date": "2026-01-21T05:58:18.500Z",
+      "status": "Processing",
+      "paymentMethod": "cod",
+      "charges": {
+        "subtotal": 50,
+        "discount": 0,
+        "delivery": 0,
+        "codFee": 30,
+        "convenienceFee": 9,
+        "gst": 3
+      },
+      "total": 92,
+      "address": {
+        "firstName": "Vijay",
+        "lastName": "Parmar",
+        "email": "9509479081@ybl",
+        "phone": "09574028096",
+        "address": "sumin park vastral road",
+        "city": "Ahemdabad",
+        "state": "Gujarat",
+        "zip": "382418",
+        "country": "India"
+      },
+      "items": [
+        {
+          "id": 102,
+          "name": "Bananas",
+          "price": 60,
+          "image": "https://themewagon.github.io/FoodMart/images/thumb-bananas.png",
+          "rating": 4.2,
+          "stock": 70,
+          "category_id": 1,
+          "discountPrice": 50,
+          "category_name": "Fresh Fruits",
+          "description": "Ripe bananas, great for smoothies and snacks.",
+          "qty": 1
+        }
+      ]
+    },
+    {
+      "id": "ORD-1768975735151",
+      "userId": "1768813184656",
+      "date": "2026-01-21T06:08:55.151Z",
+      "status": "Processing",
+      "paymentMethod": "cod",
+      "charges": {
+        "subtotal": 50,
+        "discount": 0,
+        "delivery": 0,
+        "codFee": 30,
+        "convenienceFee": 9,
+        "gst": 3
+      },
+      "total": 92,
+      "address": {
+        "firstName": "Vijay",
+        "lastName": "Parmar",
+        "email": "",
+        "phone": "",
+        "address": "sumin park vastral road",
+        "city": "Ahemdabad",
+        "state": "Gujarat",
+        "zip": "382418",
+        "country": "India"
+      },
+      "items": [
+        {
+          "id": 104,
+          "name": "Broccoli",
+          "price": 90,
+          "image": "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcSnrEKWoUMg_t9kOLoCRgsgNJllVTVabAEX95vUTTisJ-ci3WUSkUQtFz2sJ6CpxnFeFZVDzkbQPIl7quYsDsmlHdxY2ut7x66uqWuvgsK6nz6W4RirHjSG",
+          "rating": 4.1,
+          "stock": 40,
+          "category_id": 2,
+          "discountPrice": 50,
+          "category_name": "Fresh Fruits",
+          "qty": 1
+        }
+      ]
+    },
+    {
+      "id": "ORD-1768978374655",
+      "userId": "1768813184656",
+      "date": "2026-01-21T06:52:54.655Z",
+      "status": "Processing",
+      "paymentMethod": "cod",
+      "charges": {
+        "subtotal": 5.99,
+        "discount": 0,
+        "delivery": 0,
+        "codFee": 30,
+        "convenienceFee": 9,
+        "gst": 0
+      },
+      "total": 44.99,
+      "address": {
+        "firstName": "Vijay",
+        "lastName": "Parmar",
+        "email": "",
+        "phone": "",
+        "address": "sumin park vastral road",
+        "city": "Ahemdabad",
+        "state": "Gujarat",
+        "zip": "382418",
+        "country": "India"
+      },
+      "items": [
+        {
+          "id": 111,
+          "name": "Farm Fresh Eggs",
+          "price": 5.99,
+          "originalPrice": 6,
+          "image": "https://cdn.zeptonow.com/production/tr:w-403,ar-1000-1000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/561f7449-6d79-406d-8107-2c45cb4a6dfc.jpeg",
+          "category": "Dairy",
+          "rating": 4.9,
+          "reviews": 256,
+          "stock": 100,
+          "weight": "12 pcs",
+          "origin": "Local Farms",
+          "images": [
+            "data:image/jpeg;base64,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",
+            "https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=801",
+            "https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=802",
+            "https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=803"
+          ],
+          "qty": 1
+        }
+      ]
+    },
+    {
+      "id": "ORD-1768983435511",
+      "userId": "1768813184656",
+      "date": "2026-01-21T08:17:15.511Z",
+      "status": "Processing",
+      "paymentMethod": "cod",
+      "charges": {
+        "subtotal": 100,
+        "discount": 0,
+        "delivery": 0,
+        "codFee": 30,
+        "convenienceFee": 9,
+        "gst": 5
+      },
+      "total": 144,
+      "address": {
+        "firstName": "Parmar",
+        "lastName": "singh",
+        "email": "9509479081@ybl",
+        "phone": "",
+        "address": "A/1 kirtidham society sumin park vastral road ahemdabad",
+        "city": "Ahemdabad",
+        "state": "Gujarat",
+        "zip": "382418",
+        "country": "India"
+      },
+      "items": [
+        {
+          "id": 104,
+          "name": "Broccoli",
+          "price": 90,
+          "image": "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcSnrEKWoUMg_t9kOLoCRgsgNJllVTVabAEX95vUTTisJ-ci3WUSkUQtFz2sJ6CpxnFeFZVDzkbQPIl7quYsDsmlHdxY2ut7x66uqWuvgsK6nz6W4RirHjSG",
+          "rating": 4.1,
+          "stock": 40,
+          "category_id": 2,
+          "discountPrice": 50,
+          "category_name": "Fresh Fruits",
+          "qty": 2
+        }
+      ]
+    },
+    {
+      "id": "ORD-1768992771122",
+      "userId": "1768813184656",
+      "date": "2026-01-21T10:52:51.122Z",
+      "status": "Processing",
+      "paymentMethod": "cod",
+      "charges": {
+        "subtotal": 231,
+        "discount": 0,
+        "delivery": 0,
+        "codFee": 30,
+        "convenienceFee": 9,
+        "gst": 12
+      },
+      "total": 282,
+      "address": {
+        "firstName": "",
+        "lastName": "",
+        "email": "",
+        "phone": "",
+        "address": "",
+        "city": "",
+        "state": "",
+        "zip": "",
+        "country": "India"
+      },
+      "items": [
+        {
+          "id": 105,
+          "name": "Milk 1L",
+          "price": 55,
+          "image": "https://images.unsplash.com/photo-1563636619-e9143da7973b?w=400&h=400&fit=crop",
+          "rating": 4.6,
+          "stock": 60,
+          "category_id": 3,
+          "discountPrice": 50,
+          "category_name": "Dairy & Eggs",
+          "qty": 3
+        },
+        {
+          "id": 741,
+          "name": "Pepsi Soft Drink",
+          "price": 40,
+          "image": "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1200-1200,pr-true,f-auto,q-40,dpr-2/cms/product_variant/fd2659fa-e385-4586-a60c-17df7c67b5de/Pepsi-Soft-Drink-Refreshing-Carbonated-Beverage.jpeg",
+          "rating": 4.2,
+          "stock": 100,
+          "category_id": 11,
+          "category_name": "beverage",
+          "description": "Refreshing Carbonated Beverage",
+          "discountPrice": 31,
+          "qty": 1
+        },
+        {
+          "id": 102,
+          "name": "Bananas",
+          "price": 60,
+          "image": "https://themewagon.github.io/FoodMart/images/thumb-bananas.png",
+          "rating": 4.2,
+          "stock": 70,
+          "category_id": 1,
+          "discountPrice": 50,
+          "category_name": "Fresh Fruits",
+          "description": "Ripe bananas, great for smoothies and snacks.",
+          "qty": 1
+        }
+      ]
+    },
+    {
+      "id": "ORD-1769065812120",
+      "userId": "1768813184656",
+      "date": "2026-01-22T07:10:12.120Z",
+      "status": "Processing",
+      "paymentMethod": "cod",
+      "charges": {
+        "subtotal": 747,
+        "discount": 0,
+        "delivery": 0,
+        "codFee": 30,
+        "convenienceFee": 9,
+        "gst": 37
+      },
+      "total": 823,
+      "address": {
+        "firstName": "Parmar",
+        "lastName": "singh",
+        "email": "parmarprashantsingh883@gmail.com",
+        "phone": "09574028096",
+        "address": "A/1 kirtidham society sumin park vastral road ahemdabad",
+        "city": "Ahemdabad",
+        "state": "Gujarat",
+        "zip": "382418",
+        "country": "India"
+      },
+      "items": [
+        {
+          "name": "MOM Roasted & Salted Cashews | Crunchy & Nutty",
+          "title": "MOM Roasted & Salted Cashews | Crunchy & Nutty",
+          "price": 99,
+          "oldPrice": 99,
+          "discountPrice": 83,
+          "image": "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-5000-5000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/3b422cfe-d19e-47ab-9118-dbc333030754/MOM-Roasted-Salted-Cashews-Crunchy-Nutty.jpeg",
+          "images": [
+            "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-5000-5000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/3b422cfe-d19e-47ab-9118-dbc333030754/MOM-Roasted-Salted-Cashews-Crunchy-Nutty.jpeg",
+            "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1200-1200,pr-true,f-auto,q-40,dpr-2/cms/product_variant/89d96c50-85a4-41a4-b038-3bf0a2460fd5/MOM-Roasted-Salted-Cashews-Crunchy-Nutty.jpeg",
+            "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1200-1200,pr-true,f-auto,q-40,dpr-2/cms/product_variant/8429cba8-38cf-4865-a936-5a29915bc46a/MOM-Roasted-Salted-Cashews-Crunchy-Nutty.jpeg",
+            "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1200-1200,pr-true,f-auto,q-40,dpr-2/cms/product_variant/4d85183d-140f-46fc-9a9f-d3a8ab64a67f/MOM-Roasted-Salted-Cashews-Crunchy-Nutty.jpeg"
+          ],
+          "rating": 4,
+          "stock": 100,
+          "category_id": 12,
+          "category_name": "Munchies",
+          "subcategory": "chips",
+          "description": "MOM Roasted & Salted Cashews | Crunchy & Nutty",
+          "features": [],
+          "nutritionFacts": {},
+          "reviewsList": [],
+          "id": 75365282,
+          "qty": 9
+        }
+      ]
+    },
+    {
+      "id": "ORD-1769233045650",
+      "userId": "1768813184656",
+      "date": "2026-01-24T05:37:25.650Z",
+      "status": "Processing",
+      "paymentMethod": "cod",
+      "charges": {
+        "subtotal": 55,
+        "discount": 0,
+        "delivery": 0,
+        "codFee": 30,
+        "convenienceFee": 9,
+        "gst": 3
+      },
+      "total": 97,
+      "address": {
+        "firstName": "Parmar",
+        "lastName": "singh",
+        "email": "parmarprashantsingh883@gmail.com",
+        "phone": "09574028096",
+        "address": "A/1 kirtidham society sumin park vastral road ahemdabad",
+        "city": "Ahemdabad",
+        "state": "Gujarat",
+        "zip": "382418",
+        "country": "India"
+      },
+      "items": [
+        {
+          "name": "Hershey's Dark Chocolate Bar | Rich Chocolate Taste",
+          "title": "Hershey's Dark Chocolate Bar | Rich Chocolate Taste",
+          "price": 65,
+          "oldPrice": 65,
+          "discountPrice": 55,
+          "image": "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1000-1000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/6638ed43-a5db-4c3f-9108-3869449ef0ec/Hershey-s-Dark-Chocolate-Bar-Rich-Chocolate-Taste.jpeg",
+          "images": [
+            "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1000-1000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/6638ed43-a5db-4c3f-9108-3869449ef0ec/Hershey-s-Dark-Chocolate-Bar-Rich-Chocolate-Taste.jpeg",
+            "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1000-1000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/4325fff2-62a6-4164-8bfc-9c2ee7d0a8cc/Hershey-s-Dark-Chocolate-Bar-Rich-Chocolate-Taste.jpeg",
+            "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1000-1000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/e6e9114a-c05d-49aa-b660-a91f1b06a87c/Hershey-s-Dark-Chocolate-Bar-Rich-Chocolate-Taste.jpeg",
+            "https://cdn.zeptonow.com/production/ik-seo/tr:w-470,ar-1000-1000,pr-true,f-auto,q-40,dpr-2/cms/product_variant/84a7c932-7076-4b90-a256-a8eda50c5567/Hershey-s-Dark-Chocolate-Bar-Rich-Chocolate-Taste.jpeg"
+          ],
+          "rating": 4,
+          "stock": 120,
+          "category_id": 12,
+          "category_name": "Munchies",
+          "subcategory": "chocolate",
+          "description": "Hershey's Dark Chocolate Bar | Rich Chocolate Taste",
+          "features": [],
+          "nutritionFacts": {},
+          "reviewsList": [],
+          "id": 75365286,
+          "qty": 1
+        }
+      ]
+    }
+  ]
+}

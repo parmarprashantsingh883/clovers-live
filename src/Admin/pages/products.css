@@ -1,0 +1,158 @@
+.add-form {
+  padding: 8px 4px 0;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px 22px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group.full {
+  grid-column: span 2;
+}
+
+.form-group label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #4b5563;
+}
+
+.form-group input,
+.form-group textarea {
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  font-size: 14px;
+  outline: none;
+  transition: .2s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37,99,235,.2);
+}
+
+.desc-input {
+  resize: none;
+  height: 90px;
+}
+
+.image-preview {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0 6px;
+}
+
+.image-preview img {
+  height: 120px;
+  border-radius: 14px;
+  box-shadow: 0 10px 25px rgba(0,0,0,.12);
+}
+
+.save-btn {
+  width: 100%;
+  padding: 14px;
+  border-radius: 16px;
+  border: none;
+  background: linear-gradient(135deg,#2563eb,#1d4ed8);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: .2s;
+  margin-top: 10px;
+  
+}
+
+
+.save-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 25px rgba(37,99,235,.35);
+}
+.save-btn:active {
+  transform: scale(0.96);
+  box-shadow: 0 4px 10px rgba(37,99,235,.4);
+}
+
+/* products cards css */
+.product-list-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.product-list-card {
+  background: #fff;
+  border-radius: 20px;
+  padding: 18px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 12px 30px rgba(0,0,0,.06);
+  transition: .25s;
+}
+
+.product-list-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0,0,0,.12);
+}
+
+.product-list-card .left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.product-list-card img {
+  width: 54px;
+  height: 54px;
+  border-radius: 14px;
+  object-fit: cover;
+}
+
+.product-list-card .meta h4 {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.product-list-card .meta .count {
+  font-size: 13px;
+  color: #2563eb;
+  font-weight: 600;
+}
+
+.product-list-card .right {
+  text-align: right;
+  font-size: 13px;
+  color: #555;
+}
+
+.product-list-card .stock {
+  display: block;
+  font-weight: 600;
+}
+
+.product-list-card .rating {
+  color: #f59e0b;
+}
+
+/* model css */
+.modal-body {
+  padding: 16px;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.modal-inner {
+  width: 100%;
+  display: block;
+}
