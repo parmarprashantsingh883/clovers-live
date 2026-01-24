@@ -42,7 +42,7 @@ const Login = () => {
     setIsLoading(true);
 
     const res = await axios.get(
-      `http://localhost:5000/users?email=${formData.email}`
+      `https://clovers-live-production.up.railway.app//users?email=${formData.email}`
     );
 
     if (res.data.length === 0) {
