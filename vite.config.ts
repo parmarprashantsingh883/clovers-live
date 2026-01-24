@@ -13,7 +13,7 @@ export default defineConfig(({ mode }) => ({
 
   server: {
     host: "localhost",
-    port: 5001
+    port: 8080
   },
 
   resolve: {
