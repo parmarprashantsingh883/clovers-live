@@ -7,7 +7,7 @@ import { useWishlist } from "@/context/WishlistContext";
 import "../assets/css/product-card.css";
 import "../assets/css/best-selling.css";
 
-const API = "http://localhost:5000/products";
+const API = "https://clovers-live-production.up.railway.app/products";
 
 export default function BestSelling() {
   const [products, setProducts] = useState([]);

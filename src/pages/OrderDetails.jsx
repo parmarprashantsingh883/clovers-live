@@ -18,7 +18,7 @@ export default function OrderDetails() {
   /* ✅ SAFE FETCH (ORD-xxxx supported) */
   useEffect(() => {
     axios
-      .get("http://localhost:5000/orders")
+      .get("https://clovers-live-production.up.railway.app/orders")
       .then((res) => {
         const found = res.data.find((o) => o.id === id);
         setOrder(found || null);

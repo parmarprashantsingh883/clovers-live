@@ -54,7 +54,7 @@ useEffect(() => {
 
 /* fetch the products*/
 useEffect(() => {
-  axios.get("http://localhost:5000/products").then(res => {
+  axios.get("https://clovers-live-production.up.railway.app/products").then(res => {
     setSuggestions(res.data);
   });
 }, []);

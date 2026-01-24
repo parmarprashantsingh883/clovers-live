@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import "../assets/css/flesdeals.css";
 
-const API = "http://localhost:5000/promoBanners";
+const API = "https://clovers-live-production.up.railway.app/promoBanners";
 
 export default function PromoBanner({ page }) {
   const [banners, setBanners] = useState([]);

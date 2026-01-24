@@ -4,7 +4,7 @@ import { useCart } from "@/context/CartContext";
 import { useWishlist } from "@/context/WishlistContext";
 import "../assets/css/best-deals.css";
 
-const API = "http://localhost:5000/products";
+const API = "https://clovers-live-production.up.railway.app/products";
 const ITEMS_PER_PAGE = 8;
 
 function BestDeals() {

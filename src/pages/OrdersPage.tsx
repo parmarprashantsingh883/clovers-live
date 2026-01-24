@@ -19,7 +19,7 @@ export default function OrdersPage() {
     if (!authUser) return;
 
     axios
-      .get("http://localhost:5000/orders")
+      .get("https://clovers-live-production.up.railway.app/orders")
       .then((res) => {
         const userOrders = res.data.filter(
           (order) => String(order.userId) === String(authUser.id)

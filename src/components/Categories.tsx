@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import Skeleton from "@/components/ui/Skeleton";
 
 
-const API = "http://localhost:5000/categories";
+const API = "https://clovers-live-production.up.railway.app/categories";
 
 export default function Categories() {
   const [categories, setCategories] = useState([]);

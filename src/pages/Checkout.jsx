@@ -135,7 +135,7 @@ export default function CheckoutPage() {
         items: cart,
       };
 
-      await axios.post("http://localhost:5000/orders", order);
+      await axios.post("https://clovers-live-production.up.railway.app/orders", order);
 
       clearCart();
      // 👇 ADD THESE TWO LINES

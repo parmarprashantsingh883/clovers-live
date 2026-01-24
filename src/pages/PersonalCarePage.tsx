@@ -8,7 +8,7 @@ import "../assets/css/foodpage.css";
 import Breadcrumb from "@/components/Breadcrumb";
 import { useNavigate } from "react-router-dom";
 
-const API = "http://localhost:5000/products";
+const API = "https://clovers-live-production.up.railway.app/products";
 const ITEMS_PER_PAGE = 12;
 
 const categoryTabs = ["Skincare","Hair Care","Body Care","Sun Care"];

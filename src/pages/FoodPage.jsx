@@ -13,7 +13,7 @@ import { useWishlist } from "@/context/WishlistContext";
 
 
 
-const API = "http://localhost:5000/products";
+const API = "https://clovers-live-production.up.railway.app/products";
 const ITEMS_PER_PAGE = 15;
 
 const categoryTabs = [

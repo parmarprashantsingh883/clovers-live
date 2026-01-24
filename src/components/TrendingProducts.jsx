@@ -5,7 +5,7 @@ import { useWishlist } from "@/context/WishlistContext";
 import "../assets/css/product-card.css";
 import "../assets/css/trending.css";
 
-const API = "http://localhost:5000/products";
+const API = "https://clovers-live-production.up.railway.app/products";
 
 const TABS = [
   { label: "ALL", value: "all" },

@@ -49,7 +49,7 @@ const Signup = () => {
 
     // Check if email already exists
     const existingUser = await axios.get(
-      `http://localhost:5000/users?email=${formData.email}`
+      `https://clovers-live-production.up.railway.app/users?email=${formData.email}`
     );
 
     if (existingUser.data.length > 0) {
@@ -69,7 +69,7 @@ const Signup = () => {
 };
 
 
-    await axios.post("http://localhost:5000/users", newUser);
+    await axios.post("https://clovers-live-production.up.railway.app/users", newUser);
 
     toast.success("Account created successfully");
     navigate("/login");

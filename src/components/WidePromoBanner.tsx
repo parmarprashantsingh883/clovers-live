@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import "../assets/css/wide-banner.css";
 
-const API = "http://localhost:5000/wideBanners";
+const API = "https://clovers-live-production.up.railway.app/wideBanners";
 
 export default function WidePromoBanner({ page }) {
   const [banner, setBanner] = useState(null);

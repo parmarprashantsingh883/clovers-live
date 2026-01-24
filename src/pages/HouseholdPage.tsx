@@ -8,7 +8,7 @@ import "../assets/css/product-card.css";
 import "../assets/css/foodpage.css";
 import { useNavigate } from "react-router-dom";
 
-const API = "http://localhost:5000/products";
+const API = "https://clovers-live-production.up.railway.app/products";
 const ITEMS_PER_PAGE = 15;
 
 /* Household sub categories (optional – auto fallback if not present) */

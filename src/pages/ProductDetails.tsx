@@ -20,7 +20,7 @@ import {
 } from "lucide-react";
 import "./ProductDetailsPage.css";
 
-const API = "http://localhost:5000/products";
+const API = "https://clovers-live-production.up.railway.app/products";
 
 const safeNumber = (val, fallback = 0) => {
   const n = Number(val);
