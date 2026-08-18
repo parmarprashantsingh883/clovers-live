@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from "react";
-import axios from "axios";
+import { api } from "@/lib/api";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import * as Icons from "lucide-react";
 import { Link } from "react-router-dom";
 import Skeleton from "@/components/ui/Skeleton";
 
 
-const API = "https://clovers-live-production.up.railway.app/categories";
+const API = "/categories";
 
 export default function Categories() {
   const [categories, setCategories] = useState([]);
@@ -32,7 +32,7 @@ export default function Categories() {
   useEffect(() => {
     const start = Date.now();
 
-    axios.get(API).then(res => {
+    api.get(API).then(res => {
       setCategories(res.data);
 
       const elapsed = Date.now() - start;

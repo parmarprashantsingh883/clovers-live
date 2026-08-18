@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Eye, EyeOff, Mail, Lock, Leaf } from 'lucide-react';
-import axios from "axios";
+import { errMsg } from "@/lib/api";
+import { useAuth } from "@/context/AuthContext";
 import { toast } from "@/components/ui/use-toast";
-
-
-
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -14,8 +12,9 @@ const Login = () => {
     password: '',
   });
   const [isLoading, setIsLoading] = useState(false);
-  
+
   const navigate = useNavigate();
+  const { loginAdmin } = useAuth();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -40,73 +39,16 @@ const Login = () => {
 
   try {
     setIsLoading(true);
-
-    const res = await axios.get(
-      `http://localhost:5000/admin?email=${formData.email}`
-    );
-
-    if (res.data.length === 0) {
- toast({
-  variant: "destructive",
-  title: "Invalid email",
-});
-
-  setIsLoading(false);
-  return;
-}
-
-
-    const user = res.data[0];
-
-    if (user.password !== formData.password) {
- toast({
-  variant: "destructive",
-  title: "Incorrect password",
-});
-
-  setIsLoading(false);
-  return;
-}
-
-
-    if (user.status !== "active") {
- toast({
-  variant: "destructive",
-  title: "Account is blocked",
-});
-  setIsLoading(false);
-  return;
-}
-
-    sessionStorage.setItem("isLoggedIn", "true");
-
-
-    // 🔐 Create session
-    sessionStorage.setItem("auth_user", JSON.stringify({
-      id: user.id,
-      name: user.fullName,
-      email: user.email,
-    }));
-
-    toast({
-  title: "Login successful",
-});
-
+    // Real admin auth — server-verified, role-gated, JWT-backed.
+    await loginAdmin(formData.email.trim(), formData.password);
+    toast({ title: "Login successful" });
     setFormData({ email: "", password: "" });
-
-    navigate("/AdminLayout");
-
+    navigate("/admin");
   } catch (error) {
-   toast({
-  variant: "destructive",
-  title: "Login failed",
-});
+    toast({ variant: "destructive", title: errMsg(error, "Login failed") });
   } finally {
     setIsLoading(false);
   }
-
-
-    // Simulate API call
    
       // Demo: simulate success if email contains "test", otherwise fail
       

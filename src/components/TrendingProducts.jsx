@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import { api } from "@/lib/api";
 import { useCart } from "@/context/CartContext";
 import { useWishlist } from "@/context/WishlistContext";
 import "../assets/css/product-card.css";
 import "../assets/css/trending.css";
 
-const API = "https://clovers-live-production.up.railway.app/products";
+const API = "/products";
 
 const TABS = [
   { label: "ALL", value: "all" },
@@ -22,7 +22,7 @@ function TrendingProducts() {
   const { toggleWishlist, isInWishlist } = useWishlist();
 
   useEffect(() => {
-    axios.get(API)
+    api.get(API)
       .then(res => {
         setProducts(res.data);
         setLoading(false);

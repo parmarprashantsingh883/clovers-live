@@ -13,7 +13,11 @@ export default defineConfig(({ mode }) => ({
 
   server: {
     host: "localhost",
-    port: 5001
+    port: 5001,
+    // Same-origin API in dev — cookies (refresh token) just work.
+    proxy: {
+      "/api": { target: "http://localhost:5000", changeOrigin: true },
+    },
   },
 
   resolve: {

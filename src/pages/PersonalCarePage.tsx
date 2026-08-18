@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import { api } from "@/lib/api";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Heart } from "lucide-react";
@@ -8,7 +8,7 @@ import "../assets/css/foodpage.css";
 import Breadcrumb from "@/components/Breadcrumb";
 import { useNavigate } from "react-router-dom";
 
-const API = "https://clovers-live-production.up.railway.app/products";
+const API = "/products";
 const ITEMS_PER_PAGE = 12;
 
 const categoryTabs = ["Skincare","Hair Care","Body Care","Sun Care"];
@@ -44,7 +44,7 @@ export default function PersonalCarePage() {
   );
 
   useEffect(() => {
-    axios.get(API).then(res => setProducts(res.data.map(normalize)));
+    api.get(API).then(res => setProducts(res.data.map(normalize)));
   }, []);
 
   const toggleWish = id => {

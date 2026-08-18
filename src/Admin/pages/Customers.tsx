@@ -1,55 +1,59 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import { api, errMsg } from "@/lib/api";
 import Header from "../components/Header";
 import Modal from "../components/Modal";
-import { Search, Pencil, Trash2 } from "lucide-react";
-
-const USERS_API = "http://localhost:5000/users";
-const ORDERS_API = "http://localhost:5000/orders";
+import { Search, ShieldBan, ShieldCheck } from "lucide-react";
+import { toast } from "sonner";
 
 export default function Customers() {
-  const [customers, setCustomers] = useState([]);
+  const [customers, setCustomers] = useState<any[]>([]);
   const [search, setSearch] = useState("");
-  const [editingCustomer, setEditingCustomer] = useState(null);
-  const [deletingCustomer, setDeletingCustomer] = useState(null);
+  const [confirming, setConfirming] = useState<any>(null);
 
   useEffect(() => { fetchAll(); }, []);
 
   const fetchAll = async () => {
-    const users = await axios.get(USERS_API);
-    const orders = await axios.get(ORDERS_API);
-
-    const enriched = users.data.map(u => {
-      const userOrders = orders.data.filter(o => o.user_id === u.id);
-      return {
-        ...u,
-        orders: userOrders.length,
-        spent: "$" + userOrders.reduce((s,o)=>s+o.total,0).toFixed(2),
-        joined: "2024",
-        status: "Active"
-      };
-    });
-
-    setCustomers(enriched);
+    try {
+      const [users, orders] = await Promise.all([api.get("/users"), api.get("/orders")]);
+      const enriched = users.data.map((u: any) => {
+        const userOrders = orders.data.filter((o: any) => String(o.userId) === String(u.id));
+        return {
+          ...u,
+          orders: userOrders.length,
+          spent: userOrders.filter((o: any) => o.status !== "Cancelled").reduce((s: number, o: any) => s + (o.total || 0), 0),
+          joined: u.createdAt ? new Date(u.createdAt).toLocaleDateString("en-IN", { month: "short", year: "numeric" }) : "—",
+        };
+      });
+      setCustomers(enriched);
+    } catch (e) { toast.error(errMsg(e)); }
   };
 
-  const filtered = customers.filter(c =>
-    c.name.toLowerCase().includes(search.toLowerCase()) ||
-    c.email.toLowerCase().includes(search.toLowerCase())
+  const filtered = customers.filter((c) =>
+    (c.fullName || "").toLowerCase().includes(search.toLowerCase()) ||
+    (c.email || "").toLowerCase().includes(search.toLowerCase())
   );
+
+  const toggleStatus = async (c: any) => {
+    try {
+      const status = c.status === "active" ? "blocked" : "active";
+      await api.patch(`/users/${c.id}`, { status });
+      toast.success(`${c.fullName} is now ${status}`);
+      setConfirming(null);
+      fetchAll();
+    } catch (e) { toast.error(errMsg(e)); }
+  };
 
   return (
     <div>
       <Header title="Customers" subtitle="Manage your customer base" />
 
       <div className="p-6 space-y-6">
-
         <div className="relative w-80">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
           <input
             placeholder="Search customers..."
             value={search}
-            onChange={e=>setSearch(e.target.value)}
+            onChange={(e) => setSearch(e.target.value)}
             className="pl-10 border px-4 py-2 rounded-xl w-full"
           />
         </div>
@@ -67,38 +71,35 @@ export default function Customers() {
               </tr>
             </thead>
             <tbody>
-              {filtered.map(c=>(
+              {filtered.map((c) => (
                 <tr key={c.id} className="border-b hover:bg-gray-50">
                   <td className="p-4 flex gap-3 items-center">
                     <div className="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center font-bold text-red-500">
-                      {c.name.split(" ").map(n=>n[0]).join("")}
+                      {(c.fullName || "?").split(" ").map((n: string) => n[0]).join("").slice(0, 2)}
                     </div>
                     <div>
-                      <p className="font-semibold">{c.name}</p>
+                      <p className="font-semibold">{c.fullName}</p>
                       <p className="text-sm text-gray-500">{c.email}</p>
                     </div>
                   </td>
                   <td className="p-4 text-center">{c.orders}</td>
-                  <td className="p-4 text-center font-semibold">{c.spent}</td>
+                  <td className="p-4 text-center font-semibold">₹{c.spent.toLocaleString("en-IN")}</td>
                   <td className="p-4 text-center">
-                   <span
-  className={`px-3 py-1 rounded-full text-xs font-medium
-    ${c.status === "Active" && "bg-green-100 text-green-600"}
-    ${c.status === "Inactive" && "bg-yellow-100 text-yellow-600"}
-    ${c.status === "Suspended" && "bg-red-100 text-red-600"}
-  `}
->
-  {c.status}
-</span>
-
+                    <span className={`px-3 py-1 rounded-full text-xs font-medium ${
+                      c.status === "active" ? "bg-green-100 text-green-600" : "bg-red-100 text-red-600"
+                    }`}>
+                      {c.status}
+                    </span>
                   </td>
                   <td className="p-4 text-center">{c.joined}</td>
-                  <td className="p-4 text-right flex justify-end gap-3">
-                    <button onClick={()=>setEditingCustomer(c)}>
-                      <Pencil size={16}/>
-                    </button>
-                    <button onClick={()=>setDeletingCustomer(c)}>
-                      <Trash2 size={16}/>
+                  <td className="p-4 text-right">
+                    <button
+                      title={c.status === "active" ? "Block customer" : "Unblock customer"}
+                      onClick={() => setConfirming(c)}
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-sm hover:bg-gray-50"
+                    >
+                      {c.status === "active" ? <ShieldBan size={15} /> : <ShieldCheck size={15} />}
+                      {c.status === "active" ? "Block" : "Unblock"}
                     </button>
                   </td>
                 </tr>
@@ -106,96 +107,29 @@ export default function Customers() {
             </tbody>
           </table>
         </div>
-
       </div>
 
-      {/* EDIT MODAL */}
-     <Modal
-  isOpen={!!editingCustomer}
-  onClose={() => setEditingCustomer(null)}
-  title="Edit Customer"
->
-  <div className="space-y-4">
-
-    <div>
-      <label className="block text-sm font-medium mb-1">Name</label>
-      <input
-        type="text"
-        value={editingCustomer?.name || ""}
-        onChange={e =>
-          setEditingCustomer({ ...editingCustomer, name: e.target.value })
-        }
-        className="w-full h-11 px-4 border rounded-xl"
-      />
-    </div>
-
-    <div>
-      <label className="block text-sm font-medium mb-1">Email</label>
-      <input
-        type="email"
-        value={editingCustomer?.email || ""}
-        onChange={e =>
-          setEditingCustomer({ ...editingCustomer, email: e.target.value })
-        }
-        className="w-full h-11 px-4 border rounded-xl"
-      />
-    </div>
-
-    <div>
-      <label className="block text-sm font-medium mb-1">Status</label>
-      <select
-  value={editingCustomer?.status || "Active"}
-  onChange={e =>
-    setEditingCustomer({ ...editingCustomer, status: e.target.value })
-  }
-  className={`w-full h-11 px-4 border rounded-xl
-    ${editingCustomer?.status === "Suspended" && "text-red-600 border-red-300"}
-  `}
->
-
-        <option>Active</option>
-        <option>Inactive</option>
-        <option>Suspended</option>
-      </select>
-    </div>
-
-    <div className="flex justify-end gap-3 pt-4">
-      <button
-        onClick={() => setEditingCustomer(null)}
-        className="px-6 py-2 border rounded-xl"
+      {/* BLOCK / UNBLOCK CONFIRM */}
+      <Modal
+        isOpen={!!confirming}
+        onClose={() => setConfirming(null)}
+        title={confirming?.status === "active" ? "Block customer" : "Unblock customer"}
       >
-        Cancel
-      </button>
-      <button
-        onClick={() => {
-          setCustomers(customers.map(c =>
-            c.id === editingCustomer.id ? editingCustomer : c
-          ));
-          setEditingCustomer(null);
-        }}
-        className="px-6 py-2 bg-red-600 text-white rounded-xl"
-      >
-        Save Changes
-      </button>
-    </div>
-  </div>
-</Modal>
-
-
-      {/* DELETE MODAL */}
-      <Modal isOpen={!!deletingCustomer} onClose={()=>setDeletingCustomer(null)} title="Delete Customer">
-        <p>Delete <b>{deletingCustomer?.name}</b>?</p>
-        <button
-          className="btn bg-red-500 mt-3"
-          onClick={()=>{
-            setCustomers(customers.filter(x=>x.id!==deletingCustomer.id));
-            setDeletingCustomer(null);
-          }}
-        >
-          Delete
-        </button>
+        <p className="text-sm text-gray-600">
+          {confirming?.status === "active"
+            ? <>Block <b>{confirming?.fullName}</b>? They will not be able to sign in or place orders until unblocked.</>
+            : <>Unblock <b>{confirming?.fullName}</b>? They will regain full access.</>}
+        </p>
+        <div className="flex justify-end gap-3 pt-5">
+          <button onClick={() => setConfirming(null)} className="px-6 py-2 border rounded-xl">Cancel</button>
+          <button
+            onClick={() => toggleStatus(confirming)}
+            className={`px-6 py-2 rounded-xl text-white ${confirming?.status === "active" ? "bg-red-600" : "bg-green-600"}`}
+          >
+            {confirming?.status === "active" ? "Block" : "Unblock"}
+          </button>
+        </div>
       </Modal>
-
     </div>
   );
 }

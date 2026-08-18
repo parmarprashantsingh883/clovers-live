@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import { api } from "@/lib/api";
 
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
@@ -8,27 +8,19 @@ import Breadcrumb from "@/components/Breadcrumb";
 import { Button } from "@/components/ui/button";
 
 import { Clock, CheckCircle, Truck } from "lucide-react";
+import { useAuth } from "@/context/AuthContext";
 
 export default function OrdersPage() {
   const navigate = useNavigate();
   const [orders, setOrders] = useState([]);
-
-  const authUser = JSON.parse(sessionStorage.getItem("auth_user"));
+  const { user: authUser, booting } = useAuth() as any;
 
   useEffect(() => {
-    if (!authUser) return;
-
-    axios
-      .get("https://clovers-live-production.up.railway.app/orders")
-      .then((res) => {
-        const userOrders = res.data.filter(
-          (order) => String(order.userId) === String(authUser.id)
-        );
-
-        setOrders(userOrders.reverse());
-      })
-      .catch(console.error);
-  }, [authUser]);
+    if (booting) return;
+    if (!authUser) { navigate("/login"); return; }
+    // The server returns only the caller's orders, newest first.
+    api.get("/orders").then((res) => setOrders(res.data)).catch(console.error);
+  }, [booting, authUser, navigate]);
 
   const getStatusIcon = (status) => {
     switch (status) {

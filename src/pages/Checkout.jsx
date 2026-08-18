@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import { api, errMsg } from "@/lib/api";
 
 import { useCart } from "@/context/CartContext";
+import { useAuth } from "@/context/AuthContext";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import Breadcrumb from "@/components/Breadcrumb";
@@ -12,12 +13,11 @@ export default function CheckoutPage() {
   const { cart, totalPrice, clearCart } = useCart();
 
   /* ---------------- AUTH ---------------- */
-  const authUser = JSON.parse(sessionStorage.getItem("auth_user"));
-
+  const { user: authUser, booting } = useAuth();
 
   useEffect(() => {
-    if (!authUser) navigate("/login");
-  }, [authUser, navigate]);
+    if (!booting && !authUser) navigate("/login");
+  }, [booting, authUser, navigate]);
 
   /* ---------------- STATE ---------------- */
   const [step, setStep] = useState(1);
@@ -116,33 +116,39 @@ export default function CheckoutPage() {
         return;
       }
 
-      const order = {
-        id: `ORD-${Date.now()}`,
-        userId: authUser.id,
-        date: new Date().toISOString(),
-        status: "Processing",
+      // The server owns pricing and stock: we send items as {id, qty} plus
+      // the choices that affect fees — it recomputes everything from the DB.
+      const { data } = await api.post("/orders", {
+        items: cart.map((i) => ({ id: i.id, qty: i.qty })),
         paymentMethod,
-        charges: {
-          subtotal: totalPrice,
-          discount,
-          delivery: deliveryCost,
-          codFee,
-          convenienceFee,
-          gst,
+        deliveryType: delivery,
+        couponCode: couponApplied ? "FRESH10" : "",
+        address: {
+          name: `${form.firstName} ${form.lastName}`.trim(),
+          phone: form.phone,
+          line1: form.address,
+          city: form.city,
+          state: form.state,
+          pincode: form.zip,
         },
-        total: grandTotal,
-        address: form,
-        items: cart,
-      };
+      });
 
-      await axios.post("https://clovers-live-production.up.railway.app/orders", order);
+      const order = data.order;
+
+      // Online payment → complete against the gateway (mock in dev: the same
+      // create → pay → verify flow, simulated instantly).
+      if (data.payment) {
+        await api.post(`/orders/${order.id}/verify-payment`, {
+          paymentId: `pay_${data.payment.mode}_${Date.now()}`,
+          signature: data.payment.mode === "mock" ? "mock" : "",
+        });
+      }
 
       clearCart();
-     // 👇 ADD THESE TWO LINES
-  sessionStorage.setItem("last_order_id", order.id);
-  navigate("/order-success");
+      sessionStorage.setItem("last_order_id", order.id);
+      navigate("/order-success");
     } catch (err) {
-      alert("Something went wrong. Please try again.");
+      alert(errMsg(err, "Something went wrong. Please try again."));
     }
   };
 

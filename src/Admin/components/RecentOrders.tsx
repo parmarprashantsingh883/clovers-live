@@ -1,46 +1,13 @@
-const orders = [
-  {
-    id: "#ORD-7352",
-    customer: "Sarah Johnson",
-    items: 8,
-    total: "$124.99",
-    status: "Delivered",
-    date: "Today, 2:30 PM",
-  },
-  {
-    id: "#ORD-7351",
-    customer: "Michael Chen",
-    items: 3,
-    total: "$45.50",
-    status: "Processing",
-    date: "Today, 1:15 PM",
-  },
-  {
-    id: "#ORD-7350",
-    customer: "Emily Davis",
-    items: 12,
-    total: "$198.00",
-    status: "Shipped",
-    date: "Today, 11:45 AM",
-  },
-  {
-    id: "#ORD-7349",
-    customer: "James Wilson",
-    items: 5,
-    total: "$87.25",
-    status: "Pending",
-    date: "Yesterday, 6:20 PM",
-  },
-];
-
 const statusColors: Record<string, string> = {
   Delivered: "bg-success/10 text-success border-success/20",
+  Confirmed: "bg-info/10 text-info border-info/20",
   Processing: "bg-info/10 text-info border-info/20",
   Shipped: "bg-warning/10 text-warning border-warning/20",
-  Pending: "bg-destructive/10 text-destructive border-destructive/20",
+  Cancelled: "bg-destructive/10 text-destructive border-destructive/20",
 };
 
-const RecentOrders = () => {
+/** Latest orders straight from the database (passed by the Dashboard). */
+const RecentOrders = ({ orders = [] }: { orders?: any[] }) => {
   return (
     <div className="bg-card rounded-xl border border-border">
       <div className="p-6 border-b border-border">
@@ -52,52 +19,31 @@ const RecentOrders = () => {
         <table className="w-full">
           <thead>
             <tr className="border-b border-border">
-              <th className="text-left py-3 px-6 text-sm font-medium text-muted-foreground">
-                Order ID
-              </th>
-              <th className="text-left py-3 px-6 text-sm font-medium text-muted-foreground">
-                Customer
-              </th>
-              <th className="text-left py-3 px-6 text-sm font-medium text-muted-foreground">
-                Items
-              </th>
-              <th className="text-left py-3 px-6 text-sm font-medium text-muted-foreground">
-                Total
-              </th>
-              <th className="text-left py-3 px-6 text-sm font-medium text-muted-foreground">
-                Status
-              </th>
-              <th className="text-left py-3 px-6 text-sm font-medium text-muted-foreground">
-                Date
-              </th>
+              {["Order ID", "Customer", "Items", "Total", "Status", "Date"].map((h) => (
+                <th key={h} className="text-left py-3 px-6 text-sm font-medium text-muted-foreground">{h}</th>
+              ))}
             </tr>
           </thead>
           <tbody>
+            {orders.length === 0 && (
+              <tr><td colSpan={6} className="py-8 px-6 text-center text-sm text-muted-foreground">No orders yet</td></tr>
+            )}
             {orders.map((order) => (
-              <tr
-                key={order.id}
-                className="border-b border-border last:border-0 hover:bg-secondary/50 transition-colors"
-              >
-                <td className="py-4 px-6 text-sm font-medium text-foreground">
-                  {order.id}
-                </td>
+              <tr key={order.id} className="border-b border-border last:border-0 hover:bg-secondary/50 transition-colors">
+                <td className="py-4 px-6 text-sm font-medium text-foreground">{order.id}</td>
+                <td className="py-4 px-6 text-sm text-foreground">{order.address?.name || "—"}</td>
                 <td className="py-4 px-6 text-sm text-foreground">
-                  {order.customer}
-                </td>
-                <td className="py-4 px-6 text-sm text-foreground">
-                  {order.items}
+                  {(order.items || []).reduce((s: number, i: any) => s + (i.qty || 0), 0)}
                 </td>
                 <td className="py-4 px-6 text-sm font-medium text-foreground">
-                  {order.total}
+                  ₹{(order.total || 0).toLocaleString("en-IN")}
                 </td>
                 <td className="py-4 px-6">
-                  <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium border ${statusColors[order.status]}`}>
+                  <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium border ${statusColors[order.status] || "bg-secondary text-foreground border-border"}`}>
                     {order.status}
                   </span>
                 </td>
-                <td className="py-4 px-6 text-sm text-muted-foreground">
-                  {order.date}
-                </td>
+                <td className="py-4 px-6 text-sm text-muted-foreground">{order.date}</td>
               </tr>
             ))}
           </tbody>

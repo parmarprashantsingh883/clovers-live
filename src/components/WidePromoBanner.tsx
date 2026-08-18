@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import { api } from "@/lib/api";
 import "../assets/css/wide-banner.css";
 
-const API = "https://clovers-live-production.up.railway.app/wideBanners";
+const API = "/wideBanners";
 
 export default function WidePromoBanner({ page }) {
   const [banner, setBanner] = useState(null);
 
   useEffect(() => {
-    axios.get(API).then(res => {
+    api.get(API).then(res => {
       const data = res.data.find(b => b.page === page);
       setBanner(data);
     });

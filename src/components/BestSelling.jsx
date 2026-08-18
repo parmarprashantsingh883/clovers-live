@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import axios from "axios";
+import { api } from "@/lib/api";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "@/context/CartContext";
@@ -7,7 +7,7 @@ import { useWishlist } from "@/context/WishlistContext";
 import "../assets/css/product-card.css";
 import "../assets/css/best-selling.css";
 
-const API = "https://clovers-live-production.up.railway.app/products";
+const API = "/products";
 
 export default function BestSelling() {
   const [products, setProducts] = useState([]);
@@ -18,7 +18,7 @@ export default function BestSelling() {
   const { toggleWishlist, isInWishlist } = useWishlist();
 
   useEffect(() => {
-    axios.get(API).then(res => {
+    api.get(API).then(res => {
       setProducts(res.data.slice(0, 12));
     });
   }, []);

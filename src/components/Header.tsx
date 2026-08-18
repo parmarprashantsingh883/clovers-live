@@ -4,7 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 import { useCart } from "@/context/CartContext";
 import { useNavigate } from "react-router-dom";
 import { useWishlist } from "@/context/WishlistContext";
-import axios from "axios";
+import { api } from "@/lib/api";
 
 
 
@@ -54,7 +54,7 @@ useEffect(() => {
 
 /* fetch the products*/
 useEffect(() => {
-  axios.get("https://clovers-live-production.up.railway.app/products").then(res => {
+  api.get("/products").then(res => {
     setSuggestions(res.data);
   });
 }, []);

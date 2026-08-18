@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import { api } from "@/lib/api";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import "../assets/css/product-card.css";
@@ -8,7 +8,7 @@ import PromoBanner from "@/components/PromoBanner";
 import Breadcrumb from "@/components/Breadcrumb";
 import { useNavigate } from "react-router-dom";
 
-const API = "https://clovers-live-production.up.railway.app/products";
+const API = "/products";
 const ITEMS_PER_PAGE = 15;
 
 const munchiesTabs = [
@@ -56,7 +56,7 @@ export default function MunchiesPage() {
 
   /* FETCH */
   useEffect(() => {
-    axios.get(API).then(res => {
+    api.get(API).then(res => {
       const clean = res.data.map(normalizeProduct);
       setProducts(clean);
     });

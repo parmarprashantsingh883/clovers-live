@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import axios from "axios";
+import { api } from "@/lib/api";
 
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
@@ -15,15 +15,10 @@ export default function OrderDetails() {
   const [order, setOrder] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  /* ✅ SAFE FETCH (ORD-xxxx supported) */
   useEffect(() => {
-    axios
-      .get("https://clovers-live-production.up.railway.app/orders")
-      .then((res) => {
-        const found = res.data.find((o) => o.id === id);
-        setOrder(found || null);
-        setLoading(false);
-      })
+    // Owner-scoped on the server: 403s if it's someone else's order.
+    api.get(`/orders/${id}`)
+      .then((res) => { setOrder(res.data); setLoading(false); })
       .catch(() => setLoading(false));
   }, [id]);
 

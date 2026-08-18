@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import { api } from "@/lib/api";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import "../assets/css/product-card.css";
@@ -7,7 +7,7 @@ import "../assets/css/foodpage.css";
 import Breadcrumb from "@/components/Breadcrumb";
 import { useNavigate } from "react-router-dom";
 
-const API = "https://clovers-live-production.up.railway.app/products";
+const API = "/products";
 const ITEMS_PER_PAGE = 15;
 
 const categories = [
@@ -29,7 +29,7 @@ export default function DealsPage() {
   const navigate = useNavigate();
 
   useEffect(()=>{
-    axios.get(API).then(res=>setProducts(res.data));
+    api.get(API).then(res=>setProducts(res.data));
   },[]);
 
   /* ---------- ONLY DEAL PRODUCTS ---------- */

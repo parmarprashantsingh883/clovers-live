@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
+import { api } from "@/lib/api";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import Breadcrumb from "@/components/Breadcrumb";
@@ -20,7 +20,7 @@ import {
 } from "lucide-react";
 import "./ProductDetailsPage.css";
 
-const API = "https://clovers-live-production.up.railway.app/products";
+const API = "/products";
 
 const safeNumber = (val, fallback = 0) => {
   const n = Number(val);
@@ -47,7 +47,7 @@ export default function ProductDetails() {
 
 
   useEffect(() => {
-  axios.get(`${API}/${id}`).then(res => {
+  api.get(`${API}/${id}`).then(res => {
     const p = res.data;
 
     // Normalize product fields
@@ -68,7 +68,7 @@ export default function ProductDetails() {
  useEffect(() => {
   if (!product) return;
 
-  axios.get(API).then(res => {
+  api.get(API).then(res => {
 
     const currentCatId =
       product.category_id ||

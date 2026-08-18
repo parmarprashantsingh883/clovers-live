@@ -1,4 +1,6 @@
+import { useEffect } from "react";
 import { useCart } from "@/context/CartContext";
+import { useAuth } from "@/context/AuthContext";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { useNavigate } from "react-router-dom";
@@ -24,11 +26,11 @@ export default function CartPage() {
       currency: "INR",
       maximumFractionDigits: 0
     });
-    const authUser = sessionStorage.getItem("auth_user");
+  const { user: authUser, booting } = useAuth();
 
-if (!authUser) {
-  navigate("/login");
-}
+  useEffect(() => {
+    if (!booting && !authUser) navigate("/login");
+  }, [booting, authUser, navigate]);
 
 
   return (

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import axios from "axios";
+import { errMsg } from "@/lib/api";
+import { useAuth } from "@/context/AuthContext";
 import { toast } from "react-toastify";
 
 import { Eye, EyeOff, Mail, Lock, User, Phone, Leaf, Check } from 'lucide-react';
@@ -20,6 +21,7 @@ const Signup = () => {
   const [acceptedTerms, setAcceptedTerms] = useState(false);
 
   const navigate = useNavigate();
+  const { signup } = useAuth();
 
   const handleInputChange = (e) => {
   const { name, value } = e.target;
@@ -46,36 +48,18 @@ const Signup = () => {
 
   try {
     setIsLoading(true);
-
-    // Check if email already exists
-    const existingUser = await axios.get(
-      `https://clovers-live-production.up.railway.app/users?email=${formData.email}`
-    );
-
-    if (existingUser.data.length > 0) {
-      toast.error("Email already registered");
-      return;
-    }
-
-    // Create new user
-    const newUser = {
-  id: Date.now().toString(),
-  fullName: formData.fullName,
-  email: formData.email,
-  phone: formData.phone,
-  password: formData.password, // hash later on backend
-  status: "active",
-  createdAt: new Date().toISOString(),
-};
-
-
-    await axios.post("https://clovers-live-production.up.railway.app/users", newUser);
-
-    toast.success("Account created successfully");
-    navigate("/login");
-
+    // Real signup — the server hashes the password and returns a session,
+    // so the user lands signed-in.
+    await signup({
+      fullName: formData.fullName.trim(),
+      email: formData.email.trim(),
+      phone: formData.phone.trim(),
+      password: formData.password,
+    });
+    toast.success("Account created — welcome to Clovers!");
+    navigate("/");
   } catch (error) {
-    toast.error("Signup failed. Try again.");
+    toast.error(errMsg(error, "Signup failed. Try again."));
   } finally {
     setIsLoading(false);
   }

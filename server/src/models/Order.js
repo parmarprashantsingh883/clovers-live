@@ -17,6 +17,10 @@ const orderSchema = new mongoose.Schema(
       index: true,
     },
     total: { type: Number, required: true, min: 0 },
+    charges: {
+      subtotal: Number, discount: Number, delivery: Number,
+      codFee: Number, convenienceFee: Number, gst: Number,
+    },
     items: { type: [orderItemSchema], default: [] },
     paymentMethod: { type: String, default: 'cod' },
     address: {

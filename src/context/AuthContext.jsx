@@ -1,77 +1,68 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import axios from "axios";
+import { api, setAccessToken, setSessionExpiredHandler } from "@/lib/api";
 
+/**
+ * Real authentication — JWT access token in memory, httpOnly refresh cookie
+ * for silent session restore. Passwords never touch the client: the server
+ * verifies bcrypt hashes and only ever returns safe user fields.
+ */
 const AuthContext = createContext(null);
+
+const toAuthUser = (u) => ({ id: u.id, name: u.fullName, email: u.email, role: u.role });
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [booting, setBooting] = useState(true);
 
-  // restore session on refresh
-  useEffect(() => {
-    const savedUser = sessionStorage.getItem("auth_user");
-    if (savedUser) {
-      setUser(JSON.parse(savedUser));
-    }
-  }, []);
-
-  // 🔐 LOGIN
-  const login = async (email, password) => {
-    const res = await axios.get(
-      `http://localhost:3000/users?email=${email}`
-    );
-
-    if (res.data.length === 0) {
-      throw new Error("Invalid email");
-    }
-
-    const user = res.data[0];
-
-    if (user.password !== password) {
-      throw new Error("Incorrect password");
-    }
-
-    if (user.status !== "active") {
-      throw new Error("Account blocked");
-    }
-
-    const authUser = {
-      id: user.id,
-      name: user.fullName,
-      email: user.email,
-    };
-
-    sessionStorage.setItem("auth_user", JSON.stringify(authUser));
-    setUser(authUser);
+  const applyAuth = (u, token) => {
+    setAccessToken(token);
+    setUser(toAuthUser(u));
   };
-
-  // 🆕 SIGNUP  ❗ THIS WAS MISSING ❗
-  const signup = async (data) => {
-    // check email
-    const check = await axios.get(
-      `http://localhost:3000/users?email=${data.email}`
-    );
-
-    if (check.data.length > 0) {
-      throw new Error("Email already exists");
-    }
-
-    // create user
-    await axios.post("http://localhost:3000/users", {
-      ...data,
-      status: "active",
-    });
-  };
-
-  // LOGOUT
-  const logout = () => {
-    sessionStorage.removeItem("auth_user");
+  const clearAuth = () => {
+    setAccessToken(null);
     setUser(null);
   };
 
+  // Silent session restore via the refresh cookie on first mount.
+  useEffect(() => {
+    setSessionExpiredHandler(clearAuth);
+    (async () => {
+      try {
+        const { data } = await api.post("/auth/refresh");
+        applyAuth(data.data.user, data.data.accessToken);
+      } catch {
+        /* not logged in */
+      } finally {
+        setBooting(false);
+      }
+    })();
+  }, []);
+
+  const login = async (email, password) => {
+    const { data } = await api.post("/auth/login", { email, password });
+    applyAuth(data.data.user, data.data.accessToken);
+    return toAuthUser(data.data.user);
+  };
+
+  const loginAdmin = async (email, password) => {
+    const { data } = await api.post("/auth/admin/login", { email, password });
+    applyAuth(data.data.user, data.data.accessToken);
+    return toAuthUser(data.data.user);
+  };
+
+  const signup = async (payload) => {
+    const { data } = await api.post("/auth/signup", payload);
+    applyAuth(data.data.user, data.data.accessToken);
+    return toAuthUser(data.data.user);
+  };
+
+  const logout = async () => {
+    try { await api.post("/auth/logout"); } catch { /* ignore */ }
+    clearAuth();
+  };
+
   return (
-    <AuthContext.Provider
-      value={{ user, login, signup, logout }}
-    >
+    <AuthContext.Provider value={{ user, booting, login, loginAdmin, signup, logout }}>
       {children}
     </AuthContext.Provider>
   );

@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import { api } from "@/lib/api";
 import "../assets/css/flesdeals.css";
 
-const API = "https://clovers-live-production.up.railway.app/promoBanners";
+const API = "/promoBanners";
 
 export default function PromoBanner({ page }) {
   const [banners, setBanners] = useState([]);
 
   useEffect(() => {
-    axios.get(API).then(res => {
+    api.get(API).then(res => {
       const pageBanners = res.data.filter(b => b.page === page);
       setBanners(pageBanners);
     });

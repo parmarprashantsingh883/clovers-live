@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import { api } from "@/lib/api";
 import { useCart } from "@/context/CartContext";
 import { useWishlist } from "@/context/WishlistContext";
 import "../assets/css/best-deals.css";
 
-const API = "https://clovers-live-production.up.railway.app/products";
+const API = "/products";
 const ITEMS_PER_PAGE = 8;
 
 function BestDeals() {
@@ -16,7 +16,7 @@ function BestDeals() {
   const { toggleWishlist, isInWishlist } = useWishlist();
 
   useEffect(() => {
-    axios.get(API)
+    api.get(API)
       .then(res => {
         const sorted = [...res.data].sort(
           (a, b) =>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import { api } from "@/lib/api";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import "../assets/css/product-card.css";
@@ -13,7 +13,7 @@ import { useWishlist } from "@/context/WishlistContext";
 
 
 
-const API = "https://clovers-live-production.up.railway.app/products";
+const API = "/products";
 const ITEMS_PER_PAGE = 15;
 
 const categoryTabs = [
@@ -50,7 +50,7 @@ const { toggleWishlist, isInWishlist } = useWishlist();
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get(API).then(res => setProducts(res.data));
+    api.get(API).then(res => setProducts(res.data));
   }, []);
 
   /* ---------------- FILTER LOGIC ---------------- */

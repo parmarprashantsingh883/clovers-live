@@ -19,7 +19,7 @@ async function nextOrderId() {
  * computed here. Body: { items:[{id, qty}], paymentMethod, address }.
  */
 export const createOrder = asyncHandler(async (req, res) => {
-  const { items, paymentMethod = 'cod', address = {} } = req.body || {};
+  const { items, paymentMethod = 'cod', address = {}, deliveryType = 'free', couponCode = '' } = req.body || {};
   if (!Array.isArray(items) || items.length === 0) throw new ApiError(422, 'Your cart is empty');
   if (!address?.name || !address?.phone) throw new ApiError(422, 'Delivery name and phone are required');
 
@@ -29,15 +29,23 @@ export const createOrder = asyncHandler(async (req, res) => {
   const byId = new Map(products.map((p) => [p.id, p]));
 
   const lines = [];
-  let total = 0;
+  let subtotal = 0;
   for (const item of items) {
     const p = byId.get(Number(item.id));
     const qty = Math.max(1, Math.min(50, Number(item.qty) || 1));
     if (!p) throw new ApiError(422, `Product ${item.id} no longer exists`);
     if (p.stock < qty) throw new ApiError(409, `Only ${p.stock} left of "${p.name}"`);
     lines.push({ id: p.id, name: p.name, price: p.price, qty, image: p.image });
-    total += p.price * qty;
+    subtotal += p.price * qty;
   }
+
+  // Pricing is server-authoritative — same formula the checkout displays.
+  const discount = couponCode.toUpperCase() === 'FRESH10' && subtotal >= 299 ? Math.round(subtotal * 0.1) : 0;
+  const delivery = subtotal >= 499 ? 0 : deliveryType === 'express' ? 99 : deliveryType === 'standard' ? 49 : 0;
+  const codFee = paymentMethod === 'cod' ? 30 : 0;
+  const convenienceFee = 9;
+  const gst = Math.round((subtotal - discount) * 0.05);
+  const total = subtotal - discount + delivery + codFee + convenienceFee + gst;
 
   // Decrement stock guarded by the current level (no oversell on races).
   for (const line of lines) {
@@ -51,10 +59,11 @@ export const createOrder = asyncHandler(async (req, res) => {
     date: new Date().toISOString().slice(0, 10),
     status: 'Processing',
     total,
+    charges: { subtotal, discount, delivery, codFee, convenienceFee, gst },
     items: lines,
     paymentMethod,
     address,
-    payment: { status: paymentMethod === 'cod' ? 'pending' : 'pending' },
+    payment: { status: 'pending' },
   });
 
   // Online payment → hand back a gateway order to complete on the client.
@@ -119,13 +128,26 @@ export const deleteOrder = asyncHandler(async (req, res) => {
 
 /** GET /api/admin/stats — dashboard aggregates from real data. */
 export const adminStats = asyncHandler(async (_req, res) => {
-  const [orders, revenueAgg, customers, products, recent, byStatus] = await Promise.all([
+  const [orders, revenueAgg, customers, products, recent, byStatus, topProducts] = await Promise.all([
     Order.countDocuments(),
     Order.aggregate([{ $match: { status: { $ne: 'Cancelled' } } }, { $group: { _id: null, total: { $sum: '$total' } } }]),
     mongoose.model('User').countDocuments({ role: 'user' }),
     Product.countDocuments(),
     Order.find().sort({ createdAt: -1 }).limit(6),
     Order.aggregate([{ $group: { _id: '$status', count: { $sum: 1 } } }]),
+    Order.aggregate([
+      { $match: { status: { $ne: 'Cancelled' } } },
+      { $unwind: '$items' },
+      { $group: {
+        _id: '$items.id',
+        name: { $first: '$items.name' },
+        image: { $first: '$items.image' },
+        sold: { $sum: '$items.qty' },
+        revenue: { $sum: { $multiply: ['$items.price', '$items.qty'] } },
+      } },
+      { $sort: { sold: -1 } },
+      { $limit: 5 },
+    ]),
   ]);
   res.json({
     orders,
@@ -134,5 +156,6 @@ export const adminStats = asyncHandler(async (_req, res) => {
     products,
     recentOrders: recent,
     byStatus: Object.fromEntries(byStatus.map((s) => [s._id, s.count])),
+    topProducts,
   });
 });

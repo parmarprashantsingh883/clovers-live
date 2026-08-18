@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import { api } from "@/lib/api";
 import Header from "../components/Header";
 import Modal from "../components/Modal";
 import { Plus, Pencil, Trash2 } from "lucide-react";
 
-const API = "http://localhost:5000/categories";
+const API = "/categories";
 const PER_PAGE = 6;
 
 export default function Categories() {
@@ -32,11 +32,11 @@ export default function Categories() {
 
 
   const fetchCategories = async () => {
-    const res = await axios.get(API);
+    const res = await api.get(API);
     setCategories(res.data);
   };
   const fetchProducts = async () => {
-  const res = await axios.get("http://localhost:5000/products");
+  const res = await api.get("/products");
   setProducts(res.data);
 };
 
@@ -52,7 +52,7 @@ export default function Categories() {
     if (!formData.name || !formData.image) {
       return alert("Please fill all required fields");
     }
-await axios.post(API, {
+await api.post(API, {
   name: formData.name,
   description: formData.description,
   image: formData.image
@@ -65,13 +65,13 @@ await axios.post(API, {
   };
 
   const handleEditCategory = async () => {
-    await axios.put(`${API}/${selectedCategory.id}`, formData);
+    await api.put(`${API}/${selectedCategory.id}`, formData);
     fetchCategories();
     setIsEditModalOpen(false);
   };
 
   const handleDeleteCategory = async () => {
-    await axios.delete(`${API}/${selectedCategory.id}`);
+    await api.delete(`${API}/${selectedCategory.id}`);
     fetchCategories();
     setIsDeleteModalOpen(false);
   };

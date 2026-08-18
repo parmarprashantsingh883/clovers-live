@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import { api } from "@/lib/api";
 import Header from "../components/Header";
 import Modal from "../components/Modal";
 import { Plus, Search } from "lucide-react";
 import "./products.css";
 import Swal from "sweetalert2";
 
-const API = "http://localhost:5000/products";
+const API = "/products";
 const ITEMS_PER_PAGE = 20;
 
 export default function Products() {
@@ -46,12 +46,12 @@ const [imagePreview, setImagePreview] = useState([]);
 
   const fetchProducts = async () => {
     setLoading(true);
-    const res = await axios.get(API);
+    const res = await api.get(API);
     setProducts(res.data);
     setLoading(false);
   };
    const fetchCategories = async () => {
-  const res = await axios.get("http://localhost:5000/categories");
+  const res = await api.get("/categories");
   setCategories(res.data);
 };
 
@@ -60,7 +60,7 @@ const handleAdd = async () => {
     return alert("Please add a main product image");
   }
 
-  await axios.post(API, {
+  await api.post(API, {
   name: form.name,
   title: form.name,
   price: Number(form.price),
