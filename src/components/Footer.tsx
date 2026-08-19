@@ -87,17 +87,36 @@ export const Footer = () => {
             <ul className="space-y-3 text-sm text-primary-foreground/70">
               <li className="flex items-center gap-2">
                 <Phone className="w-4 h-4 text-primary" />
-                <span>1-800-CLOVERS</span>
+                <span>1800-419-4141 (toll free)</span>
               </li>
               <li className="flex items-center gap-2">
                 <Mail className="w-4 h-4 text-primary" />
-                <span>support@clovers.com</span>
+                <span>support@clovers.in</span>
               </li>
               <li className="flex items-start gap-2">
                 <MapPin className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
-                <span>123 Market Street, Fresh City, FC 12345</span>
+                <span>Clovers Retail Pvt. Ltd., SG Highway, Ahmedabad, Gujarat 380054</span>
               </li>
             </ul>
+          </div>
+        </div>
+      </div>
+
+      {/* Payments strip */}
+      <div className="border-t border-primary-foreground/10">
+        <div className="container py-5 flex flex-col md:flex-row items-center justify-between gap-3">
+          <p className="text-xs text-primary-foreground/50 font-semibold uppercase tracking-wide">
+            100% secure payments
+          </p>
+          <div className="flex flex-wrap items-center gap-2">
+            {["UPI", "Visa", "Mastercard", "RuPay", "Net Banking", "Cash on Delivery"].map((m) => (
+              <span
+                key={m}
+                className="text-[11px] font-bold px-2.5 py-1 rounded-md bg-primary-foreground/10 text-primary-foreground/80"
+              >
+                {m}
+              </span>
+            ))}
           </div>
         </div>
       </div>
@@ -105,7 +124,7 @@ export const Footer = () => {
       {/* Bottom bar */}
       <div className="border-t border-primary-foreground/10">
         <div className="container py-6 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-primary-foreground/60">
-          <p>© 2024 Clovers. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Clovers Retail Pvt. Ltd. All rights reserved.</p>
           <div className="flex gap-6">
             <a href="#" className="hover:text-primary-foreground transition-colors">Privacy Policy</a>
             <a href="#" className="hover:text-primary-foreground transition-colors">Terms of Service</a>

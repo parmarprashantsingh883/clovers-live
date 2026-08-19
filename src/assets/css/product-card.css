@@ -240,6 +240,48 @@
 }
 .shelf-arrow:hover{ background:#f3f4f6; }
 
+/* category tiles */
+.cat-tiles{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(118px,1fr));
+  gap:12px;
+}
+.cat-tile{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:8px;
+  text-decoration:none;
+  padding:6px 4px 10px;
+  border-radius:14px;
+  transition:.15s;
+}
+.cat-tile:hover{ background:#f7f8f7; transform:translateY(-2px); }
+.cat-tile-img{
+  width:92px;
+  height:92px;
+  border-radius:18px;
+  background:linear-gradient(180deg,#f1f8f2,#e8f3ea);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:10px;
+  overflow:hidden;
+}
+.cat-tile-img img{
+  max-width:100%;
+  max-height:100%;
+  object-fit:contain;
+  mix-blend-mode:multiply;
+}
+.cat-tile-name{
+  font-size:12.5px;
+  font-weight:700;
+  color:#374151;
+  text-align:center;
+  line-height:1.25;
+}
+
 /* CARD */
 .product-card{
   background:#fff;
