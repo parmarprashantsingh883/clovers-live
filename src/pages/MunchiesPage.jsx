@@ -8,7 +8,7 @@ import PromoBanner from "@/components/PromoBanner";
 import Breadcrumb from "@/components/Breadcrumb";
 import { useNavigate } from "react-router-dom";
 
-const API = "/products";
+const API = "/products?department=Munchies";
 const ITEMS_PER_PAGE = 15;
 
 const munchiesTabs = [
@@ -66,16 +66,14 @@ export default function MunchiesPage() {
 
   /* FILTER */
   const filtered = products.filter(p => {
-    const isMunchies =
-      p.category_name.toLowerCase() === "munchies" ||
-      p.category_id === 15; // use your real ID
+    const isMunchies = true; // server already scopes ?department=Munchies
 
     const typeMatch =
       !activeType ||
       p.subcategory?.toLowerCase().includes(activeType.toLowerCase()) ||
       p.name.toLowerCase().includes(activeType.toLowerCase());
 
-    const priceMatch = p.discountPrice <= maxPrice;
+    const priceMatch = (p.discountPrice || p.price) <= maxPrice;
     const stockMatch = !stockOnly || p.stock > 0;
     const ratingMatch = !ratingFilter || p.rating >= ratingFilter;
 

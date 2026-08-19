@@ -13,7 +13,7 @@ import { useWishlist } from "@/context/WishlistContext";
 
 
 
-const API = "/products";
+const API = "/products?department=Food";
 const ITEMS_PER_PAGE = 15;
 
 const categoryTabs = [
@@ -58,7 +58,7 @@ const { toggleWishlist, isInWishlist } = useWishlist();
     if (!p.name || !p.price) return false;
 
     const catMatch =
-      selectedCats.length === 0 || selectedCats.includes(p.category_name);
+      selectedCats.length === 0 || selectedCats.includes(p.category);
 
     const priceMatch = (p.discountPrice || p.price) <= maxPrice;
     const stockMatch = !stockOnly || p.stock > 0;

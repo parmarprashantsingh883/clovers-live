@@ -18,6 +18,40 @@ import Banner from '../models/Banner.js';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const DB_JSON = path.join(__dirname, '..', '..', '..', 'Backend', 'db.json');
 
+/**
+ * db.json barely tags products (71/72 have no department, and the pages'
+ * category tabs never matched the data). Classify every product by name so
+ * the department pages and their sidebar tabs actually work. Order matters —
+ * specific rules before generic ones.
+ */
+const RULES = [
+  ['Personal Care', 'Hair Care', /shampoo|keratin|curl|styling/i],
+  ['Personal Care', 'Skincare', /face wash|cleanser|vitamin c|cerave|dot & key|minimalist/i],
+  ['Personal Care', 'Body Care', /soap|body wash|talcum|bath/i],
+  ['Household', 'Cleaning', /cleaner|detergent|tide|mop|pochha|microfiber/i],
+  ['Household', 'Kitchen & Disposables', /tissue|foil|paper glass|disposable/i],
+  ['Munchies', 'Chips & Crisps', /chips|doritos|popcorn/i],
+  ['Munchies', 'Chocolates', /chocolate bar|kitkat|dairy milk|raffaello|choco pie|choco wafer/i],
+  ['Munchies', 'Cookies & Biscuits', /cookie|choco fills|choco chunk/i],
+  ['Munchies', 'Dry Snacks', /cashew|namkeen|vade|energy bar|haldiram|aloo lachha/i],
+  ['Beverages', 'Soft Drinks', /pepsi|sprite|thums|bubbly|sparkling|soft drink|sepoy/i],
+  ['Beverages', 'Juices', /juice|frooti/i],
+  ['Beverages', 'Dairy Drinks', /lassi|milkshake|milk drink|flavoured milk|smoodh/i],
+  ['Food', 'Frozen Foods', /frozen|ice cream|dolly|magnum/i],
+  ['Food', 'Fresh Fruits', /apple|banana|orange|kinnow/i],
+  ['Food', 'Vegetables', /tomato|broccoli/i],
+  ['Food', 'Dairy & Eggs', /milk|egg/i],
+  ['Food', 'Bakery', /bread|loaf/i],
+  ['Food', 'Meat & Seafood', /chicken/i],
+];
+
+function classify(name = '') {
+  for (const [department, category, rx] of RULES) {
+    if (rx.test(name)) return { department, category };
+  }
+  return { department: 'Food', category: 'Snacks' };
+}
+
 export async function runSeed({ exitAfter = true, force = false } = {}) {
   if (!mongoose.connection.readyState) {
     const { connectDB } = await import('../config/db.js');
@@ -47,6 +81,9 @@ export async function runSeed({ exitAfter = true, force = false } = {}) {
   for (const p of products) {
     if (seen.has(p.id)) { nextId += 1; p.id = nextId; }
     seen.add(p.id);
+    const tag = classify(p.name);
+    p.department = tag.department;
+    p.category = tag.category;
   }
   await Product.insertMany(products);
   await Order.insertMany((db.orders || []).map((o) => ({ ...o, payment: { status: o.paymentMethod === 'cod' ? 'pending' : 'paid' } })));

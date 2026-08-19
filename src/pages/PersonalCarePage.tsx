@@ -8,7 +8,7 @@ import "../assets/css/foodpage.css";
 import Breadcrumb from "@/components/Breadcrumb";
 import { useNavigate } from "react-router-dom";
 
-const API = "/products";
+const API = "/products?department=Personal%20Care";
 const ITEMS_PER_PAGE = 12;
 
 const categoryTabs = ["Skincare","Hair Care","Body Care","Sun Care"];
@@ -57,10 +57,9 @@ export default function PersonalCarePage() {
 
   /* ---------------- FILTER LOGIC ---------------- */
   const filtered = products.filter(p => {
-  const isCare =
-    Number(p.category_id) === 8 || p.category_name === "Personal Care";
+  const isCare = true; // server already scopes ?department=Personal Care
 
-  const sub = (p.subcategory || "Skincare").toString();
+  const sub = (p.category || "Skincare").toString();
   const genderVal = (p.gender || "Unisex").toString();
   const priceVal = Number(p.discountPrice || p.oldPrice || p.price || 0);
   const stockVal = Number(p.stock || 0);

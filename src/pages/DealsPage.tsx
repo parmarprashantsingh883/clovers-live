@@ -34,13 +34,13 @@ export default function DealsPage() {
 
   /* ---------- ONLY DEAL PRODUCTS ---------- */
   const dealProducts = products.filter(p =>
-    p.discountPrice && p.discountPrice < p.price
+    p.originalPrice && p.price < p.originalPrice
   );
 
   const filtered = dealProducts.filter(p=>{
     if(!p.name||!p.price) return false;
-    const catMatch = selectedCats.length===0 || selectedCats.includes(p.category_name);
-    const priceMatch = p.discountPrice <= maxPrice;
+    const catMatch = selectedCats.length===0 || selectedCats.includes(p.category);
+    const priceMatch = p.price <= maxPrice;
     const stockMatch = !stockOnly || p.stock>0;
     const ratingMatch = !ratingFilter || p.rating>=ratingFilter;
     return catMatch && priceMatch && stockMatch && ratingMatch;

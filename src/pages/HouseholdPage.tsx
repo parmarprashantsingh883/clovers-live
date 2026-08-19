@@ -8,7 +8,7 @@ import "../assets/css/product-card.css";
 import "../assets/css/foodpage.css";
 import { useNavigate } from "react-router-dom";
 
-const API = "/products";
+const API = "/products?department=Household";
 const ITEMS_PER_PAGE = 15;
 
 /* Household sub categories (optional – auto fallback if not present) */
@@ -67,13 +67,11 @@ export default function HouseholdPage() {
 
   /* ================= FILTER LOGIC ================= */
   const filtered = products.filter(p => {
-    const isHousehold =
-      p.category_id === 9 ||
-      p.category_name === "Household Essentials";
+    const isHousehold = true; // server already scopes ?department=Household
 
     if (!isHousehold) return false;
 
-    const priceMatch = p.discountPrice <= maxPrice;
+    const priceMatch = (p.discountPrice || p.price) <= maxPrice;
     const stockMatch = !stockOnly || p.stock > 0;
     const ratingMatch = !ratingFilter || p.rating >= ratingFilter;
     const catMatch =
