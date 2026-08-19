@@ -84,6 +84,11 @@ function normalize(p) {
     p.weight = m ? m[1] : '1 pc';
   }
   if (IMAGE_FIXES[(p.name || '').trim()]) p.image = IMAGE_FIXES[(p.name || '').trim()];
+
+  // Gallery: keep the db.json images array (http URLs only), make sure the
+  // primary image leads it, and cap it at 6 thumbs.
+  const gallery = (Array.isArray(p.images) ? p.images : []).filter((u) => /^https?:/.test(u || ''));
+  p.images = [p.image, ...gallery.filter((u) => u !== p.image)].filter(Boolean).slice(0, 6);
   return p;
 }
 

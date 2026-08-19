@@ -7,6 +7,7 @@ const productSchema = new mongoose.Schema(
     price: { type: Number, required: true, min: 0 },
     originalPrice: { type: Number, min: 0 },
     image: { type: String, default: '' },
+    images: { type: [String], default: [] },   // gallery; images[0] mirrors `image`
     category: { type: String, index: true },
     department: { type: String, index: true },
     rating: { type: Number, default: 0, min: 0, max: 5 },

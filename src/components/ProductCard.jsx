@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Heart, Star, Plus, Minus } from "lucide-react";
 import { useCart } from "@/context/CartContext";
@@ -28,8 +29,18 @@ export default function ProductCard({ p }) {
   const inCart = cart.find((c) => c.id === p.id);
   const out = p.stock === 0;
 
+  // Peek at the second gallery image on hover (when the product has one).
+  const [hovered, setHovered] = useState(false);
+  const altImage = p.images && p.images.length > 1 ? p.images[1] : null;
+  const shownImage = (hovered && altImage) || p.image || FALLBACK_IMG;
+
   return (
-    <div className="pcard" onClick={() => navigate(`/product/${p.id}`)}>
+    <div
+      className="pcard"
+      onClick={() => navigate(`/product/${p.id}`)}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
       <div className="pcard-media">
         {off > 0 && <span className="pcard-off">{off}% OFF</span>}
 
@@ -42,7 +53,7 @@ export default function ProductCard({ p }) {
         </button>
 
         <img
-          src={p.image || FALLBACK_IMG}
+          src={shownImage}
           alt={p.name}
           loading="lazy"
           onError={(e) => { e.currentTarget.src = FALLBACK_IMG; }}
