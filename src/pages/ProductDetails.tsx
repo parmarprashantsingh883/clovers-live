@@ -6,6 +6,9 @@ import { Footer } from "@/components/Footer";
 import Breadcrumb from "@/components/Breadcrumb";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "@/context/CartContext";
+import { useAuth } from "@/context/AuthContext";
+import { errMsg } from "@/lib/api";
+import { toast } from "sonner";
 
 import {
   Star,
@@ -43,6 +46,27 @@ export default function ProductDetails() {
   const [related, setRelated] = useState([]);
 
   const [tab, setTab] = useState("details");
+
+  const { user: authUser } = useAuth() as any;
+  const [myRating, setMyRating] = useState(0);
+  const [myComment, setMyComment] = useState("");
+  const [submitting, setSubmitting] = useState(false);
+
+  const submitReview = async () => {
+    if (!myRating) { toast.error("Pick a star rating first"); return; }
+    setSubmitting(true);
+    try {
+      await api.post(`${API}/${id}/reviews`, { rating: myRating, comment: myComment });
+      toast.success("Review posted — thank you!");
+      setMyRating(0); setMyComment("");
+      const res = await api.get(`${API}/${id}`);
+      setProduct((prev) => ({ ...prev, ...res.data }));
+    } catch (err) {
+      toast.error(errMsg(err, "Could not post review"));
+    } finally {
+      setSubmitting(false);
+    }
+  };
 
 
 
@@ -252,13 +276,74 @@ export default function ProductDetails() {
   {tab === "reviews" && (
     <>
       <h3>Customer Reviews</h3>
-      {product.reviewsList?.map((r,i) => (
+
+      {(!product.reviewsList || product.reviewsList.length === 0) && (
+        <p className="text-gray-500 text-sm mb-4">
+          No reviews yet — be the first to review this product.
+        </p>
+      )}
+
+      {product.reviewsList?.map((r, i) => (
         <div className="pd-review" key={i}>
-          <strong>{r.name}</strong>
+          <strong>
+            {r.userName || r.name}
+            {r.verified && (
+              <span className="ml-2 text-xs font-medium text-green-600">
+                ✓ Verified buyer
+              </span>
+            )}
+          </strong>
           <span>{"⭐".repeat(r.rating)}</span>
           <p>{r.comment}</p>
+          {r.createdAt && (
+            <p className="text-xs text-gray-400 mt-1">
+              {new Date(r.createdAt).toDateString()}
+            </p>
+          )}
         </div>
       ))}
+
+      {/* WRITE A REVIEW */}
+      <div className="mt-8 border-t pt-6 max-w-xl">
+        <h4 className="font-semibold mb-3">Write a review</h4>
+        {!authUser ? (
+          <p className="text-sm text-gray-500">
+            <button className="text-red-600 hover:underline" onClick={() => navigate("/login")}>
+              Sign in
+            </button>{" "}
+            to review this product.
+          </p>
+        ) : (
+          <>
+            <div className="flex gap-1 mb-3">
+              {[1, 2, 3, 4, 5].map((i) => (
+                <button key={i} onClick={() => setMyRating(i)} aria-label={`${i} stars`}>
+                  <Star
+                    size={24}
+                    fill={i <= myRating ? "#facc15" : "none"}
+                    stroke="#facc15"
+                  />
+                </button>
+              ))}
+            </div>
+            <textarea
+              className="w-full border rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-red-500 outline-none"
+              rows={3}
+              maxLength={2000}
+              placeholder="What did you like or dislike?"
+              value={myComment}
+              onChange={(e) => setMyComment(e.target.value)}
+            />
+            <button
+              className="mt-3 bg-red-600 text-white px-6 py-2.5 rounded-full text-sm font-semibold hover:bg-red-700 transition disabled:opacity-50"
+              disabled={submitting}
+              onClick={submitReview}
+            >
+              {submitting ? "Posting…" : "Post Review"}
+            </button>
+          </>
+        )}
+      </div>
     </>
   )}
 

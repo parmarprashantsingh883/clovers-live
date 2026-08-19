@@ -9,6 +9,7 @@ import Products from "../pages/Products";
 import Orders from "../pages/Orders";
 import Customers from "../pages/Customers";
 import Categories from "../pages/Categories";
+import Coupons from "../pages/Coupons";
 import Analytics from "../pages/Analytics";
 import Settings from "../pages/Settings";
 import Login from "../pages/Login";
@@ -40,6 +41,7 @@ const Adminapp = () => (
           <Route path="orders" element={<Orders />} />
           <Route path="customers" element={<Customers />} />
           <Route path="categories" element={<Categories />} />
+          <Route path="coupons" element={<Coupons />} />
           <Route path="analytics" element={<Analytics />} />
           <Route path="settings" element={<Settings />} />
         </Route>

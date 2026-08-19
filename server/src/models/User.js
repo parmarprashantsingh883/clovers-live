@@ -17,7 +17,10 @@ const userSchema = new mongoose.Schema(
     password: { type: String, required: true, minlength: 6, select: false },
     role: { type: String, enum: ['user', 'admin'], default: 'user', index: true },
     status: { type: String, enum: ['active', 'blocked'], default: 'active' },
+    wishlist: { type: [Number], default: [] },                 // product ids
     refreshTokenHash: { type: String, select: false },
+    resetPasswordToken: { type: String, select: false },
+    resetPasswordExpires: { type: Date, select: false },
     createdAt: { type: Date, default: Date.now },
   },
   { minimize: false },
@@ -41,6 +44,7 @@ userSchema.methods.comparePassword = function (candidate) {
 userSchema.set('toJSON', {
   transform(_doc, ret) {
     delete ret._id; delete ret.__v; delete ret.password; delete ret.refreshTokenHash;
+    delete ret.resetPasswordToken; delete ret.resetPasswordExpires;
     return ret;
   },
 });

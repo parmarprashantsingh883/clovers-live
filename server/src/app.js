@@ -12,6 +12,8 @@ import authRoutes from './routes/auth.routes.js';
 import catalogRoutes from './routes/catalog.routes.js';
 import orderRoutes from './routes/order.routes.js';
 import userRoutes from './routes/user.routes.js';
+import accountRoutes from './routes/account.routes.js';
+import couponRoutes from './routes/coupon.routes.js';
 import { adminStats } from './controllers/order.controller.js';
 import { protect, adminOnly } from './middleware/auth.middleware.js';
 import { errorHandler, notFound } from './middleware/error.middleware.js';
@@ -54,6 +56,8 @@ app.use('/api/auth', authRoutes);
 app.use('/api', catalogRoutes);            // /api/products, /api/categories, /api/*Banners
 app.use('/api/orders', orderRoutes);
 app.use('/api/users', userRoutes);
+app.use('/api', accountRoutes);           // /api/wishlist, /api/addresses
+app.use('/api/coupons', couponRoutes);
 app.get('/api/admin/stats', protect, adminOnly, adminStats);
 
 app.use(notFound);

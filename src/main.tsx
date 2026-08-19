@@ -10,12 +10,12 @@ import "@/assets/css/skeleton.css";
 
 createRoot(document.getElementById("root")).render(
   <BrowserRouter>
-    <WishlistProvider>
-      <CartProvider>
-        <AuthProvider>
+    <AuthProvider>
+      <WishlistProvider>
+        <CartProvider>
           <App />
-        </AuthProvider>
-      </CartProvider>
-    </WishlistProvider>
+        </CartProvider>
+      </WishlistProvider>
+    </AuthProvider>
   </BrowserRouter>
 );

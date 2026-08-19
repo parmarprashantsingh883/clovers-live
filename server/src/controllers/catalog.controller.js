@@ -1,6 +1,8 @@
 import Product from '../models/Product.js';
 import Category from '../models/Category.js';
 import Banner from '../models/Banner.js';
+import Review from '../models/Review.js';
+import Order from '../models/Order.js';
 import { ApiError, asyncHandler } from '../middleware/error.middleware.js';
 
 /**
@@ -9,23 +11,88 @@ import { ApiError, asyncHandler } from '../middleware/error.middleware.js';
  * are real, validated and admin-only.
  */
 
-/** GET /api/products?category=&department=&q=&_limit= */
+const SORTS = {
+  price_asc: { price: 1 },
+  price_desc: { price: -1 },
+  rating: { rating: -1, reviews: -1 },
+  popular: { reviews: -1, rating: -1 },
+  newest: { createdAt: -1 },
+};
+
+/** GET /api/products?q=&category=&department=&minPrice=&maxPrice=&sort=&page=&limit=
+ *  Full storefront search: text, facets, price range, sorting, pagination.
+ *  Returns a bare array (json-server shape) with X-Total-Count for pagers. */
 export const listProducts = asyncHandler(async (req, res) => {
-  const { category, department, q } = req.query;
+  const { category, department, q, sort, minPrice, maxPrice } = req.query;
   const filter = {};
   if (category) filter.category = category;
   if (department) filter.department = department;
   if (q) filter.name = { $regex: q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), $options: 'i' };
-  const limit = Math.min(200, parseInt(req.query._limit, 10) || 200);
-  const products = await Product.find(filter).sort({ id: 1 }).limit(limit);
+  if (minPrice || maxPrice) {
+    filter.price = {};
+    if (minPrice) filter.price.$gte = Number(minPrice);
+    if (maxPrice) filter.price.$lte = Number(maxPrice);
+  }
+  const limit = Math.min(200, parseInt(req.query.limit || req.query._limit, 10) || 200);
+  const page = Math.max(1, parseInt(req.query.page, 10) || 1);
+  const [products, total] = await Promise.all([
+    Product.find(filter).sort(SORTS[sort] || { id: 1 }).skip((page - 1) * limit).limit(limit),
+    Product.countDocuments(filter),
+  ]);
+  res.set('X-Total-Count', String(total));
   res.json(products);
 });
 
-/** GET /api/products/:id */
+/** GET /api/products/:id — includes its latest reviews as `reviewsList`. */
 export const getProduct = asyncHandler(async (req, res) => {
   const product = await Product.findOne({ id: Number(req.params.id) });
   if (!product) throw new ApiError(404, 'Product not found');
-  res.json(product);
+  const reviewsList = await Review.find({ productId: product.id }).sort({ createdAt: -1 }).limit(25);
+  res.json({ ...product.toJSON(), reviewsList });
+});
+
+/** GET /api/products/:id/reviews */
+export const listReviews = asyncHandler(async (req, res) => {
+  res.json(await Review.find({ productId: Number(req.params.id) }).sort({ createdAt: -1 }));
+});
+
+/** POST /api/products/:id/reviews { rating, comment } (auth) — one per user;
+ *  `verified` when the reviewer has actually ordered the product. Updates the
+ *  product's aggregate rating + review count. */
+export const createReview = asyncHandler(async (req, res) => {
+  const productId = Number(req.params.id);
+  const product = await Product.findOne({ id: productId });
+  if (!product) throw new ApiError(404, 'Product not found');
+
+  const rating = Number(req.body?.rating);
+  if (!(rating >= 1 && rating <= 5)) throw new ApiError(422, 'Rating must be 1–5 stars');
+  if (await Review.findOne({ productId, userId: req.user.id })) {
+    throw new ApiError(409, 'You have already reviewed this product');
+  }
+
+  const bought = await Order.findOne({
+    userId: req.user.id, status: { $ne: 'Cancelled' }, 'items.id': productId,
+  });
+
+  const review = await Review.create({
+    productId,
+    userId: req.user.id,
+    userName: req.user.fullName,
+    rating,
+    comment: String(req.body?.comment || '').slice(0, 2000),
+    verified: !!bought,
+  });
+
+  // refresh aggregates on the product
+  const agg = await Review.aggregate([
+    { $match: { productId } },
+    { $group: { _id: null, avg: { $avg: '$rating' }, count: { $sum: 1 } } },
+  ]);
+  product.rating = Math.round((agg[0]?.avg || rating) * 10) / 10;
+  product.reviews = agg[0]?.count || 1;
+  await product.save();
+
+  res.status(201).json(review);
 });
 
 /** POST /api/products (admin) */

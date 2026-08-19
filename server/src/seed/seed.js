@@ -14,6 +14,7 @@ import Product from '../models/Product.js';
 import Category from '../models/Category.js';
 import Order from '../models/Order.js';
 import Banner from '../models/Banner.js';
+import Coupon from '../models/Coupon.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const DB_JSON = path.join(__dirname, '..', '..', '..', 'Backend', 'db.json');
@@ -98,6 +99,12 @@ export async function runSeed({ exitAfter = true, force = false } = {}) {
 
   for (const b of db.promoBanners || []) await Banner.create({ ...b, kind: 'promo' });
   for (const b of db.wideBanners || []) await Banner.create({ ...b, kind: 'wide' });
+
+  // Starter coupons (FRESH10 keeps the checkout's advertised code working)
+  await Coupon.create([
+    { code: 'FRESH10', type: 'percent', value: 10, minOrder: 299, description: '10% off orders above ₹299' },
+    { code: 'WELCOME50', type: 'flat', value: 50, minOrder: 199, perUserLimit: 1, description: '₹50 off your first order above ₹199' },
+  ]);
 
   const counts = {
     products: await Product.countDocuments(),

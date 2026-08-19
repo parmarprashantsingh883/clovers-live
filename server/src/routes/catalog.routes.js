@@ -7,6 +7,8 @@ const router = Router();
 // Public reads
 router.get('/products', ctrl.listProducts);
 router.get('/products/:id', ctrl.getProduct);
+router.get('/products/:id/reviews', ctrl.listReviews);
+router.post('/products/:id/reviews', protect, ctrl.createReview);
 router.get('/categories', ctrl.listCategories);
 router.get('/promoBanners', ctrl.listBanners('promo'));
 router.get('/wideBanners', ctrl.listBanners('wide'));

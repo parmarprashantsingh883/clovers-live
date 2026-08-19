@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { api } from "@/lib/api";
+import { api, errMsg } from "@/lib/api";
+import { useCart } from "@/context/CartContext";
+import { toast } from "sonner";
 
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
@@ -12,8 +14,45 @@ export default function OrderDetails() {
   const { id } = useParams();
   const navigate = useNavigate();
 
+  const { addToCart } = useCart();
   const [order, setOrder] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [busy, setBusy] = useState(false);
+
+  const canCancel = order && ["Processing", "Confirmed"].includes(order.status);
+
+  const cancelOrder = async () => {
+    if (!window.confirm("Cancel this order? Items will be restocked and any payment refunded.")) return;
+    setBusy(true);
+    try {
+      const { data } = await api.post(`/orders/${id}/cancel`);
+      setOrder(data.order);
+      toast.success("Order cancelled", { description: "Any payment will be refunded in 3–5 business days." });
+    } catch (err) {
+      toast.error(errMsg(err, "Could not cancel this order"));
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  const reorder = async () => {
+    setBusy(true);
+    try {
+      const { data } = await api.post(`/orders/${id}/reorder`);
+      let added = 0, skipped = 0;
+      for (const it of data.items) {
+        if (it.available > 0) { addToCart({ ...it.product, qty: it.available }); added++; }
+        else skipped++;
+      }
+      if (added) toast.success(`${added} item${added > 1 ? "s" : ""} added to cart`);
+      if (skipped) toast.error(`${skipped} item${skipped > 1 ? "s are" : " is"} out of stock`);
+      if (added) navigate("/cart");
+    } catch (err) {
+      toast.error(errMsg(err, "Could not reorder"));
+    } finally {
+      setBusy(false);
+    }
+  };
 
   useEffect(() => {
     // Owner-scoped on the server: 403s if it's someone else's order.
@@ -100,54 +139,68 @@ export default function OrderDetails() {
               </p>
             </div>
 
-            <div
-              className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium ${statusUI.bg} ${statusUI.color}`}
-            >
-              <StatusIcon className="w-4 h-4" />
-              {order.status}
+            <div className="flex items-center gap-3 flex-wrap">
+              <div
+                className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium ${statusUI.bg} ${statusUI.color}`}
+              >
+                <StatusIcon className="w-4 h-4" />
+                {order.status}
+              </div>
+
+              {canCancel && (
+                <button
+                  onClick={cancelOrder}
+                  disabled={busy}
+                  className="px-4 py-2 rounded-full text-sm font-medium border border-red-200 text-red-600 hover:bg-red-50 transition disabled:opacity-50"
+                >
+                  Cancel Order
+                </button>
+              )}
+
+              <button
+                onClick={reorder}
+                disabled={busy}
+                className="px-4 py-2 rounded-full text-sm font-medium bg-red-600 text-white hover:bg-red-700 transition disabled:opacity-50"
+              >
+                Reorder
+              </button>
             </div>
           </div>
 
-          {/* STATUS TIMELINE */}
+          {/* TRACKING TIMELINE — real events stamped by the server */}
           <div className="bg-white rounded-2xl shadow p-6">
-            <h3 className="font-semibold mb-4">Order Status</h3>
+            <h3 className="font-semibold mb-5">Tracking</h3>
 
-            <div className="flex items-center justify-between text-sm">
-              {["Processing", "In Transit", "Delivered"].map((step, i) => {
-                const active =
-                  ["Processing", "In Transit", "Delivered"].indexOf(order.status) >= i;
-
-                return (
-                  <div key={step} className="flex-1 flex items-center">
-                    <div
-                      className={`w-8 h-8 flex items-center justify-center rounded-full font-bold ${
-                        active
-                          ? "bg-green-500 text-white"
-                          : "bg-gray-200 text-gray-500"
-                      }`}
-                    >
-                      {i + 1}
-                    </div>
-
-                    <span
-                      className={`ml-2 ${
-                        active ? "text-black font-medium" : "text-gray-400"
-                      }`}
-                    >
-                      {step}
-                    </span>
-
-                    {i < 2 && (
-                      <div
-                        className={`flex-1 h-1 mx-3 ${
-                          active ? "bg-green-400" : "bg-gray-200"
+            {(order.timeline && order.timeline.length > 0) ? (
+              <ol className="relative border-l border-gray-200 ml-3 space-y-6">
+                {order.timeline.map((ev, i) => {
+                  const last = i === order.timeline.length - 1;
+                  const cancelled = ev.status === "Cancelled";
+                  return (
+                    <li key={i} className="ml-6">
+                      <span
+                        className={`absolute -left-[9px] w-4 h-4 rounded-full border-2 border-white ${
+                          cancelled ? "bg-red-500" : last ? "bg-green-500" : "bg-gray-300"
                         }`}
                       />
-                    )}
-                  </div>
-                );
-              })}
-            </div>
+                      <p className={`font-medium text-sm ${cancelled ? "text-red-600" : ""}`}>
+                        {ev.status}
+                      </p>
+                      {ev.note && <p className="text-sm text-gray-500">{ev.note}</p>}
+                      <p className="text-xs text-gray-400 mt-0.5">
+                        {new Date(ev.at).toLocaleString("en-IN", {
+                          day: "numeric", month: "short", hour: "numeric", minute: "2-digit",
+                        })}
+                      </p>
+                    </li>
+                  );
+                })}
+              </ol>
+            ) : (
+              <p className="text-sm text-gray-500">
+                Tracking updates will appear here as your order progresses.
+              </p>
+            )}
           </div>
 
           {/* ITEMS */}

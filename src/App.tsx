@@ -8,6 +8,9 @@ import Index from "./pages/Index";
 import DealsPage from "./pages/DealsPage";
 import Login from "./auth/Login";
 import Signup from "./auth/Signup";
+import ForgotPassword from "./auth/ForgotPassword";
+import ResetPassword from "./auth/ResetPassword";
+import SearchPage from "./pages/SearchPage";
 import FoodPage from "./pages/FoodPage";
 import BeveragesPage from "./pages/BeveragesPage";
 import MunchiesPage from "./pages/MunchiesPage";
@@ -44,6 +47,7 @@ const App = () => (
 
         {/* Public */}
         <Route path="/" element={<Index />} />
+        <Route path="/search" element={<SearchPage />} />
         <Route path="/deals" element={<DealsPage />} />
         <Route path="/food" element={<FoodPage />} />
         <Route path="/beverages" element={<BeveragesPage />} />
@@ -56,6 +60,8 @@ const App = () => (
         {/* Auth */}
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
 
         {/* Shop */}
         <Route path="/cart" element={<CartPage />} />

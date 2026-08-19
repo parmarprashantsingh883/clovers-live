@@ -23,6 +23,11 @@ const orderSchema = new mongoose.Schema(
     },
     items: { type: [orderItemSchema], default: [] },
     paymentMethod: { type: String, default: 'cod' },
+    couponCode: { type: String, default: '' },
+    timeline: {
+      type: [{ status: String, at: Date, note: String, _id: false }],
+      default: [],
+    },
     address: {
       name: String, phone: String, line1: String, city: String, state: String, pincode: String,
     },

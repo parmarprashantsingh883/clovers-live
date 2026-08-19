@@ -24,7 +24,10 @@ export default function CheckoutPage() {
   const [delivery, setDelivery] = useState("free");
   const [promo, setPromo] = useState("");
   const [discount, setDiscount] = useState(0);
-  const [couponApplied, setCouponApplied] = useState(false);
+  const [appliedCode, setAppliedCode] = useState("");
+  const [couponMsg, setCouponMsg] = useState(null); // { ok, text }
+  const [savedAddresses, setSavedAddresses] = useState([]);
+  const [saveAddress, setSaveAddress] = useState(false);
 
   const [form, setForm] = useState({
     firstName: "",
@@ -37,6 +40,31 @@ export default function CheckoutPage() {
     zip: "",
     country: "India",
   });
+
+  // Saved address book (server-side, follows the account)
+  useEffect(() => {
+    if (!authUser) return;
+    api.get("/addresses").then((res) => {
+      setSavedAddresses(res.data);
+      const def = res.data.find((a) => a.isDefault);
+      if (def) useAddress(def);
+    }).catch(() => {});
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [authUser]);
+
+  const useAddress = (a) => {
+    const [firstName, ...rest] = (a.name || "").split(" ");
+    setForm((f) => ({
+      ...f,
+      firstName: firstName || "",
+      lastName: rest.join(" "),
+      phone: a.phone || "",
+      address: a.line1 || "",
+      city: a.city || "",
+      state: a.state || "",
+      zip: a.pincode || "",
+    }));
+  };
 
   const [paymentMethod, setPaymentMethod] = useState("upi");
   const [upiId, setUpiId] = useState("");
@@ -87,14 +115,31 @@ export default function CheckoutPage() {
 
   /* ---------------- COUPON ---------------- */
 
-  const applyPromo = () => {
-    if (promo.toUpperCase() === "FRESH10" && totalPrice >= 299) {
-      setDiscount(Math.round(totalPrice * 0.1));
-      setCouponApplied(true);
+  // Coupons are validated by the server (expiry, min order, usage limits) —
+  // the preview discount shown here is recomputed authoritatively on order.
+  const applyPromo = async () => {
+    const code = promo.trim().toUpperCase();
+    if (!code) return;
+    try {
+      const { data } = await api.post("/coupons/validate", {
+        code,
+        subtotal: totalPrice,
+      });
+      setDiscount(data.discount);
+      setAppliedCode(data.code);
+      setCouponMsg({ ok: true, text: `${data.code} applied — ${data.description || `₹${data.discount} off`}` });
       setPromo("");
-    } else {
-      alert("Invalid or expired coupon");
+    } catch (err) {
+      setDiscount(0);
+      setAppliedCode("");
+      setCouponMsg({ ok: false, text: errMsg(err, "Invalid or expired coupon") });
     }
+  };
+
+  const removePromo = () => {
+    setDiscount(0);
+    setAppliedCode("");
+    setCouponMsg(null);
   };
 
   /* ---------------- PLACE ORDER ---------------- */
@@ -122,7 +167,7 @@ export default function CheckoutPage() {
         items: cart.map((i) => ({ id: i.id, qty: i.qty })),
         paymentMethod,
         deliveryType: delivery,
-        couponCode: couponApplied ? "FRESH10" : "",
+        couponCode: appliedCode,
         address: {
           name: `${form.firstName} ${form.lastName}`.trim(),
           phone: form.phone,
@@ -142,6 +187,18 @@ export default function CheckoutPage() {
           paymentId: `pay_${data.payment.mode}_${Date.now()}`,
           signature: data.payment.mode === "mock" ? "mock" : "",
         });
+      }
+
+      // Optionally save the shipping address to the account's address book.
+      if (saveAddress) {
+        api.post("/addresses", {
+          name: `${form.firstName} ${form.lastName}`.trim(),
+          phone: form.phone,
+          line1: form.address,
+          city: form.city,
+          state: form.state,
+          pincode: form.zip,
+        }).catch(() => {});
       }
 
       clearCart();
@@ -217,6 +274,32 @@ export default function CheckoutPage() {
                   Delivery Address
                 </h3>
 
+                {savedAddresses.length > 0 && (
+                  <div className="mb-6">
+                    <p className="text-sm font-medium text-gray-600 mb-2">
+                      Deliver to a saved address
+                    </p>
+                    <div className="flex flex-wrap gap-3">
+                      {savedAddresses.map((a) => (
+                        <button
+                          key={a.id}
+                          type="button"
+                          onClick={() => useAddress(a)}
+                          className="text-left border rounded-xl px-4 py-3 hover:border-red-500 transition max-w-[240px]"
+                        >
+                          <span className="text-xs font-semibold text-red-600">
+                            {a.label}{a.isDefault ? " · Default" : ""}
+                          </span>
+                          <p className="text-sm font-medium">{a.name}</p>
+                          <p className="text-xs text-gray-500 truncate">
+                            {a.line1}, {a.city} {a.pincode}
+                          </p>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {Object.keys(form).map((key) => (
                     <input
@@ -230,6 +313,18 @@ export default function CheckoutPage() {
                     />
                   ))}
                 </div>
+
+                {authUser && (
+                  <label className="flex items-center gap-2 mt-4 text-sm text-gray-600 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={saveAddress}
+                      onChange={(e) => setSaveAddress(e.target.checked)}
+                      className="accent-red-600"
+                    />
+                    Save this address to my address book
+                  </label>
+                )}
               </>
             )}
 
@@ -398,20 +493,40 @@ export default function CheckoutPage() {
   </div>
 
   {/* COUPON */}
-  <div className="flex gap-2 mt-5">
-    <input
-      className="border rounded-lg px-3 py-2 flex-1 text-sm"
-      placeholder="Coupon code"
-      value={promo}
-      onChange={(e) => setPromo(e.target.value)}
-    />
-    <button
-      onClick={applyPromo}
-      className="bg-black text-white px-4 rounded-lg text-sm"
-    >
-      Apply
-    </button>
-  </div>
+  {!appliedCode ? (
+    <div className="flex gap-2 mt-5">
+      <input
+        className="border rounded-lg px-3 py-2 flex-1 text-sm"
+        placeholder="Coupon code (try FRESH10)"
+        value={promo}
+        onChange={(e) => setPromo(e.target.value)}
+        onKeyDown={(e) => e.key === "Enter" && applyPromo()}
+      />
+      <button
+        onClick={applyPromo}
+        className="bg-black text-white px-4 rounded-lg text-sm"
+      >
+        Apply
+      </button>
+    </div>
+  ) : (
+    <div className="flex items-center justify-between mt-5 bg-green-50 border border-green-200 rounded-lg px-3 py-2">
+      <span className="text-sm font-medium text-green-700">
+        {appliedCode} applied
+      </span>
+      <button
+        onClick={removePromo}
+        className="text-xs text-red-600 hover:underline"
+      >
+        Remove
+      </button>
+    </div>
+  )}
+  {couponMsg && (
+    <p className={`text-xs mt-2 ${couponMsg.ok ? "text-green-600" : "text-red-600"}`}>
+      {couponMsg.text}
+    </p>
+  )}
 
   {/* PRICE BREAKUP */}
   <div className="text-sm space-y-2 border-t mt-5 pt-4">

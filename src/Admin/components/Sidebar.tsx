@@ -5,6 +5,7 @@ import {
   ShoppingCart,
   Users,
   Tag,
+  TicketPercent,
   BarChart3,
   Settings,
   LogOut,
@@ -22,6 +23,7 @@ const menuItems = [
   { icon: ShoppingCart, label: "Orders", path: "/admin/orders" },
   { icon: Users, label: "Customers", path: "/admin/customers" },
   { icon: Tag, label: "Categories", path: "/admin/categories" },
+  { icon: TicketPercent, label: "Coupons", path: "/admin/coupons" },
   { icon: BarChart3, label: "Analytics", path: "/admin/analytics" },
   { icon: Settings, label: "Settings", path: "/admin/settings" },
 ];

@@ -3,6 +3,13 @@ import Order from '../models/Order.js';
 import Product from '../models/Product.js';
 import { ApiError, asyncHandler } from '../middleware/error.middleware.js';
 import { createGatewayOrder, verifySignature, paymentMode } from '../services/payment.service.js';
+import { validateCoupon, redeemCoupon } from '../services/coupon.service.js';
+import { sendEmail, templates } from '../services/email.service.js';
+
+const stamp = (order, status, note = '') => order.timeline.push({ status, at: new Date(), note });
+const emailUser = async (req, order, tpl) => {
+  try { await sendEmail({ to: req.user.email, ...tpl(order) }); } catch { /* best-effort */ }
+};
 
 const ORDER_STATUSES = ['Processing', 'Confirmed', 'Shipped', 'Delivered', 'Cancelled'];
 
@@ -39,8 +46,11 @@ export const createOrder = asyncHandler(async (req, res) => {
     subtotal += p.price * qty;
   }
 
-  // Pricing is server-authoritative — same formula the checkout displays.
-  const discount = couponCode.toUpperCase() === 'FRESH10' && subtotal >= 299 ? Math.round(subtotal * 0.1) : 0;
+  // Pricing is server-authoritative. Coupons go through the real engine
+  // (expiry, min order, usage caps) — an invalid code fails the order loudly
+  // rather than silently dropping the discount the user expected.
+  let discount = 0;
+  if (couponCode) ({ discount } = await validateCoupon({ code: couponCode, subtotal, userId: req.user.id }));
   const delivery = subtotal >= 499 ? 0 : deliveryType === 'express' ? 99 : deliveryType === 'standard' ? 49 : 0;
   const codFee = paymentMethod === 'cod' ? 30 : 0;
   const convenienceFee = 9;
@@ -62,9 +72,13 @@ export const createOrder = asyncHandler(async (req, res) => {
     charges: { subtotal, discount, delivery, codFee, convenienceFee, gst },
     items: lines,
     paymentMethod,
+    couponCode: couponCode ? String(couponCode).toUpperCase() : '',
     address,
     payment: { status: 'pending' },
+    timeline: [{ status: 'Processing', at: new Date(), note: 'Order placed' }],
   });
+  if (couponCode) await redeemCoupon(couponCode);
+  await emailUser(req, order, templates.orderConfirmed);
 
   // Online payment → hand back a gateway order to complete on the client.
   if (paymentMethod !== 'cod') {
@@ -88,8 +102,50 @@ export const verifyPayment = asyncHandler(async (req, res) => {
   order.payment.status = 'paid';
   order.payment.gatewayPaymentId = paymentId || null;
   order.status = 'Confirmed';
+  stamp(order, 'Confirmed', 'Payment received');
   await order.save();
+  await emailUser(req, order, templates.orderStatus);
   res.json({ order, mode: paymentMode() });
+});
+
+/** POST /api/orders/:id/cancel — the customer can cancel before dispatch;
+ *  items are restocked and the timeline records it. */
+export const cancelOrder = asyncHandler(async (req, res) => {
+  const order = await Order.findOne({ id: req.params.id });
+  if (!order) throw new ApiError(404, 'Order not found');
+  if (order.userId !== req.user.id && req.user.role !== 'admin') throw new ApiError(403, 'Not your order');
+  if (!['Processing', 'Confirmed'].includes(order.status)) {
+    throw new ApiError(409, `Order can no longer be cancelled (${order.status})`);
+  }
+  for (const line of order.items) {
+    await Product.updateOne({ id: line.id }, { $inc: { stock: line.qty } });
+  }
+  order.status = 'Cancelled';
+  stamp(order, 'Cancelled', order.payment.status === 'paid'
+    ? 'Cancelled by customer — refund will be processed to the original payment method'
+    : 'Cancelled by customer');
+  await order.save();
+  await emailUser(req, order, templates.orderStatus);
+  res.json({ order });
+});
+
+/** POST /api/orders/:id/reorder — the order's items with live availability,
+ *  ready to refill the cart. */
+export const reorder = asyncHandler(async (req, res) => {
+  const order = await Order.findOne({ id: req.params.id });
+  if (!order) throw new ApiError(404, 'Order not found');
+  if (order.userId !== req.user.id && req.user.role !== 'admin') throw new ApiError(403, 'Not your order');
+  const products = await Product.find({ id: { $in: order.items.map((i) => i.id) } });
+  const byId = new Map(products.map((p) => [p.id, p]));
+  const items = order.items.map((line) => {
+    const p = byId.get(line.id);
+    return {
+      product: p || null,
+      requestedQty: line.qty,
+      available: p ? Math.min(line.qty, p.stock) : 0,
+    };
+  });
+  res.json({ items });
 });
 
 /** GET /api/orders — admin sees all; a user sees their own. */
@@ -109,13 +165,18 @@ export const getOrder = asyncHandler(async (req, res) => {
 
 /** PUT/PATCH /api/orders/:id (admin) — status / fulfillment updates only. */
 export const updateOrder = asyncHandler(async (req, res) => {
-  const patch = {};
-  if (req.body?.status) {
-    if (!ORDER_STATUSES.includes(req.body.status)) throw new ApiError(422, `Status must be one of: ${ORDER_STATUSES.join(', ')}`);
-    patch.status = req.body.status;
-  }
-  const order = await Order.findOneAndUpdate({ id: req.params.id }, patch, { new: true });
+  const order = await Order.findOne({ id: req.params.id });
   if (!order) throw new ApiError(404, 'Order not found');
+  if (req.body?.status && req.body.status !== order.status) {
+    if (!ORDER_STATUSES.includes(req.body.status)) throw new ApiError(422, `Status must be one of: ${ORDER_STATUSES.join(', ')}`);
+    // admin cancellation restocks too
+    if (req.body.status === 'Cancelled' && order.status !== 'Cancelled') {
+      for (const line of order.items) await Product.updateOne({ id: line.id }, { $inc: { stock: line.qty } });
+    }
+    order.status = req.body.status;
+    stamp(order, req.body.status, 'Updated by store');
+    await order.save();
+  }
   res.json(order);
 });
 
