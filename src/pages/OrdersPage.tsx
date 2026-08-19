@@ -38,7 +38,7 @@ export default function OrdersPage() {
       <Header />
       <Breadcrumb />
 
-      <section className="max-w-6xl mx-auto px-6 py-10">
+      <section className="w-full px-4 md:px-8 py-10">
         <h1 className="text-3xl font-bold mb-6">My Orders</h1>
 
         {/* EMPTY STATE */}

@@ -227,7 +227,7 @@ export default function CheckoutPage() {
       <Header />
       <Breadcrumb />
 
-      <section className="max-w-7xl mx-auto px-6 py-12">
+      <section className="w-full px-4 md:px-8 py-12">
         <h1 className="text-4xl font-bold mb-2">Secure Checkout</h1>
         <p className="text-gray-500 mb-10">
           Almost there! Review and place your order.

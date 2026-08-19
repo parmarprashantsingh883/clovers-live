@@ -150,12 +150,16 @@ export default {
   ],
 
   theme: {
+    // Fluid layout: .container fills the viewport with side padding only —
+    // no centered max-width gutters.
     container: {
       center: true,
-      padding: "2rem",
-      screens: {
-        "2xl": "1400px",
+      padding: {
+        DEFAULT: "1rem",
+        md: "1.5rem",
+        xl: "2rem",
       },
+      screens: {},
     },
 
     extend: {

@@ -119,7 +119,7 @@ export default function OrderDetails() {
       <main>
         <Breadcrumb />
 
-        <section className="max-w-5xl mx-auto px-6 py-12 space-y-10">
+        <section className="w-full px-4 md:px-8 py-12 space-y-10">
 
           {/* BACK */}
           <button
