@@ -53,6 +53,40 @@ function classify(name = '') {
   return { department: 'Food', category: 'Snacks' };
 }
 
+// The handful of legacy mock products point at dead image URLs — swap in live ones.
+const IMAGE_FIXES = {
+  'Milk 1L': 'https://images.unsplash.com/photo-1550583724-b2692b85b150?w=400&h=400&fit=crop',
+  'Brown Bread': 'https://images.unsplash.com/photo-1549931319-a545dcf3bc73?w=400&h=400&fit=crop',
+  'Farm Fresh Eggs': 'https://images.unsplash.com/photo-1582722872445-44dc5f7e3c8f?w=400&h=400&fit=crop',
+  'Potato Chips': 'https://images.pexels.com/photos/479628/pexels-photo-479628.jpeg?w=400&h=400&fit=crop',
+  'Chicken Breast': 'https://images.unsplash.com/photo-1604503468506-a8da13d82791?w=400&h=400&fit=crop',
+  'Frozen Pizza': 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400&h=400&fit=crop',
+  'Face Wash': 'https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=400&h=400&fit=crop',
+  'Floor Cleaner': 'https://images.unsplash.com/photo-1563453392212-326f5e854473?w=400&h=400&fit=crop',
+};
+
+/**
+ * db.json mixes two price shapes: {price, originalPrice} and
+ * {price, oldPrice, discountPrice}. Normalize to: price = what you pay,
+ * originalPrice = MRP only when there is a real discount. Also derive a
+ * display unit ("1kg", "500 ml", "Pack of 25") from the name when missing.
+ */
+function normalize(p) {
+  const selling = Number(p.discountPrice ?? p.price) || 0;
+  const mrp = Number(p.oldPrice ?? p.originalPrice) || 0;
+  p.price = selling;
+  p.originalPrice = mrp > selling ? mrp : undefined;
+  delete p.oldPrice;
+  delete p.discountPrice;
+
+  if (!p.weight) {
+    const m = (p.name || '').match(/(\d+(?:\.\d+)?\s?(?:kg|g|gm|l|ltr|ml)|pack of \d+|\d+\s?(?:pc|pcs|pieces))\b/i);
+    p.weight = m ? m[1] : '1 pc';
+  }
+  if (IMAGE_FIXES[(p.name || '').trim()]) p.image = IMAGE_FIXES[(p.name || '').trim()];
+  return p;
+}
+
 export async function runSeed({ exitAfter = true, force = false } = {}) {
   if (!mongoose.connection.readyState) {
     const { connectDB } = await import('../config/db.js');
@@ -85,6 +119,7 @@ export async function runSeed({ exitAfter = true, force = false } = {}) {
     const tag = classify(p.name);
     p.department = tag.department;
     p.category = tag.category;
+    normalize(p);
   }
   await Product.insertMany(products);
   await Order.insertMany((db.orders || []).map((o) => ({ ...o, payment: { status: o.paymentMethod === 'cod' ? 'pending' : 'paid' } })));

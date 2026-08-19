@@ -6,19 +6,16 @@ import "../assets/css/product-card.css";
 import "../assets/css/foodpage.css";
 import PromoBanner from "@/components/PromoBanner";
 import Breadcrumb from "@/components/Breadcrumb";
-import { useNavigate } from "react-router-dom";
+import ProductCard from "@/components/ProductCard";
 
 const API = "/products?department=Munchies";
 const ITEMS_PER_PAGE = 15;
 
 const munchiesTabs = [
-  "Chips",
-  "Biscuits",
-  "Chocolate",
-  "Namkeen",
-  "Energy Bars",
-  "Popcorn",
-  "Icecream"
+  "Chips & Crisps",
+  "Chocolates",
+  "Cookies & Biscuits",
+  "Dry Snacks"
 ];
 
 /* 🔥 Normalize broken DB */
@@ -44,16 +41,6 @@ export default function MunchiesPage() {
   const [maxPrice, setMaxPrice] = useState(500);
   const [ratingFilter, setRatingFilter] = useState(0);
 
-  const [wishlist, setWishlist] = useState(() => {
-    try {
-      return JSON.parse(localStorage.getItem("wishlist")) || [];
-    } catch {
-      return [];
-    }
-  });
-
-  const navigate = useNavigate();
-
   /* FETCH */
   useEffect(() => {
     api.get(API).then(res => {
@@ -68,12 +55,9 @@ export default function MunchiesPage() {
   const filtered = products.filter(p => {
     const isMunchies = true; // server already scopes ?department=Munchies
 
-    const typeMatch =
-      !activeType ||
-      p.subcategory?.toLowerCase().includes(activeType.toLowerCase()) ||
-      p.name.toLowerCase().includes(activeType.toLowerCase());
+    const typeMatch = !activeType || p.category === activeType;
 
-    const priceMatch = (p.discountPrice || p.price) <= maxPrice;
+    const priceMatch = p.price <= maxPrice;
     const stockMatch = !stockOnly || p.stock > 0;
     const ratingMatch = !ratingFilter || p.rating >= ratingFilter;
 
@@ -86,15 +70,6 @@ export default function MunchiesPage() {
     (page - 1) * ITEMS_PER_PAGE,
     page * ITEMS_PER_PAGE
   );
-
-  const toggleWishlist = id => {
-    const updated = wishlist.includes(id)
-      ? wishlist.filter(x => x !== id)
-      : [...wishlist, id];
-
-    setWishlist(updated);
-    localStorage.setItem("wishlist", JSON.stringify(updated));
-  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -167,59 +142,7 @@ export default function MunchiesPage() {
           {/* PRODUCTS */}
           <div className="product-grid">
             {paginated.map(p => (
-              <div
-                key={p.id}
-                className="product-card"
-                onClick={() => navigate(`/product/${p.id}`)}
-              >
-                <div className="product-img">
-                  <button
-                    className="product-wish"
-                    onClick={e => {
-                      e.stopPropagation();
-                      toggleWishlist(p.id);
-                    }}
-                  >
-                    {wishlist.includes(p.id) ? "❤️" : "♡"}
-                  </button>
-
-                  <img src={p.image} alt={p.name} />
-
-                  {p.stock > 0 && p.stock <= 5 && (
-                    <span className="stock-badge low">Only {p.stock} left</span>
-                  )}
-                  {p.stock === 0 && (
-                    <span className="stock-badge out">Out of Stock</span>
-                  )}
-                </div>
-
-                <div className="product-body">
-                  <p className="product-title">{p.name}</p>
-
-                  <div className="product-rating">
-                    {[1,2,3,4,5].map(i => (
-                      <span
-                        key={i}
-                        className={i <= Math.round(p.rating) ? "star filled" : "star"}
-                      >
-                        ★
-                      </span>
-                    ))}
-                  </div>
-
-                  <div className="product-price">
-                    <del>₹{p.price}</del>
-                    <strong>₹{p.discountPrice}</strong>
-                  </div>
-
-                  <button
-                    className="product-btn"
-                    disabled={p.stock === 0}
-                  >
-                    {p.stock === 0 ? "Out of Stock" : "Add to Cart"}
-                  </button>
-                </div>
-              </div>
+              <ProductCard p={p} key={p.id} />
             ))}
           </div>
 

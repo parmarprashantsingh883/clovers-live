@@ -1,16 +1,15 @@
 import { useEffect, useState } from "react";
 import { api } from "@/lib/api";
-import { useCart } from "@/context/CartContext";
-import { useWishlist } from "@/context/WishlistContext";
+import ProductCard from "./ProductCard";
 import "../assets/css/product-card.css";
 import "../assets/css/trending.css";
 
-const API = "/products";
-
 const TABS = [
-  { label: "ALL", value: "all" },
-  { label: "FRUITS & VEGES", value: "Fruits & Vegetables" },
-  { label: "JUICES", value: "Juices" }
+  { label: "All", value: "all" },
+  { label: "Snacks", value: "Munchies" },
+  { label: "Beverages", value: "Beverages" },
+  { label: "Household", value: "Household" },
+  { label: "Personal Care", value: "Personal Care" },
 ];
 
 function TrendingProducts() {
@@ -18,31 +17,25 @@ function TrendingProducts() {
   const [activeTab, setActiveTab] = useState("all");
   const [loading, setLoading] = useState(true);
 
-  const { addToCart } = useCart();
-  const { toggleWishlist, isInWishlist } = useWishlist();
-
   useEffect(() => {
-    api.get(API)
-      .then(res => {
-        setProducts(res.data);
-        setLoading(false);
-      })
+    api.get("/products", { params: { sort: "popular" } })
+      .then((res) => { setProducts(res.data); setLoading(false); })
       .catch(() => setLoading(false));
   }, []);
 
-  const filteredProducts =
-    activeTab === "all"
-      ? products
-      : products.filter(p => p.category_name === activeTab);
+  const filtered = (activeTab === "all"
+    ? products
+    : products.filter((p) => p.department === activeTab)
+  ).slice(0, 10);
 
   return (
     <section className="container trending-section">
       {/* HEADER */}
       <div className="trending-header">
-        <h2><span>Trending</span> Products</h2>
+        <h2><span>Popular</span> right now</h2>
 
         <div className="trending-tabs">
-          {TABS.map(tab => (
+          {TABS.map((tab) => (
             <button
               key={tab.value}
               className={activeTab === tab.value ? "active" : ""}
@@ -58,65 +51,9 @@ function TrendingProducts() {
       <div className="product-grid">
         {loading &&
           [...Array(10)].map((_, i) => (
-            <div className="product-card skeleton" key={i}></div>
+            <div className="pcard skeleton" style={{ height: 280 }} key={i} />
           ))}
-
-        {!loading &&
-          filteredProducts.slice(0, 10).map(p => (
-            <div className="product-card" key={p.id}>
-              <div className="product-img">
-                {p.discountPrice && (
-                  <span className="stock-badge hot">
-                    -
-                    {Math.round(
-                      ((p.price - p.discountPrice) / p.price) * 100
-                    )}
-                    %
-                  </span>
-                )}
-
-               <button
-  className={`product-wish ${isInWishlist(p.id) ? "active" : ""}`}
-  onClick={(e) => {
-    e.stopPropagation();   // 🔥 IMPORTANT
-    toggleWishlist(p);
-  }}
->
-  ♡
-</button>
-
-
-                <img src={p.image} alt={p.name} />
-              </div>
-
-              <div className="product-body">
-                <p className="product-title">{p.name}</p>
-
-                <div className="product-rating">
-                  {[1,2,3,4,5].map(i => (
-                    <span
-                      key={i}
-                      className={i <= Math.round(p.rating || 4) ? "star filled" : "star"}
-                    >
-                      ★
-                    </span>
-                  ))}
-                </div>
-
-                <div className="product-price">
-                  <strong>₹{p.discountPrice || p.price}</strong>
-                  {p.discountPrice && <span>₹{p.price}</span>}
-                </div>
-
-                <button
-                  className="product-btn"
-                  onClick={() => addToCart(p)}
-                >
-                  Add to Cart
-                </button>
-              </div>
-            </div>
-          ))}
+        {!loading && filtered.map((p) => <ProductCard p={p} key={p.id} />)}
       </div>
     </section>
   );

@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
-import { useSearchParams, useNavigate } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { api } from "@/lib/api";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import Breadcrumb from "@/components/Breadcrumb";
-import { useCart } from "@/context/CartContext";
-import { useWishlist } from "@/context/WishlistContext";
+import ProductCard from "@/components/ProductCard";
 import { SearchX } from "lucide-react";
 import "../assets/css/product-card.css";
 import "../assets/css/foodpage.css";
@@ -29,10 +28,6 @@ export default function SearchPage() {
   const [products, setProducts] = useState([]);
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(true);
-
-  const { addToCart } = useCart();
-  const { toggleWishlist, isInWishlist } = useWishlist();
-  const navigate = useNavigate();
 
   useEffect(() => {
     setLoading(true);
@@ -94,39 +89,7 @@ export default function SearchPage() {
 
         <div className="product-grid">
           {products.map((p) => (
-            <div className="product-card" key={p.id}>
-              <div className="product-img" onClick={() => navigate(`/product/${p.id}`)}>
-                <button
-                  className="product-wish"
-                  onClick={(e) => { e.stopPropagation(); toggleWishlist(p); }}
-                >
-                  {isInWishlist(p.id) ? "❤️" : "🤍"}
-                </button>
-                <img src={p.image} alt={p.name} />
-                {p.stock === 0 && <span className="stock-badge out">Out of Stock</span>}
-              </div>
-
-              <div className="product-body">
-                <p className="product-title">{p.name}</p>
-                <div className="product-rating">
-                  {[1, 2, 3, 4, 5].map((i) => (
-                    <span key={i} className={i <= Math.round(p.rating || 0) ? "star filled" : "star"}>★</span>
-                  ))}
-                  {p.reviews > 0 && <span className="text-xs text-muted-foreground ml-1">({p.reviews})</span>}
-                </div>
-                <div className="product-price">
-                  <strong>₹{p.discountPrice || p.price}</strong>
-                  {p.originalPrice && p.originalPrice > p.price && <span>₹{p.originalPrice}</span>}
-                </div>
-                <button
-                  className="product-btn"
-                  disabled={p.stock === 0}
-                  onClick={() => addToCart(p)}
-                >
-                  Add to Cart
-                </button>
-              </div>
-            </div>
+            <ProductCard p={p} key={p.id} />
           ))}
         </div>
 

@@ -3,10 +3,9 @@ import { api } from "@/lib/api";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import Breadcrumb from "@/components/Breadcrumb";
-import { Heart } from "lucide-react";
+import ProductCard from "@/components/ProductCard";
 import "../assets/css/product-card.css";
 import "../assets/css/foodpage.css";
-import { useNavigate } from "react-router-dom";
 
 const API = "/products?department=Household";
 const ITEMS_PER_PAGE = 15;
@@ -15,10 +14,7 @@ const ITEMS_PER_PAGE = 15;
 const householdTabs = [
   "All",
   "Cleaning",
-  "Laundry",
-  "Kitchen",
-  "Bathroom",
-  "Home Utility"
+  "Kitchen & Disposables"
 ];
 
 /* Normalize to avoid admin/API mismatch */
@@ -45,25 +41,11 @@ export default function HouseholdPage() {
   const [ratingFilter, setRatingFilter] = useState(0);
   const [search, setSearch] = useState("");
 
-  const [wishlist, setWishlist] = useState(
-    JSON.parse(localStorage.getItem("wishlist") || "[]")
-  );
-
   useEffect(() => {
     api.get(API).then(res =>
       setProducts(res.data.map(normalize))
     );
   }, []);
-
-  const toggleWish = id => {
-    const updated = wishlist.includes(id)
-      ? wishlist.filter(x => x !== id)
-      : [...wishlist, id];
-
-    setWishlist(updated);
-    localStorage.setItem("wishlist", JSON.stringify(updated));
-  };
-   const navigate=useNavigate()
 
   /* ================= FILTER LOGIC ================= */
   const filtered = products.filter(p => {
@@ -71,11 +53,11 @@ export default function HouseholdPage() {
 
     if (!isHousehold) return false;
 
-    const priceMatch = (p.discountPrice || p.price) <= maxPrice;
+    const priceMatch = p.price <= maxPrice;
     const stockMatch = !stockOnly || p.stock > 0;
     const ratingMatch = !ratingFilter || p.rating >= ratingFilter;
     const catMatch =
-      activeCat === "All" || p.subcategory === activeCat;
+      activeCat === "All" || p.category === activeCat;
 
     const searchMatch =
       !search ||
@@ -190,62 +172,7 @@ export default function HouseholdPage() {
           {/* ================= PRODUCTS ================= */}
           <div className="product-grid">
             {paginated.map(p => (
-             <div
-                key={p.id}
-                className="product-card"
-                onClick={() => navigate(`/product/${p.id}`)}
-              >
-
-                <div className="product-img">
-                  <button
-                    className="product-wish"
-                    onClick={e => {
-                      e.stopPropagation();
-                      toggleWish(p.id);
-                    }}
-                  >
-                    {wishlist.includes(p.id) ? "❤️" : "♡"}
-                  </button>
-
-                  {p.stock === 0 && (
-                    <span className="stock-badge out">Out of Stock</span>
-                  )}
-                  {p.stock > 0 && p.stock <= 5 && (
-                    <span className="stock-badge low">
-                      Only {p.stock} left
-                    </span>
-                  )}
-
-                  <img src={p.image} alt={p.name} />
-                </div>
-
-                <div className="product-body">
-                  <p className="product-title">{p.name}</p>
-
-                  <div className="product-rating">
-                    {[1,2,3,4,5].map(i => (
-                      <span
-                        key={i}
-                        className={i <= Math.round(p.rating) ? "star filled" : "star"}
-                      >
-                        ★
-                      </span>
-                    ))}
-                  </div>
-
-                  <div className="product-price">
-                    <del>₹{p.price}</del>
-                    <strong>₹{p.discountPrice}</strong>
-                  </div>
-
-                  <button
-                    className="product-btn"
-                    disabled={p.stock === 0}
-                  >
-                    {p.stock === 0 ? "Out of Stock" : "Add to Cart"}
-                  </button>
-                </div>
-              </div>
+              <ProductCard p={p} key={p.id} />
             ))}
           </div>
 

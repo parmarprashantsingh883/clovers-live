@@ -5,7 +5,7 @@ import { Footer } from "@/components/Footer";
 import "../assets/css/product-card.css";
 import "../assets/css/foodpage.css";
 import Breadcrumb from "@/components/Breadcrumb";
-import { useNavigate } from "react-router-dom";
+import ProductCard from "@/components/ProductCard";
 
 const API = "/products";
 const ITEMS_PER_PAGE = 15;
@@ -21,12 +21,6 @@ export default function DealsPage() {
   const [maxPrice,setMaxPrice]=useState(1000);
   const [ratingFilter,setRatingFilter]=useState(0);
   const [page,setPage]=useState(1);
-
-  const [wishlist,setWishlist]=useState(
-    JSON.parse(localStorage.getItem("wishlist")||"[]")
-  );
-
-  const navigate = useNavigate();
 
   useEffect(()=>{
     api.get(API).then(res=>setProducts(res.data));
@@ -48,14 +42,6 @@ export default function DealsPage() {
 
   const totalPages = Math.ceil(filtered.length/ITEMS_PER_PAGE);
   const paginated = filtered.slice((page-1)*ITEMS_PER_PAGE,page*ITEMS_PER_PAGE);
-
-  const toggleWishlist=(id)=>{
-    const updated = wishlist.includes(id)
-      ? wishlist.filter(x=>x!==id)
-      : [...wishlist,id];
-    setWishlist(updated);
-    localStorage.setItem("wishlist",JSON.stringify(updated));
-  };
 
   return(
     <div className="min-h-screen bg-background">
@@ -123,53 +109,9 @@ export default function DealsPage() {
 
 {/* ---------------- PRODUCTS GRID ---------------- */}
 <div className="product-grid">
-{paginated.map(p=>{
-const off = Math.round(((p.price-p.discountPrice)/p.price)*100);
-
-return(
-<div
-                key={p.id}
-                className="product-card"
-                onClick={() => navigate(`/product/${p.id}`)}
-              >
-<div className="product-img">
-<button className="product-wish" onClick={e=>{e.stopPropagation();toggleWishlist(p.id);}}>
-{wishlist.includes(p.id)?"❤️":"♡"}
-</button>
-
-<span className="stock-badge">-{off}%</span>
-
-{p.stock>0 && p.stock<=5 && <span className="stock-badge low">Only {p.stock} left</span>}
-{p.stock===0 && <span className="stock-badge out">Out of Stock</span>}
-
-<img src={p.image}/>
-</div>
-
-<div className="product-body">
-<p className="product-title">{p.name}</p>
-
-<div className="product-rating">
-<span className="stars" style={{color:"#facc15"}}>
-{"★".repeat(Math.round(p.rating||0))}
-{"☆".repeat(5-Math.round(p.rating||0))}
-</span>
-<span className="rating-text">{p.rating||"0.0"}</span>
-</div>
-
-<p className="save-line">You save ₹{p.price-p.discountPrice}</p>
-
-<div className="product-price">
-<del>₹{p.price}</del>
-<strong>₹{p.discountPrice}</strong>
-</div>
-
-<button className="product-btn" disabled={p.stock===0}>
-{p.stock===0?"Out of Stock":"Add to Cart"}
-</button>
-</div>
-</div>
-);
-})}
+{paginated.map(p=>(
+  <ProductCard p={p} key={p.id} />
+))}
 </div>
 </div>
 </section>

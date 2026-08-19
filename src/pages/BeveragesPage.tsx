@@ -6,16 +6,15 @@ import "../assets/css/product-card.css";
 import "../assets/css/foodpage.css";
 import PromoBanner from "@/components/PromoBanner";
 import Breadcrumb from "@/components/Breadcrumb";
-import { useNavigate } from "react-router-dom";
+import ProductCard from "@/components/ProductCard";
 
 const API = "/products?department=Beverages";
 const ITEMS_PER_PAGE = 15;
 
 const beverageTabs = [
+  "Soft Drinks",
   "Juices",
-  "Sodas",
-  "Coffee & Tea",
-  "energy drink"
+  "Dairy Drinks"
 ];
 
 /* 🔥 Normalize broken DB */
@@ -40,16 +39,6 @@ export default function BeveragesPage() {
   const [maxPrice, setMaxPrice] = useState(1000);
   const [ratingFilter, setRatingFilter] = useState(0);
 
-  const [wishlist, setWishlist] = useState(() => {
-    try {
-      return JSON.parse(localStorage.getItem("wishlist")) || [];
-    } catch {
-      return [];
-    }
-  });
-
-  const navigate = useNavigate();
-
   useEffect(() => {
     api.get(API).then(res => {
       const clean = res.data.map(normalizeProduct);
@@ -63,10 +52,9 @@ export default function BeveragesPage() {
   const filtered = products.filter(p => {
     const isBeverage = true; // server already scopes ?department=Beverages
 
-    const typeMatch =
-      !activeType || p.name.toLowerCase().includes(activeType.toLowerCase());
+    const typeMatch = !activeType || p.category === activeType;
 
-    const priceMatch = (p.discountPrice || p.price) <= maxPrice;
+    const priceMatch = p.price <= maxPrice;
     const stockMatch = !stockOnly || p.stock > 0;
     const ratingMatch = !ratingFilter || p.rating >= ratingFilter;
 
@@ -79,15 +67,6 @@ export default function BeveragesPage() {
     (page - 1) * ITEMS_PER_PAGE,
     page * ITEMS_PER_PAGE
   );
-
-  const toggleWishlist = id => {
-    const updated = wishlist.includes(id)
-      ? wishlist.filter(x => x !== id)
-      : [...wishlist, id];
-
-    setWishlist(updated);
-    localStorage.setItem("wishlist", JSON.stringify(updated));
-  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -160,54 +139,7 @@ export default function BeveragesPage() {
           {/* PRODUCTS */}
           <div className="product-grid">
             {paginated.map(p => (
-              <div
-                key={p.id}
-                className="product-card"
-                onClick={() => navigate(`/product/${p.id}`)}
-              >
-                <div className="product-img">
-                  <button
-                    className="product-wish"
-                    onClick={e => {
-                      e.stopPropagation();
-                      toggleWishlist(p.id);
-                    }}
-                  >
-                    {wishlist.includes(p.id) ? "❤️" : "♡"}
-                  </button>
-
-                  <img src={p.image} alt={p.name} />
-
-                  {p.stock > 0 && p.stock <= 5 && (
-                    <span className="stock-badge low">Only {p.stock} left</span>
-                  )}
-                  {p.stock === 0 && (
-                    <span className="stock-badge out">Out of Stock</span>
-                  )}
-                </div>
-
-                <div className="product-body">
-                  <p className="product-title">{p.name}</p>
-
-                  <div className="product-rating">
-                    {[1,2,3,4,5].map(i => (
-                      <span
-                        key={i}
-                        className={i <= Math.round(p.rating) ? "star filled" : "star"}
-                      >
-                        ★
-                      </span>
-                    ))}
-                  </div>
-
-                  <div className="product-price">
-                    <del>₹{p.price}</del>
-                    <strong>₹{p.discountPrice}</strong>
-                  </div>
-
-                  <button className="product-btn">Add to Cart</button>
-                </div>
-              </div>
+              <ProductCard p={p} key={p.id} />
             ))}
           </div>
 

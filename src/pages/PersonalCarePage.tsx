@@ -2,16 +2,15 @@ import { useEffect, useState } from "react";
 import { api } from "@/lib/api";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-import { Heart } from "lucide-react";
 import "../assets/css/product-card.css";
 import "../assets/css/foodpage.css";
 import Breadcrumb from "@/components/Breadcrumb";
-import { useNavigate } from "react-router-dom";
+import ProductCard from "@/components/ProductCard";
 
 const API = "/products?department=Personal%20Care";
 const ITEMS_PER_PAGE = 12;
 
-const categoryTabs = ["Skincare","Hair Care","Body Care","Sun Care"];
+const categoryTabs = ["Skincare","Hair Care","Body Care"];
 
 const normalize = p => ({
   id: p.id,
@@ -35,25 +34,12 @@ export default function PersonalCarePage() {
   const [maxPrice, setMaxPrice] = useState(3000);
   const [ratingFilter, setRatingFilter] = useState(0);
   const [search, setSearch] = useState("");
-    const navigate = useNavigate();
 
   const [gender, setGender] = useState("All");
-
-  const [wishlist, setWishlist] = useState(
-    JSON.parse(localStorage.getItem("wishlist") || "[]")
-  );
 
   useEffect(() => {
     api.get(API).then(res => setProducts(res.data.map(normalize)));
   }, []);
-
-  const toggleWish = id => {
-    const updated = wishlist.includes(id)
-      ? wishlist.filter(x => x !== id)
-      : [...wishlist, id];
-    setWishlist(updated);
-    localStorage.setItem("wishlist", JSON.stringify(updated));
-  };
 
   /* ---------------- FILTER LOGIC ---------------- */
   const filtered = products.filter(p => {
@@ -61,7 +47,7 @@ export default function PersonalCarePage() {
 
   const sub = (p.category || "Skincare").toString();
   const genderVal = (p.gender || "Unisex").toString();
-  const priceVal = Number(p.discountPrice || p.oldPrice || p.price || 0);
+  const priceVal = Number(p.price || 0);
   const stockVal = Number(p.stock || 0);
   const ratingVal = Number(p.rating || 0);
  
@@ -200,57 +186,7 @@ export default function PersonalCarePage() {
           {/* PRODUCTS GRID */}
           <div className="product-grid">
             {paginated.map(p => (
-              <div
-                key={p.id}
-                className="product-card"
-                onClick={() => navigate(`/product/${p.id}`)}
-              >
-                <div className="product-img">
-
-                  <button
-                    className="product-wish"
-                    onClick={e => {
-                      e.stopPropagation();
-                      toggleWish(p.id);
-                    }}
-                  >
-                    {wishlist.includes(p.id) ? "❤️" : "♡"}
-                  </button>
-
-                  <img src={p.image} alt={p.name} />
-
-                  {p.stock > 0 && p.stock <= 5 && (
-                    <span className="stock-badge low">Only {p.stock} left</span>
-                  )}
-                  {p.stock === 0 && (
-                    <span className="stock-badge out">Out of Stock</span>
-                  )}
-                </div>
-
-                <div className="product-body">
-                  <p className="product-title">{p.name}</p>
-
-                  <div className="product-rating">
-                    {[1,2,3,4,5].map(i => (
-                      <span
-                        key={i}
-                        className={i <= Math.round(p.rating) ? "star filled" : "star"}
-                      >
-                        ★
-                      </span>
-                    ))}
-                  </div>
-
-                  <div className="product-price">
-                    <del>₹{p.price}</del>
-                    <strong>₹{p.discountPrice}</strong>
-                  </div>
-
-                  <button className="product-btn" disabled={p.stock === 0}>
-                    {p.stock === 0 ? "Out of Stock" : "Add to Cart"}
-                  </button>
-                </div>
-              </div>
+              <ProductCard p={p} key={p.id} />
             ))}
           </div>
 

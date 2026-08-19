@@ -9,6 +9,7 @@ import { useCart } from "@/context/CartContext";
 import { useAuth } from "@/context/AuthContext";
 import { errMsg } from "@/lib/api";
 import { toast } from "sonner";
+import ProductCard from "@/components/ProductCard";
 
 import {
   Star,
@@ -90,24 +91,18 @@ export default function ProductDetails() {
 
 
  useEffect(() => {
-  if (!product) return;
+  if (!product?.category) return;
 
-  api.get(API).then(res => {
-
-    const currentCatId =
-      product.category_id ||
-      (product.category_name &&
-        product.category_name.toLowerCase().includes("fruit") ? 1 : null);
-
-    if (!currentCatId) return;
-
-    const sameCat = res.data.filter(
-      p => p.id !== product.id && p.category_id === currentCatId
-    );
-
-    setRelated(sameCat.slice(0, 4));
+  // Same-category products (fall back to same department if too few).
+  api.get(API, { params: { category: product.category, limit: 12 } }).then(res => {
+    let same = res.data.filter(p => p.id !== product.id);
+    if (same.length >= 4) { setRelated(same.slice(0, 5)); return; }
+    api.get(API, { params: { department: product.department, limit: 12 } }).then(r2 => {
+      const more = r2.data.filter(p => p.id !== product.id && !same.some(s => s.id === p.id));
+      setRelated([...same, ...more].slice(0, 5));
+    });
   });
-}, [product]);
+}, [product?.id]);
 
 
 
@@ -118,9 +113,9 @@ export default function ProductDetails() {
   
 
   const price = safeNumber(product.price);
-  const discountPrice = safeNumber(product.discountPrice, price);
-  const discountPercent = calcDiscount(price, discountPrice);
-  const saveAmount = price - discountPrice;
+  const mrp = safeNumber(product.originalPrice);
+  const discountPercent = calcDiscount(mrp, price);
+  const saveAmount = mrp > price ? mrp - price : 0;
 
   return (
     <div className="min-h-screen bg-white">
@@ -180,29 +175,37 @@ export default function ProductDetails() {
           </div>
 
           <div className="pd-price-box">
-            <strong>₹{discountPrice.toFixed(2)}</strong>
+            <strong>₹{price}</strong>
 
-            {price > discountPrice && (
+            {saveAmount > 0 && (
               <>
-                <del>₹{price.toFixed(2)}</del>
-                <span className="save">Save ${saveAmount.toFixed(2)}</span>
+                <del>₹{mrp}</del>
+                <span className="save">
+                  Save ₹{saveAmount}{discountPercent > 0 ? ` (${discountPercent}% off)` : ""}
+                </span>
               </>
             )}
 
             <p>
-              Weight: <b>{product.weight || "N/A"}</b> &nbsp;
-              Origin: <b>{product.origin || "N/A"}</b>
+              Unit: <b>{product.weight || "1 pc"}</b>
+              {product.origin && <> &nbsp; Origin: <b>{product.origin}</b></>}
             </p>
           </div>
 
           <p className="pd-desc">{product.description}</p>
 
           <div className="pd-stock">
-            <span className="text-green-600 font-semibold">In Stock</span> ·{" "}
-            {product.stock || 0} units available
-            <span className="timer">
-              {" "}Order within 2hrs for same-day delivery
-            </span>
+            {product.stock > 0 ? (
+              <>
+                <span className="text-green-600 font-semibold">In Stock</span> ·{" "}
+                {product.stock} units available
+                <span className="timer">
+                  {" "}Order within 2hrs for same-day delivery
+                </span>
+              </>
+            ) : (
+              <span className="text-red-500 font-semibold">Out of Stock</span>
+            )}
           </div>
 
          <div className="pd-cart-wrap">
@@ -221,7 +224,7 @@ export default function ProductDetails() {
     })
   }
 >
-  Add to Cart – ₹{(discountPrice * qty).toFixed(2)}
+  Add to Cart – ₹{price * qty}
 </button>
 
 
@@ -230,7 +233,7 @@ export default function ProductDetails() {
 
 
           <div className="pd-features">
-            <div><Truck /> Free Delivery<br/><span>Orders $50+</span></div>
+            <div><Truck /> Free Delivery<br/><span>Orders ₹499+</span></div>
             <div><Shield /> Quality Guarantee<br/><span>100% Fresh</span></div>
             <div><RotateCcw /> Easy Returns<br/><span>30 Days</span></div>
           </div>
@@ -356,7 +359,9 @@ export default function ProductDetails() {
       <h2 className="text-2xl font-bold">You May Also Like</h2>
       <span
         className="text-red-500 cursor-pointer"
-        onClick={() => navigate(`/category/${product.category}`)}
+        onClick={() =>
+          navigate(`/${(product.department || "food").toLowerCase().replace(" ", "-")}`)
+        }
       >
         View All →
       </span>
@@ -364,56 +369,7 @@ export default function ProductDetails() {
 
     <div className="product-grid">
       {related.map(p => (
-        <div
-          key={p.id}
-          className="product-card"
-          onClick={() => navigate(`/product/${p.id}`)}
-        >
-          <div className="product-img">
-            {p.stock === 0 && <span className="stock-badge out">Out of Stock</span>}
-            {p.stock > 0 && p.stock < 10 && (
-              <span className="stock-badge low">Only {p.stock} left</span>
-            )}
-
-            <button className="product-wish">♡</button>
-            <img src={p.image} alt={p.name} />
-          </div>
-
-          <div className="product-body">
-            <p className="product-title">{p.name}</p>
-
-            <p className="product-desc">
-              {p.description || "Premium quality product for your daily needs."}
-            </p>
-
-            <div className="product-price">
-              <strong>₹{p.discountPrice}</strong>
-              <span>₹{p.price}</span>
-            </div>
-
-         <button
-  type="button"
-  className="pd-cart-btn-main"
-  onClick={(e) => {
-    e.preventDefault();
-    e.stopPropagation();
-
-    addToCart({
-      ...product,
-      qty: qty,
-    });
-  }}
->
-  Add to Cart – 
-</button>
-
-
-
-
-
-
-          </div>
-        </div>
+        <ProductCard p={p} key={p.id} />
       ))}
     </div>
   </section>

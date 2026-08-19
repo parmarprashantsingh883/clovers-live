@@ -6,9 +6,7 @@ import "../assets/css/product-card.css";
 import "../assets/css/foodpage.css";
 import PromoBanner from "@/components/PromoBanner";
 import Breadcrumb from "@/components/Breadcrumb";
-import { useNavigate } from "react-router-dom";
-import { useCart } from "@/context/CartContext";
-import { useWishlist } from "@/context/WishlistContext";
+import ProductCard from "@/components/ProductCard";
 
 
 
@@ -27,27 +25,12 @@ const categoryTabs = [
 ];
 
 export default function FoodPage() {
-  const { addToCart } = useCart();
-const { toggleWishlist, isInWishlist } = useWishlist();
-
-
-
   const [products, setProducts] = useState([]);
   const [page, setPage] = useState(1);
   const [selectedCats, setSelectedCats] = useState([]);
   const [stockOnly, setStockOnly] = useState(false);
   const [maxPrice, setMaxPrice] = useState(1000);
   const [ratingFilter, setRatingFilter] = useState(0);
-
-  const [wishlist, setWishlist] = useState(() => {
-    try {
-      return JSON.parse(localStorage.getItem("wishlist")) || [];
-    } catch {
-      return [];
-    }
-  });
-
-  const navigate = useNavigate();
 
   useEffect(() => {
     api.get(API).then(res => setProducts(res.data));
@@ -60,7 +43,7 @@ const { toggleWishlist, isInWishlist } = useWishlist();
     const catMatch =
       selectedCats.length === 0 || selectedCats.includes(p.category);
 
-    const priceMatch = (p.discountPrice || p.price) <= maxPrice;
+    const priceMatch = p.price <= maxPrice;
     const stockMatch = !stockOnly || p.stock > 0;
     const ratingMatch = !ratingFilter || p.rating >= ratingFilter;
 
@@ -190,66 +173,7 @@ const { toggleWishlist, isInWishlist } = useWishlist();
           {/* PRODUCTS */}
           <div className="product-grid">
             {paginated.map(p => (
-              <div
-                key={p.id}
-                className="product-card"
-                onClick={() => navigate(`/product/${p.id}`)}
-              >
-                <div className="product-img">
-                <button
-  className="product-wish"
-  onClick={(e) => {
-    e.stopPropagation();
-    toggleWishlist(p);
-  }}
->
-  {isInWishlist(p.id) ? "❤️" : "♡"}
-</button>
-
-
-                  <img src={p.image} alt={p.name} />
-
-                  {p.stock > 0 && p.stock <= 5 && (
-                    <span className="stock-badge low">Only {p.stock} left</span>
-                  )}
-                  {p.stock === 0 && (
-                    <span className="stock-badge out">Out of Stock</span>
-                  )}
-                </div>
-
-                <div className="product-body">
-                  <p className="product-title">{p.name}</p>
-
-                 <div className="product-rating">
-  {[1,2,3,4,5].map(i => (
-    <span
-      key={i}
-      className={i <= Math.round(p.rating || 0) ? "star filled" : "star"}
-    >
-      ★
-    </span>
-  ))}
-</div>
-
-
-                  <div className="product-price">
-                    <del>₹{p.price}</del>
-                    <strong>₹{p.discountPrice || p.price}</strong>
-                  </div>
-<button
-  className="product-btn"
-  onClick={(e) => {
-    e.stopPropagation();
-    addToCart(p);
-  }}
->
-  Add to Cart
-</button>
-
-
-
-                </div>
-              </div>
+              <ProductCard p={p} key={p.id} />
             ))}
           </div>
 

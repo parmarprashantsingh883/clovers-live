@@ -2,17 +2,15 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import Breadcrumb from "@/components/Breadcrumb";
 import { useWishlist } from "@/context/WishlistContext";
-import { useCart } from "@/context/CartContext";
-import { Heart, ShoppingCart } from "lucide-react";
-import { toast } from "sonner";
+import { Heart } from "lucide-react";
+import ProductCard from "@/components/ProductCard";
 
 
 import "../assets/css/product-card.css";
 import "../assets/css/foodpage.css";
 
 export default function WishlistPage() {
-  const { wishlist, removeFromWishlist } = useWishlist();
-  const { addToCart } = useCart();
+  const { wishlist } = useWishlist();
 
   return (
     <div className="min-h-screen bg-background">
@@ -49,72 +47,7 @@ export default function WishlistPage() {
         <section className="container pb-24">
           <div className="product-grid">
             {wishlist.map(p => (
-              <div className="product-card" key={p.id}>
-                <div className="product-img">
-
-                  <button
-                    className="product-wish"
-                    onClick={() => removeFromWishlist(p.id)}
-                  >
-                    ❤️
-                  </button>
-
-                  <img src={p.image} alt={p.name} />
-
-                  {p.stock === 0 && (
-                    <span className="stock-badge out">Out of Stock</span>
-                  )}
-                </div>
-
-                <div className="product-body">
-                  <p className="product-title">{p.name}</p>
-
-                  <div className="product-rating">
-                    {[1,2,3,4,5].map(i => (
-                      <span
-                        key={i}
-                        className={i <= Math.round(p.rating || 0)
-                          ? "star filled"
-                          : "star"}
-                      >
-                        ★
-                      </span>
-                    ))}
-                  </div>
-
-                  <div className="product-price">
-                    <strong>₹{p.discountPrice || p.price}</strong>
-                    {p.discountPrice && <span>₹{p.price}</span>}
-                  </div>
-
-                  <div className="wishlist-actions">
-  <button
-    className="product-btn"
-    disabled={p.stock === 0}
-    onClick={() => {
-      addToCart(p);
-      removeFromWishlist(p.id);
-    }}
-  >
-        <ShoppingCart  size={15}/> Move to Cart
-  </button>
-
-  <button
-    className="wishlist-remove-btn"
-    onClick={() => {
-      removeFromWishlist(p.id);
-      toast.error("Removed from Wishlist", {
-        description: p.name,
-        duration: 2200
-      });
-    }}
-  >
-    Remove
-  </button>
-</div>
-
-                </div>
-              </div>
+              <ProductCard p={p} key={p.id} />
             ))}
           </div>
         </section>
