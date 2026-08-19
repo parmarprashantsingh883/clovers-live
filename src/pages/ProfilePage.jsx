@@ -96,10 +96,21 @@ export default function ProfilePage() {
         {/* LEFT CARD */}
         <div className="bg-white p-8 rounded-3xl shadow-xl text-center">
           <label className="relative cursor-pointer inline-block">
-            <img
-              src={profile.avatar || "https://i.imgur.com/1X4hHsb.png"}
-              className="w-28 h-28 rounded-full object-cover mx-auto"
-            />
+            {profile.avatar ? (
+              <img
+                src={profile.avatar}
+                className="w-28 h-28 rounded-full object-cover mx-auto"
+              />
+            ) : (
+              <div className="w-28 h-28 rounded-full mx-auto flex items-center justify-center bg-green-100 text-green-700 text-3xl font-bold">
+                {(profile.name || "G")
+                  .split(" ")
+                  .slice(0, 2)
+                  .map((w) => w[0])
+                  .join("")
+                  .toUpperCase()}
+              </div>
+            )}
             <input type="file" hidden onChange={uploadAvatar} />
             <Camera className="absolute bottom-0 right-1 bg-red-500 text-white p-1 rounded-full" />
           </label>
@@ -170,6 +181,10 @@ export default function ProfilePage() {
                 Save Address
               </button>
             </div>
+          )}
+
+          {authUser && addresses.length === 0 && !showAddrForm && (
+            <p className="text-sm text-gray-500 mt-3">No saved addresses yet — add one to speed up checkout.</p>
           )}
 
           <ul className="mt-4 space-y-3">

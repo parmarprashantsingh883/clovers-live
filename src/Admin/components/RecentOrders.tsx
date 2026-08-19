@@ -36,14 +36,18 @@ const RecentOrders = ({ orders = [] }: { orders?: any[] }) => {
                   {(order.items || []).reduce((s: number, i: any) => s + (i.qty || 0), 0)}
                 </td>
                 <td className="py-4 px-6 text-sm font-medium text-foreground">
-                  ₹{(order.total || 0).toLocaleString("en-IN")}
+                  ₹{Math.round(order.total || 0).toLocaleString("en-IN")}
                 </td>
                 <td className="py-4 px-6">
                   <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium border ${statusColors[order.status] || "bg-secondary text-foreground border-border"}`}>
                     {order.status}
                   </span>
                 </td>
-                <td className="py-4 px-6 text-sm text-muted-foreground">{order.date}</td>
+                <td className="py-4 px-6 text-sm text-muted-foreground">
+                  {order.date
+                    ? new Date(order.date).toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" })
+                    : "—"}
+                </td>
               </tr>
             ))}
           </tbody>

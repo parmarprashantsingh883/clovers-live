@@ -9,6 +9,7 @@ import { Footer } from "@/components/Footer";
 import Breadcrumb from "@/components/Breadcrumb";
 
 import { Clock, CheckCircle, Truck, ArrowLeft } from "lucide-react";
+import { FALLBACK_IMG } from "@/components/ProductCard";
 
 export default function OrderDetails() {
   const { id } = useParams();
@@ -160,7 +161,7 @@ export default function OrderDetails() {
               <button
                 onClick={reorder}
                 disabled={busy}
-                className="px-4 py-2 rounded-full text-sm font-medium bg-red-600 text-white hover:bg-red-700 transition disabled:opacity-50"
+                className="px-4 py-2 rounded-full text-sm font-medium bg-green-600 text-white hover:bg-green-700 transition disabled:opacity-50"
               >
                 Reorder
               </button>
@@ -217,6 +218,7 @@ export default function OrderDetails() {
                     src={item.image}
                     alt={item.name}
                     className="w-20 h-20 rounded-xl object-cover border bg-white"
+                    onError={(e) => { e.currentTarget.src = FALLBACK_IMG; }}
                   />
 
                   <div className="flex-1">
@@ -228,7 +230,7 @@ export default function OrderDetails() {
 
                   <div className="text-right">
                     <p className="text-sm text-gray-400">Item total</p>
-                    <p className="font-bold text-red-600 text-lg">
+                    <p className="font-bold text-gray-900 text-lg">
                       ₹{item.qty * (item.discountPrice || item.price)}
                     </p>
                   </div>
@@ -244,11 +246,27 @@ export default function OrderDetails() {
                 📍 Delivery Address
               </h3>
               <p className="text-sm text-gray-700 leading-relaxed">
-                {address.firstName} {address.lastName}
-                <br />
-                {address.address}
-                <br />
-                {address.city}, {address.state} – {address.zip}
+                {address.name && (
+                  <>
+                    {address.name}
+                    <br />
+                  </>
+                )}
+                {address.line1 && (
+                  <>
+                    {address.line1}
+                    <br />
+                  </>
+                )}
+                {address.city}
+                {address.state ? `, ${address.state}` : ""}
+                {address.pincode ? ` – ${address.pincode}` : ""}
+                {address.phone && (
+                  <>
+                    <br />
+                    {address.phone}
+                  </>
+                )}
               </p>
             </div>
 
@@ -286,7 +304,7 @@ export default function OrderDetails() {
 
             <div className="border-t mt-3 pt-3 flex justify-between font-bold text-lg">
               <span>Total</span>
-              <span className="text-red-600">₹{order.total}</span>
+              <span className="text-gray-900">₹{order.total}</span>
             </div>
           </div>
         </section>

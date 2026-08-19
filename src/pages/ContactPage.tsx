@@ -12,13 +12,13 @@ import Breadcrumb from "@/components/Breadcrumb";
 const faqs = [
   { question: "What are your delivery hours?", answer: "We deliver 7 days a week from 8 AM to 10 PM. Same-day delivery is available for orders placed before 2 PM." },
   { question: "What is your return policy?", answer: "We accept returns within 7 days of purchase for non-perishable items. Perishable items can be returned within 24 hours if there's a quality issue." },
-  { question: "Do you offer free delivery?", answer: "Yes! We offer free delivery on orders over $50. Orders under $50 have a flat delivery fee of $4.99." },
+  { question: "Do you offer free delivery?", answer: "Yes! We offer free delivery on orders over ₹499. Orders under ₹499 have a flat delivery fee of ₹30." },
   { question: "How do I track my order?", answer: "Once your order is dispatched, you'll receive a tracking link via email and SMS. You can also track orders in the 'My Orders' section." },
 ];
 
 const contactMethods = [
-  { icon: Phone, title: "Phone Support", value: "1-800-CLOVERS", description: "Available 24/7" },
-  { icon: Mail, title: "Email", value: "support@clovers.com", description: "Response within 2 hours" },
+  { icon: Phone, title: "Phone Support", value: "1800-419-4141", description: "Available 24/7" },
+  { icon: Mail, title: "Email", value: "support@clovers.in", description: "Response within 2 hours" },
   { icon: MessageCircle, title: "Live Chat", value: "Start a chat", description: "Instant response" },
   { icon: MapPin, title: "Store Locations", value: "Find a store", description: "50+ locations" },
 ];

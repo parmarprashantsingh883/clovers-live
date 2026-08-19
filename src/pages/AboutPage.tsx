@@ -3,6 +3,7 @@ import { Footer } from "@/components/Footer";
 import { MapPin, Phone, Mail, Clock, Users, Leaf, Award, Truck } from "lucide-react";
 import WidePromoBanner from "@/components/WidePromoBanner";
 import Breadcrumb from "@/components/Breadcrumb";
+import { FALLBACK_IMG } from "@/components/ProductCard";
 
 const stats = [
   { icon: Users, label: "Happy Customers", value: "500K+" },
@@ -12,10 +13,10 @@ const stats = [
 ];
 
 const team = [
-  { name: "Sarah Johnson", role: "CEO & Founder", image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=300&h=300&fit=crop" },
-  { name: "Michael Chen", role: "Head of Operations", image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop" },
-  { name: "Emily Davis", role: "Quality Manager", image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=300&h=300&fit=crop" },
-  { name: "James Wilson", role: "Logistics Director", image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&h=300&fit=crop" },
+  { name: "Priya Sharma", role: "CEO & Founder", image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=300&h=300&fit=crop" },
+  { name: "Rohan Mehta", role: "Head of Operations", image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop" },
+  { name: "Ananya Iyer", role: "Quality Manager", image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=300&h=300&fit=crop" },
+  { name: "Arjun Patel", role: "Logistics Director", image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&h=300&fit=crop" },
 ];
 
 const AboutPage = () => {
@@ -81,6 +82,7 @@ const AboutPage = () => {
                     src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=600&h=600&fit=crop" 
                     alt="Fresh produce at Clovers"
                     className="w-full h-full object-cover"
+                    onError={(e) => { (e.currentTarget as HTMLImageElement).src = FALLBACK_IMG; }}
                   />
                 </div>
                 <div className="absolute -bottom-6 -left-6 bg-primary text-primary-foreground p-6 rounded-2xl shadow-lg">
@@ -102,7 +104,7 @@ const AboutPage = () => {
               {team.map((member, index) => (
                 <div key={member.name} className="text-center animate-fade-up" style={{ animationDelay: `${index * 0.1}s` }}>
                   <div className="aspect-square rounded-2xl overflow-hidden mb-4 shadow-card">
-                    <img src={member.image} alt={member.name} className="w-full h-full object-cover" />
+                    <img src={member.image} alt={member.name} className="w-full h-full object-cover" onError={(e) => { (e.currentTarget as HTMLImageElement).src = FALLBACK_IMG; }} />
                   </div>
                   <h3 className="font-semibold text-foreground">{member.name}</h3>
                   <p className="text-sm text-muted-foreground">{member.role}</p>
@@ -117,9 +119,9 @@ const AboutPage = () => {
           <div className="container">
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               {[
-                { icon: MapPin, title: "Visit Us", text: "123 Market Street, Fresh City, FC 12345" },
-                { icon: Phone, title: "Call Us", text: "1-800-CLOVERS (256-8377)" },
-                { icon: Mail, title: "Email Us", text: "support@clovers.com" },
+                { icon: MapPin, title: "Visit Us", text: "SG Highway, Ahmedabad, Gujarat 380054" },
+                { icon: Phone, title: "Call Us", text: "1800-419-4141" },
+                { icon: Mail, title: "Email Us", text: "support@clovers.in" },
                 { icon: Clock, title: "Hours", text: "24/7 Online Shopping" },
               ].map((item, index) => (
                 <div key={item.title} className="flex items-start gap-4 p-6 bg-card rounded-2xl shadow-soft animate-fade-up" style={{ animationDelay: `${index * 0.1}s` }}>

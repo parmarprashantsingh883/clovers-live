@@ -2,6 +2,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import Breadcrumb from "@/components/Breadcrumb";
 import { useWishlist } from "@/context/WishlistContext";
+import { Link } from "react-router-dom";
 import { Heart } from "lucide-react";
 import ProductCard from "@/components/ProductCard";
 
@@ -38,6 +39,12 @@ export default function WishlistPage() {
             <p className="text-muted-foreground">
               Save items you like and come back later.
             </p>
+            <Link
+              to="/"
+              className="inline-block mt-5 bg-green-600 hover:bg-green-700 text-white text-sm font-bold px-6 py-2.5 rounded-lg"
+            >
+              Browse products
+            </Link>
           </div>
         </section>
       )}

@@ -178,7 +178,7 @@ const Signup = () => {
                   value={formData.phone}
                   onChange={handleInputChange}
                   className="w-full pl-12 pr-4 py-3 rounded-xl border border-input bg-card text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent transition-all duration-200"
-                  placeholder="+1 (555) 000-0000"
+                  placeholder="98765 43210"
                 />
               </div>
             </div>

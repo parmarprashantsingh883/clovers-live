@@ -72,8 +72,8 @@ const IMAGE_FIXES = {
  * display unit ("1kg", "500 ml", "Pack of 25") from the name when missing.
  */
 function normalize(p) {
-  const selling = Number(p.discountPrice ?? p.price) || 0;
-  const mrp = Number(p.oldPrice ?? p.originalPrice) || 0;
+  const selling = Math.round(Number(p.discountPrice ?? p.price) || 0);
+  const mrp = Math.round(Number(p.oldPrice ?? p.originalPrice) || 0);
   p.price = selling;
   p.originalPrice = mrp > selling ? mrp : undefined;
   delete p.oldPrice;
@@ -122,7 +122,20 @@ export async function runSeed({ exitAfter = true, force = false } = {}) {
     normalize(p);
   }
   await Product.insertMany(products);
-  await Order.insertMany((db.orders || []).map((o) => ({ ...o, payment: { status: o.paymentMethod === 'cod' ? 'pending' : 'paid' } })));
+
+  // Legacy demo orders: round rupee amounts and heal dead item-image URLs
+  // (order items embed a snapshot of the image at purchase time).
+  const orders = (db.orders || []).map((o) => ({
+    ...o,
+    total: Math.round(Number(o.total) || 0),
+    items: (o.items || []).map((it) => ({
+      ...it,
+      price: Math.round(Number(it.price) || 0),
+      image: IMAGE_FIXES[(it.name || '').trim()] || it.image,
+    })),
+    payment: { status: o.paymentMethod === 'cod' ? 'pending' : 'paid' },
+  }));
+  await Order.insertMany(orders);
 
   // Users + admin go through create() so passwords hash via the pre-save hook.
   for (const u of db.users || []) {

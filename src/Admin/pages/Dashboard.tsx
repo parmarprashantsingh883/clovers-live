@@ -6,7 +6,7 @@ import StatsCard from "../components/StatsCard";
 import RecentOrders from "../components/RecentOrders";
 import TopProducts from "../components/TopProducts";
 
-const inr = (n: number) => `₹${(n || 0).toLocaleString("en-IN")}`;
+const inr = (n: number) => `₹${Math.round(n || 0).toLocaleString("en-IN")}`;
 
 const Dashboard = () => {
   const [stats, setStats] = useState<any>(null);

@@ -9,7 +9,7 @@ import { useCart } from "@/context/CartContext";
 import { useAuth } from "@/context/AuthContext";
 import { errMsg } from "@/lib/api";
 import { toast } from "sonner";
-import ProductCard from "@/components/ProductCard";
+import ProductCard, { FALLBACK_IMG } from "@/components/ProductCard";
 
 import {
   Star,
@@ -132,6 +132,7 @@ export default function ProductDetails() {
     <img
       src={product.images?.[activeImg] || product.image}
       alt={product.name}
+      onError={(e) => { (e.currentTarget as HTMLImageElement).src = FALLBACK_IMG; }}
     />
   </div>
 
@@ -142,7 +143,7 @@ export default function ProductDetails() {
         onClick={() => setActiveImg(i)}
         className={activeImg === i ? "active" : ""}
       >
-        <img src={img} />
+        <img src={img} onError={(e) => { (e.currentTarget as HTMLImageElement).src = FALLBACK_IMG; }} />
       </button>
     ))}
   </div>

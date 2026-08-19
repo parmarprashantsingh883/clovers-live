@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 
 import { Clock, CheckCircle, Truck } from "lucide-react";
 import { useAuth } from "@/context/AuthContext";
+import { FALLBACK_IMG } from "@/components/ProductCard";
 
 export default function OrdersPage() {
   const navigate = useNavigate();
@@ -61,6 +62,7 @@ export default function OrdersPage() {
                   src={order.items[0]?.image}
                   alt={order.items[0]?.name}
                   className="w-16 h-16 rounded-lg object-cover border"
+                  onError={(e) => { (e.currentTarget as HTMLImageElement).src = FALLBACK_IMG; }}
                 />
 
                 <div>
@@ -79,8 +81,8 @@ export default function OrdersPage() {
                   {order.status}
                 </div>
 
-                <div className="font-semibold text-red-600">
-                  ₹{order.total}
+                <div className="font-semibold text-gray-900">
+                  ₹{Math.round(order.total)}
                 </div>
 
                 <Button

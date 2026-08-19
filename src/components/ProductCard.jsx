@@ -11,7 +11,7 @@ import "../assets/css/product-card.css";
  * once the item is in the cart.
  */
 
-const FALLBACK_IMG =
+export const FALLBACK_IMG =
   "data:image/svg+xml," +
   encodeURIComponent(
     `<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><rect width='200' height='200' rx='16' fill='#f3f4f6'/><g fill='none' stroke='#d1d5db' stroke-width='6' stroke-linecap='round'><path d='M60 140l30-40 22 26 16-18 12 32z'/><circle cx='78' cy='72' r='10'/></g></svg>`

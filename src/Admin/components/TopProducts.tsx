@@ -1,3 +1,5 @@
+import { FALLBACK_IMG } from "@/components/ProductCard";
+
 /** Best sellers computed server-side from real order lines. */
 const TopProducts = ({ products = [] }: { products?: any[] }) => {
   return (
@@ -14,7 +16,7 @@ const TopProducts = ({ products = [] }: { products?: any[] }) => {
         {products.map((product) => (
           <div key={product._id} className="flex items-center gap-4 p-2 rounded-lg hover:bg-secondary/50 transition-colors">
             {product.image ? (
-              <img src={product.image} alt="" className="h-12 w-12 rounded-full object-cover border border-border" />
+              <img src={product.image} alt="" className="h-12 w-12 rounded-full object-cover border border-border" onError={(e) => { (e.currentTarget as HTMLImageElement).src = FALLBACK_IMG; }} />
             ) : (
               <div className="h-12 w-12 rounded-full bg-secondary flex items-center justify-center text-2xl">🛒</div>
             )}
@@ -23,7 +25,7 @@ const TopProducts = ({ products = [] }: { products?: any[] }) => {
               <p className="text-xs text-muted-foreground">{product.sold} sold</p>
             </div>
             <div className="text-right">
-              <p className="text-sm font-semibold text-foreground">₹{(product.revenue || 0).toLocaleString("en-IN")}</p>
+              <p className="text-sm font-semibold text-foreground">₹{Math.round(product.revenue || 0).toLocaleString("en-IN")}</p>
             </div>
           </div>
         ))}

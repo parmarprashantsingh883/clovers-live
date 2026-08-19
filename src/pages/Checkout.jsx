@@ -7,6 +7,19 @@ import { useAuth } from "@/context/AuthContext";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import Breadcrumb from "@/components/Breadcrumb";
+import { FALLBACK_IMG } from "@/components/ProductCard";
+
+const FIELD_LABELS = {
+  firstName: "First name",
+  lastName: "Last name",
+  email: "Email",
+  phone: "Phone (10-digit mobile)",
+  address: "Address (house no, street, area)",
+  city: "City",
+  state: "State",
+  zip: "Pincode",
+  country: "Country",
+};
 
 export default function CheckoutPage() {
   const navigate = useNavigate();
@@ -241,7 +254,7 @@ export default function CheckoutPage() {
                 className={`w-10 h-10 rounded-full flex items-center justify-center font-semibold
                 ${
                   step >= i + 1
-                    ? "bg-red-600 text-white"
+                    ? "bg-green-600 text-white"
                     : "bg-gray-200 text-gray-500"
                 }`}
               >
@@ -257,7 +270,7 @@ export default function CheckoutPage() {
               {i < 2 && (
                 <div
                   className={`flex-1 h-[2px] mx-4 ${
-                    step > i + 1 ? "bg-red-600" : "bg-gray-200"
+                    step > i + 1 ? "bg-green-500" : "bg-gray-200"
                   }`}
                 />
               )}
@@ -305,7 +318,7 @@ export default function CheckoutPage() {
                     <input
                       key={key}
                       className="w-full rounded-xl border px-4 py-3 focus:ring-2 focus:ring-red-500 outline-none"
-                      placeholder={key}
+                      placeholder={FIELD_LABELS[key]}
                       value={form[key]}
                       onChange={(e) =>
                         setForm({ ...form, [key]: e.target.value })
@@ -410,6 +423,7 @@ export default function CheckoutPage() {
               src={item.image}
               alt={item.name}
               className="w-14 h-14 rounded-lg object-cover border"
+              onError={(e) => { e.currentTarget.src = FALLBACK_IMG; }}
             />
 
             <div className="flex-1">
@@ -425,7 +439,7 @@ export default function CheckoutPage() {
               </p>
             </div>
 
-            <p className="font-semibold text-red-600 text-sm">
+            <p className="font-semibold text-gray-900 text-sm">
               {formatPrice(item.qty * (item.discountPrice || item.price))}
             </p>
           </div>
@@ -452,7 +466,7 @@ export default function CheckoutPage() {
               )}
               <button
                 disabled={cart.length === 0}
-                className="bg-red-600 text-white px-10 py-4 rounded-full font-semibold shadow hover:bg-red-700 transition disabled:opacity-50"
+                className="bg-green-600 text-white px-10 py-4 rounded-full font-semibold shadow hover:bg-green-700 transition disabled:opacity-50"
                 onClick={() =>
                   step < 3 ? setStep(step + 1) : placeOrder()
                 }
@@ -474,6 +488,7 @@ export default function CheckoutPage() {
           src={item.image}
           alt={item.name}
           className="w-14 h-14 rounded-lg object-cover border"
+          onError={(e) => { e.currentTarget.src = FALLBACK_IMG; }}
         />
 
         <div className="flex-1">
@@ -485,7 +500,7 @@ export default function CheckoutPage() {
           </p>
         </div>
 
-        <p className="text-sm font-semibold text-red-600">
+        <p className="text-sm font-semibold text-gray-900">
           {formatPrice(item.qty * (item.discountPrice || item.price))}
         </p>
       </div>
@@ -556,7 +571,7 @@ export default function CheckoutPage() {
   {/* TOTAL */}
   <div className="border-t mt-4 pt-4 flex justify-between font-bold text-lg">
     <span>Total</span>
-    <span className="text-red-600">
+    <span className="text-gray-900">
       {formatPrice(grandTotal)}
     </span>
   </div>
